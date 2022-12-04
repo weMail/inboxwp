@@ -1,0 +1,14 @@
+{
+    "name": "wedevsofficial/inboxwp",
+    "description": "The easiest solution to send transactional emails in WordPress",
+    "type": "wprdpress-plugin",
+    "license": "GPL-3.0",
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "WeDevs\\Inboxwp\\": "includes/"
+        },
+        "files": []
+    }
+}

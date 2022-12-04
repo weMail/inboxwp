@@ -1,0 +1,9 @@
+/node/node_modules
+/node_modules
+/vendor
+.phpunit.result.cache
+npm-debug.log
+yarn-error.log
+/.idea
+/.vscode
+/.php-cs-fixer.cache
