@@ -2,7 +2,7 @@
 
 namespace WeDevs\Inboxwp;
 
-use WeDevs\Inboxwp\API\APP;
+use WeDevs\Inboxwp\REST\APP;
 
 class API
 {
@@ -13,7 +13,6 @@ class API
 
     public function register_api()
     {
-        $app = new APP();
-        $app->register_routes();
+        new APP();
     }
 }

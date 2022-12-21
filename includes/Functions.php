@@ -13,3 +13,13 @@ function inboxwp_generate_hash($length = 40)
 
     return $random_string;
 }
+
+/**
+ * Fetch teh api key
+ *
+ * @return void
+ */
+function inboxwp_api_key()
+{
+    return get_option('inbox_wp_app_key');
+}

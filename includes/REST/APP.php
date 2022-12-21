@@ -2,20 +2,20 @@
 
 namespace WeDevs\Inboxwp\REST;
 
-use WP_REST_Controller;
-use WP_REST_Server;
+use WeDevs\Inboxwp\RestController;
 
 /**
  * I have created this to connect with the app but not used yet
  * This is a sample rest api for this project. This will need later
  */
-class REST extends WP_REST_Controller
+class APP extends RestController
 {
-    function __construct()
-    {
-        $this->namespace = 'inboxwp/v1';
-        $this->rest_base = 'app';
-    }
+    /**
+     * Route base url
+     *
+     * @var string
+     */
+    protected $rest_base = '/app';
 
     /**
      * Register all routes for this class
@@ -24,42 +24,15 @@ class REST extends WP_REST_Controller
      */
     public function register_routes()
     {
-        register_rest_route(
-            $this->namespace,
-            '/' . $this->rest_base . '/connection/params',
-            [
-                [
-                    'methods' => WP_REST_Server::READABLE,
-                    'callback' => [$this, 'get_params'],
-                    'permission_callback' => [$this, 'get_items_permissions_check'],
-                    'args' => ''
-                ]
-            ]
-        );
+        $this->post('/connect', 'set_secrete', 'check_secret_key');
     }
 
-    public function get_params($request)
+    public function set_secrete($request)
     {
-        $secret = get_option('inboxwp_site_secret');
-        if ($secret) {
-            // return secret and redirect url
+        if ($key = $request->get_param('key')) {
+            update_option('inbox_wp_app_key', $key);
+            return $this->respond(['success' => true, 'message' => 'Successfully update the api key']);
         }
-        // return all site required site data
-        global $wp;
-        return home_url($wp->request);
-    }
-
-    /**
-     * Checks if a given request has access to reade the connection params
-     *
-     * @param \WP_REST_Request $request
-     * @return \WP_REST_Response
-     */
-    public function get_items_permissions_check($request)
-    {
-        if (current_user_can('manage_options')) {
-            return true;
-        }
-        return false;
+        return $this->respond_error('Sorry! The api key is not found', 422);
     }
 }

@@ -11,12 +11,15 @@
   "author": "inboxwp",
   "license": "ISC",
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.3",
     "@wordpress/scripts": "^24.6.0",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.19",
     "tailwindcss": "^3.2.4"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.5",
+    "@heroicons/react": "^2.0.13",
     "axios": "^1.2.0"
   }
 }
