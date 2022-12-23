@@ -54,11 +54,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function Dashboard() {
+function Dashboard(_ref) {
+  let {
+    onDisconnected
+  } = _ref;
   const disconnectSite = () => {
     _core_REST__WEBPACK_IMPORTED_MODULE_1__["default"].get(`${inboxwp.ajaxurl}?action=inboxwp_app_disconnect&hash=${inboxwp.hash}`).then(res => {
-      console.log(res);
-      window.location.reload();
+      onDisconnected();
     }).catch(err => {
       console.log(err.response.data.message);
     });
@@ -576,15 +578,18 @@ function Home() {
   const [apiKey, setApiKey] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)('');
   const connectSite = () => {
     _core_REST__WEBPACK_IMPORTED_MODULE_4__["default"].get(`${inboxwp.ajaxurl}?action=inboxwp_app_subscription_checking&hash=${inboxwp.hash}`).then(res => {
+      if (res.data.success == false) {
+        return;
+      }
       if (res.data.data.key) {
         setApiKey(res.data.data.key);
       }
     }).catch(err => {
-      console.log(err.response.data.message);
+      console.log(err);
     });
   };
-  const updateApiKey = key => {
-    setApiKey(key);
+  const updateApiKey = () => {
+    setApiKey(null);
   };
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
     connectSite();
@@ -592,7 +597,9 @@ function Home() {
   if (!apiKey) {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_NoteConnected__WEBPACK_IMPORTED_MODULE_3__["default"], null);
   }
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Dashboard__WEBPACK_IMPORTED_MODULE_2__["default"], null);
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Dashboard__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    onDisconnected: updateApiKey
+  });
 }
 
 /***/ }),

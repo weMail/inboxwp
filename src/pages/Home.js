@@ -9,17 +9,20 @@ export default function Home() {
     const connectSite = () => {
         rest.get(`${inboxwp.ajaxurl}?action=inboxwp_app_subscription_checking&hash=${inboxwp.hash}`)
             .then((res) => {
+                if(res.data.success == false) {
+                    return;
+                }
                 if(res.data.data.key) {
                     setApiKey(res.data.data.key)
                 }
             })
             .catch((err) => {
-                console.log(err.response.data.message)
+                console.log(err)
             })
     }
 
-    const updateApiKey = key => {
-        setApiKey(key)
+    const updateApiKey = () => {
+        setApiKey(null)
     }
 
     useEffect(() => {
@@ -29,5 +32,5 @@ export default function Home() {
     if(! apiKey) {
         return  <NotConnected />
     }
-    return <Dashboard />
+    return <Dashboard onDisconnected={updateApiKey} />
 }

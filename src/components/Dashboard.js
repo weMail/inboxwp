@@ -1,12 +1,11 @@
 import rest from "../core/REST";
 import MediaCard from "./MediaCard";
 
-export default function Dashboard() {
+export default function Dashboard({onDisconnected}) {
   const disconnectSite = () => {
         rest.get(`${inboxwp.ajaxurl}?action=inboxwp_app_disconnect&hash=${inboxwp.hash}`)
             .then((res) => {
-                console.log(res);
-                window.location.reload();
+                onDisconnected()
             })
             .catch((err) => {
                 console.log(err.response.data.message)
