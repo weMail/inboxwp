@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Dashboard from '../components/Dashboard';
-import NotConnected from '../components/NoteConnected';
+import NotConnected from '../components/NotConnectState';
 import rest from '../core/REST';
 
 export default function Home() {

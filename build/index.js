@@ -106,8 +106,9 @@ function Dashboard(_ref) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", {
     className: "inboxwp-mt-2 inboxwp-text-lg inboxwp-font-medium"
   }, "Disconnect your site"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Disconnect you site from inboxwp app. If you want to cancel your subscription please go to ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    className: "inboxwp-text-blue-500",
     href: "http://app.inboxwp.test/dashboard"
-  }, "dashboard of IboxWP app"))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+  }, "dashboard of InboxWP app"))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     className: "inboxwp-inline-flex inboxwp-items-center inboxwp-rounded-md inboxwp-border inboxwp-border-transparent inboxwp-bg-red-600 inboxwp-px-4 inboxwp-text-sm inboxwp-font-medium inboxwp-text-white inboxwp-shadow-sm hover:inboxwp-bg-red-700 focus:inboxwp-outline-none focus:inboxwp-ring-2 focus:inboxwp-ring-red-500 focus:inboxwp-ring-offset-2",
     onClick: disconnectSite
   }, "Disconnect")));
@@ -446,10 +447,10 @@ function MediaCard(props) {
 
 /***/ }),
 
-/***/ "./src/components/NoteConnected.js":
-/*!*****************************************!*\
-  !*** ./src/components/NoteConnected.js ***!
-  \*****************************************/
+/***/ "./src/components/NotConnectState.js":
+/*!*******************************************!*\
+  !*** ./src/components/NotConnectState.js ***!
+  \*******************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -567,7 +568,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_Dashboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Dashboard */ "./src/components/Dashboard.js");
-/* harmony import */ var _components_NoteConnected__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/NoteConnected */ "./src/components/NoteConnected.js");
+/* harmony import */ var _components_NotConnectState__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/NotConnectState */ "./src/components/NotConnectState.js");
 /* harmony import */ var _core_REST__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/REST */ "./src/core/REST.js");
 
 
@@ -595,7 +596,7 @@ function Home() {
     connectSite();
   }, [apiKey]);
   if (!apiKey) {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_NoteConnected__WEBPACK_IMPORTED_MODULE_3__["default"], null);
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_NotConnectState__WEBPACK_IMPORTED_MODULE_3__["default"], null);
   }
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Dashboard__WEBPACK_IMPORTED_MODULE_2__["default"], {
     onDisconnected: updateApiKey

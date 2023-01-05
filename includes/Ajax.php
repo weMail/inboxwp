@@ -26,7 +26,7 @@ class Ajax
     {
         if (check_admin_referer('inboxwp-nonce', 'hash')) {
             $redirect_url = admin_url() . '?page=inboxwp';
-            $url = INBOX_WP_APP_URL . '/checkout?rest_url_prefix=' . rest_get_url_prefix() . '&site_name=' . urlencode(get_bloginfo('name')) . '&site_hash=' . get_option('inbox_wp_site_hash') . '&home_url=' . untrailingslashit(home_url('/')) . '&site_url=' . untrailingslashit(site_url('/')) . '&site_email=' . get_bloginfo('admin_email') . '&redirect_url=' . $redirect_url;
+            $url = INBOX_WP_APP_URL . '/checkout?rest_url_prefix=' . rest_get_url_prefix() . '&site_name=' . urlencode(get_bloginfo('name')) . '&site_hash=' . site_hash() . '&home_url=' . untrailingslashit(home_url('/')) . '&site_url=' . untrailingslashit(site_url('/')) . '&site_email=' . get_bloginfo('admin_email') . '&redirect_url=' . $redirect_url;
             wp_send_json_success(['url' => $url]);
         }
 

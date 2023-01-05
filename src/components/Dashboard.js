@@ -47,7 +47,7 @@ export default function Dashboard({onDisconnected}) {
       <div className="inboxwp-bg-white inboxwp-flex inboxwp-justify-between inboxwp-m-2 inboxwp-rounded-lg inboxwp-ml-0 inboxwp-p-6">
         <div className=" inboxwp-text-gray-900">
           <h2 className="inboxwp-mt-2 inboxwp-text-lg inboxwp-font-medium">Disconnect your site</h2>
-          <p>Disconnect you site from inboxwp app. If you want to cancel your subscription please go to <a href="http://app.inboxwp.test/dashboard">dashboard of IboxWP app</a></p>
+          <p>Disconnect you site from inboxwp app. If you want to cancel your subscription please go to <a className="inboxwp-text-blue-500" href="http://app.inboxwp.test/dashboard">dashboard of InboxWP app</a></p>
         </div>
         <button className="inboxwp-inline-flex inboxwp-items-center inboxwp-rounded-md inboxwp-border inboxwp-border-transparent inboxwp-bg-red-600 inboxwp-px-4 inboxwp-text-sm inboxwp-font-medium inboxwp-text-white inboxwp-shadow-sm hover:inboxwp-bg-red-700 focus:inboxwp-outline-none focus:inboxwp-ring-2 focus:inboxwp-ring-red-500 focus:inboxwp-ring-offset-2" onClick={disconnectSite}>Disconnect</button>
       </div>
