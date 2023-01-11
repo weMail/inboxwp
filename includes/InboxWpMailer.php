@@ -41,45 +41,6 @@ class InboxWpMailer extends PHPMailer
     }
 
     /**
-     * Format phpmailer attachments into plain array of file urls
-     *
-     * @param $attachments
-     *
-     * @return array
-     */
-    public function formatAttachments($attachments)
-    {
-        global $wpdb;
-
-        if (empty($attachments)) {
-            return [];
-        }
-
-        $attachments = array_map(
-            function ($attachment) {
-                if (is_array($attachment)) {
-                    $split = explode('/uploads/', $attachment[0]);
-
-                    return esc_sql(end($split));
-                }
-
-                return null;
-            },
-            $attachments
-        );
-
-        $attachments = array_filter($attachments);
-        $files = $wpdb->get_results("SELECT `post_id` FROM {$wpdb->postmeta} WHERE `meta_key` = '_wp_attached_file' AND `meta_value` IN('" . implode("', '", $attachments) . "')");
-
-        return array_map(
-            function ($file) {
-                return wp_get_attachment_url($file->post_id);
-            },
-            $files
-        );
-    }
-
-    /**
      * Attempt to send email by inboxwp app
      *
      * @return mixed
@@ -96,7 +57,7 @@ class InboxWpMailer extends PHPMailer
                 'message' => $this->phpmailer->Body,
                 'type' => $this->phpmailer->ContentType,
                 'reply_to' => $this->phpmailer->getReplyToAddresses(),
-                'attachments' => $this->formatAttachments($this->phpmailer->getAttachments()),
+                'attachments' => $this->getAttachments(),
             )
         );
     }
@@ -119,5 +80,22 @@ class InboxWpMailer extends PHPMailer
         }
 
         return true;
+    }
+
+    protected function formatAttachment($attachment)
+    {
+        $uploadDir = wp_upload_dir();
+        error_log(print_r($uploadDir, true));
+        return  $uploadDir['url'] . '/' . $attachment[1];
+    }
+
+    public function getAttachments()
+    {
+        $attachments = $this->phpmailer->getAttachments();
+
+        // Format the attachments, per service requirement.
+        $attachments = array_map([ $this, 'formatAttachment' ], $attachments);
+
+        return $attachments;
     }
 }
