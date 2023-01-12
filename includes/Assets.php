@@ -39,7 +39,7 @@ class Assets
                 'version' => INBOX_WP_VERSION
             ],
             'react-style' => [
-                'src' => INBOX_WP_PATH . '/build/index.css',
+                'src' => INBOX_WP_URL . '/build/index.css',
                 'version' => filemtime(INBOX_WP_PATH . '/build/index.css')
             ]
         ];

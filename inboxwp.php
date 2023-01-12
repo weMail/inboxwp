@@ -13,6 +13,8 @@
  * Domain Path:       /languages
  */
 
+use WeDevs\Inboxwp\Hooks;
+
 // don't call the file directly
 if (!defined('ABSPATH')) {
     exit;
@@ -89,8 +91,8 @@ final class InboxWP
 
         update_option('inbox_wp_version', INBOX_WP_VERSION);
 
-        if (!get_option('inbox_wp_site_hash')) {
-            update_option('inbox_wp_site_hash', inboxwp_generate_hash());
+        if (!site_hash()) {
+            set_site_hash();
         }
     }
 
@@ -107,6 +109,7 @@ final class InboxWP
         if (defined('DOING_AJAX') && DOING_AJAX) {
             new WeDevs\Inboxwp\Ajax();
         }
+        new Hooks();
     }
 
     /**

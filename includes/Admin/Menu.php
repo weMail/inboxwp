@@ -49,6 +49,7 @@ class Menu
     public function enqueue_assets()
     {
         wp_enqueue_style('inboxwp-style');
+        wp_enqueue_style('react-style');
         wp_enqueue_style('inboxwp-style');
         wp_enqueue_script('inboxwp-react-script');
         wp_enqueue_style('inboxwp-tailwind-ui-font');

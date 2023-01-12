@@ -13,3 +13,38 @@ function inboxwp_generate_hash($length = 40)
 
     return $random_string;
 }
+
+/**
+ * Fetch api api key
+ *
+ * @return mixed
+ */
+function inboxwp_api_key()
+{
+    return get_option('inbox_wp_app_key');
+}
+
+/**
+ * Fetch site hash key
+ *
+ * @return mixed
+ */
+function site_hash()
+{
+    return get_option('inbox_wp_site_hash');
+}
+
+/**
+ * Update site hash
+ *
+ * @param string $hash
+ * @return mixed
+ */
+function set_site_hash($hash = '')
+{
+    if ($hash) {
+        update_option('inbox_wp_site_hash', $hash);
+    } else {
+        update_option('inbox_wp_site_hash', inboxwp_generate_hash());
+    }
+}
