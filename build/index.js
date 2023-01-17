@@ -528,7 +528,7 @@ __webpack_require__.r(__webpack_exports__);
 function HTTP(baseUrl, token) {
   return axios__WEBPACK_IMPORTED_MODULE_0__["default"].create({
     baseURL: baseUrl,
-    timeout: 1000,
+    timeout: 5000,
     headers: {
       'api-key': token
     }
@@ -577,6 +577,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function Home() {
   const [apiKey, setApiKey] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)('');
+  const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(true);
   const connectSite = () => {
     _core_REST__WEBPACK_IMPORTED_MODULE_4__["default"].get(`${inboxwp.ajaxurl}?action=inboxwp_app_subscription_checking&hash=${inboxwp.hash}`).then(res => {
       if (res.data.success == false) {
@@ -585,6 +586,8 @@ function Home() {
       if (res.data.data.key) {
         setApiKey(res.data.data.key);
       }
+    }).finally(() => {
+      setLoading(false);
     }).catch(err => {
       console.log(err);
     });
@@ -595,7 +598,9 @@ function Home() {
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
     connectSite();
   }, [apiKey]);
-  if (!apiKey) {
+  if (loading) {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, "Loadding ........");
+  } else if (!loading && !apiKey) {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_NotConnectState__WEBPACK_IMPORTED_MODULE_3__["default"], null);
   }
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Dashboard__WEBPACK_IMPORTED_MODULE_2__["default"], {

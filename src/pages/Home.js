@@ -5,6 +5,7 @@ import rest from '../core/REST';
 
 export default function Home() {
     const [apiKey, setApiKey] = useState('');
+    const [loading, setLoading] = useState(true);
 
     const connectSite = () => {
         rest.get(`${inboxwp.ajaxurl}?action=inboxwp_app_subscription_checking&hash=${inboxwp.hash}`)
@@ -15,6 +16,9 @@ export default function Home() {
                 if(res.data.data.key) {
                     setApiKey(res.data.data.key)
                 }
+            })
+            .finally(() => {
+                setLoading(false)
             })
             .catch((err) => {
                 console.log(err)
@@ -29,7 +33,9 @@ export default function Home() {
         connectSite();
     }, [apiKey]);
 
-    if(! apiKey) {
+    if(loading) {
+        return <>Loadding ........</>
+    } else if (! loading && !apiKey) {
         return  <NotConnected />
     }
     return <Dashboard onDisconnected={updateApiKey} />
