@@ -2,6 +2,8 @@
 
 namespace WeDevs\Inboxwp;
 
+use WeDevs\Inboxwp\Services\SiteConnection;
+
 /**
  * Ajax handling class
  */
@@ -25,11 +27,8 @@ class Ajax
     public function get_app_url()
     {
         if (check_admin_referer('inboxwp-nonce', 'hash')) {
-            $redirect_url = admin_url() . '?page=inboxwp';
-            $url = INBOX_WP_APP_URL . '/checkout?rest_url_prefix=' . rest_get_url_prefix() . '&site_name=' . urlencode(get_bloginfo('name')) . '&site_hash=' . site_hash() . '&home_url=' . untrailingslashit(home_url('/')) . '&site_url=' . untrailingslashit(site_url('/')) . '&site_email=' . get_bloginfo('admin_email') . '&redirect_url=' . $redirect_url;
-            wp_send_json_success(['url' => $url]);
+            wp_send_json_success(['url' => SiteConnection::instance()->appUrl()]);
         }
-
         wp_send_json_error();
     }
 
@@ -51,17 +50,18 @@ class Ajax
         wp_send_json_error();
     }
 
+    /**
+     * Disconnect from the app
+     */
     public function disconnect_app()
     {
         if (check_admin_referer('inboxwp-nonce', 'hash')) {
-            // wp_send_json_success();
-            if (inboxwp_api_key()) {
-                delete_option('inbox_wp_app_key');
-                wp_send_json_success(['success' => true, 'message' => 'Successfully disconnected']);
+            if (SiteConnection::instance()->disconnect()) {
+                wp_send_json_success(['message' => __('Successfully disconnected', 'inboxwp')]);
             }
-            wp_send_json_error();
+            wp_send_json_error(['message' => __('Opps! something went wrong.', 'inboxwp')]);
         }
 
-        wp_send_json_error();
+        wp_send_json_error(['message' => __('Opps! bad request.', 'inboxwp')]);
     }
 }
