@@ -85,7 +85,6 @@ class InboxWpMailer extends PHPMailer
     protected function formatAttachment($attachment)
     {
         $uploadDir = wp_upload_dir();
-        error_log(print_r($uploadDir, true));
         return  $uploadDir['url'] . '/' . $attachment[1];
     }
 
