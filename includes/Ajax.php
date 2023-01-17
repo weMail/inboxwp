@@ -2,6 +2,7 @@
 
 namespace WeDevs\Inboxwp;
 
+use WeDevs\Inboxwp\Services\Home;
 use WeDevs\Inboxwp\Services\SiteConnection;
 
 /**
@@ -17,6 +18,7 @@ class Ajax
         add_action('wp_ajax_inboxwp_app_connection_url', [$this, 'get_app_url']);
         add_action('wp_ajax_inboxwp_app_subscription_checking', [$this, 'check_subscription']);
         add_action('wp_ajax_inboxwp_app_disconnect', [$this, 'disconnect_app']);
+        add_action('wp_ajax_inboxwp_app_get_stats', [$this, 'get_stats']);
     }
 
     /**
@@ -63,5 +65,13 @@ class Ajax
         }
 
         wp_send_json_error(['message' => __('Opps! bad request.', 'inboxwp')]);
+    }
+
+    public function get_stats()
+    {
+        if ($stats = Home::instance()->getStats()) {
+            wp_send_json_success($stats);
+        }
+        wp_send_json_error(['message' => __('Opps! Something went wrong', 'inboxwp')]);
     }
 }

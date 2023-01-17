@@ -13,14 +13,9 @@ class Home
 
     public function getStats()
     {
-        $apiKey = inboxwp_api_key();
-        if ($apiKey) {
-            $stats = AppApi::instance()->get('/' . site_hash() . '/stats', [], ['timeout' => 2000]);
-            error_log(print_r($stats, 1));
-            return [
-                'key' => $apiKey
-            ];
+        if (! inboxwp_api_key()) {
+            return false;
         }
-        return false;
+        return AppApi::instance()->get('/' . site_hash() . '/stats', [], ['timeout' => 2000]);
     }
 }

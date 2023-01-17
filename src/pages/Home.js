@@ -31,7 +31,7 @@ export default function Home() {
 
     useEffect(() => {
         connectSite();
-    }, [apiKey]);
+    }, []);
 
     if(loading) {
         return <>Loadding ........</>
