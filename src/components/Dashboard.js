@@ -5,7 +5,8 @@ import {useEffect, useState} from 'react';
 export default function Dashboard({onDisconnected}) {
     const [loading, setLoading] = useState(true);
     const [stats, setStats] = useState({
-        sent: {}
+        sent: {},
+        bounce: {}
     });
     const disconnectSite = () => {
         rest.get(`${inboxwp.ajaxurl}?action=inboxwp_app_disconnect&hash=${inboxwp.hash}`)
@@ -58,7 +59,7 @@ export default function Dashboard({onDisconnected}) {
             </div>
             <div className="inboxwp-w-full inboxwp-flex">
                 <MediaCard title="Delivered Emails" loading={loading} description={stats.sent.Sent} img="https://picsum.photos/id/1/200/200"/>
-                <MediaCard title="Failed Emails" loading={loading} description="0" img="https://picsum.photos/200"/>
+                <MediaCard title="Hard Bounce" loading={loading} description={stats.bounce.HardBounce} img="https://picsum.photos/200"/>
                 <MediaCard title="Total cost" loading={loading} description="0"
                            img="https://picsum.photos/seed/picsum/200/200"/>
             </div>

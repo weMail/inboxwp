@@ -712,15 +712,6 @@ select {
 .inboxwp-mt-2 {
   margin-top: 0.5rem;
 }
-.inboxwp-mr-8 {
-  margin-right: 2rem;
-}
-.inboxwp-mb-10 {
-  margin-bottom: 2.5rem;
-}
-.inboxwp-mt-6 {
-  margin-top: 1.5rem;
-}
 .inboxwp-mb-4 {
   margin-bottom: 1rem;
 }
@@ -729,6 +720,15 @@ select {
 }
 .inboxwp-mb-2 {
   margin-bottom: 0.5rem;
+}
+.inboxwp-mr-8 {
+  margin-right: 2rem;
+}
+.inboxwp-mb-10 {
+  margin-bottom: 2.5rem;
+}
+.inboxwp-mt-6 {
+  margin-top: 1.5rem;
 }
 .inboxwp-block {
   display: block;
@@ -742,20 +742,17 @@ select {
 .inboxwp-hidden {
   display: none;
 }
-.inboxwp-h-10 {
-  height: 2.5rem;
-}
-.inboxwp-h-12 {
-  height: 3rem;
-}
 .inboxwp-h-2\.5 {
   height: 0.625rem;
 }
 .inboxwp-h-2 {
   height: 0.5rem;
 }
-.inboxwp-h-48 {
-  height: 12rem;
+.inboxwp-h-10 {
+  height: 2.5rem;
+}
+.inboxwp-h-12 {
+  height: 3rem;
 }
 .inboxwp-min-h-\[50px\] {
   min-height: 50px;
@@ -775,14 +772,14 @@ select {
 .inboxwp-w-1\/3 {
   width: 33.333333%;
 }
+.inboxwp-w-48 {
+  width: 12rem;
+}
 .inboxwp-w-16 {
   width: 4rem;
 }
 .inboxwp-w-12 {
   width: 3rem;
-}
-.inboxwp-w-48 {
-  width: 12rem;
 }
 .inboxwp-max-w-sm {
   max-width: 24rem;
@@ -796,28 +793,11 @@ select {
 .inboxwp-max-w-\[300px\] {
   max-width: 300px;
 }
-@keyframes inboxwp-pulse {
-
-  50% {
-    opacity: .5;
-  }
-}
-.inboxwp-animate-pulse {
-  animation: inboxwp-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
 .inboxwp-items-center {
   align-items: center;
 }
-.inboxwp-justify-center {
-  justify-content: center;
-}
 .inboxwp-justify-between {
   justify-content: space-between;
-}
-.inboxwp-space-y-8 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(2rem * var(--tw-space-y-reverse));
 }
 .inboxwp-self-start {
   align-self: flex-start;
@@ -830,9 +810,6 @@ select {
 }
 .inboxwp-rounded-full {
   border-radius: 9999px;
-}
-.inboxwp-rounded {
-  border-radius: 0.25rem;
 }
 .inboxwp-border {
   border-width: 1px;
@@ -852,17 +829,13 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(220 38 38 / var(--tw-bg-opacity));
 }
-.inboxwp-bg-indigo-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(79 70 229 / var(--tw-bg-opacity));
-}
 .inboxwp-bg-gray-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
-.inboxwp-bg-gray-300 {
+.inboxwp-bg-indigo-600 {
   --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+  background-color: rgb(79 70 229 / var(--tw-bg-opacity));
 }
 .inboxwp-p-3 {
   padding: 0.75rem;
@@ -956,10 +929,6 @@ select {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
 }
-.inboxwp-text-gray-200 {
-  --tw-text-opacity: 1;
-  color: rgb(229 231 235 / var(--tw-text-opacity));
-}
 .inboxwp-shadow-sm {
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
@@ -997,51 +966,14 @@ select {
 .focus\:inboxwp-ring-offset-2:focus {
   --tw-ring-offset-width: 2px;
 }
-@media (prefers-color-scheme: dark) {
-
-  .dark\:inboxwp-bg-gray-700 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(55 65 81 / var(--tw-bg-opacity));
-  }
-}
 @media (min-width: 640px) {
-
-  .sm\:inboxwp-w-96 {
-    width: 24rem;
-  }
 
   .sm\:inboxwp-text-sm {
     font-size: 0.875rem;
     line-height: 1.25rem;
   }
 }
-@media (min-width: 768px) {
-
-  .md\:inboxwp-flex {
-    display: flex;
-  }
-
-  .md\:inboxwp-items-center {
-    align-items: center;
-  }
-
-  .md\:inboxwp-space-y-0 > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-y-reverse: 0;
-    margin-top: calc(0px * calc(1 - var(--tw-space-y-reverse)));
-    margin-bottom: calc(0px * var(--tw-space-y-reverse));
-  }
-
-  .md\:inboxwp-space-x-8 > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-x-reverse: 0;
-    margin-right: calc(2rem * var(--tw-space-x-reverse));
-    margin-left: calc(2rem * calc(1 - var(--tw-space-x-reverse)));
-  }
-}
 @media (min-width: 1024px) {
-
-  .lg\:inboxwp-left-\[15\%\] {
-    left: 15%;
-  }
 
   .lg\:inboxwp-left-\[12\%\] {
     left: 12%;

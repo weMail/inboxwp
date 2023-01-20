@@ -63,7 +63,8 @@ function Dashboard(_ref) {
   } = _ref;
   const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(true);
   const [stats, setStats] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)({
-    sent: {}
+    sent: {},
+    bounce: {}
   });
   const disconnectSite = () => {
     _core_REST__WEBPACK_IMPORTED_MODULE_1__["default"].get(`${inboxwp.ajaxurl}?action=inboxwp_app_disconnect&hash=${inboxwp.hash}`).then(res => {
@@ -111,9 +112,9 @@ function Dashboard(_ref) {
     description: stats.sent.Sent,
     img: "https://picsum.photos/id/1/200/200"
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_MediaCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    title: "Failed Emails",
+    title: "Hard Bounce",
     loading: loading,
-    description: "0",
+    description: stats.bounce.HardBounce,
     img: "https://picsum.photos/200"
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_MediaCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
     title: "Total cost",
