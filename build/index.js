@@ -64,7 +64,8 @@ function Dashboard(_ref) {
   const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(true);
   const [stats, setStats] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)({
     sent: {},
-    bounce: {}
+    bounce: {},
+    spam: {}
   });
   const disconnectSite = () => {
     _core_REST__WEBPACK_IMPORTED_MODULE_1__["default"].get(`${inboxwp.ajaxurl}?action=inboxwp_app_disconnect&hash=${inboxwp.hash}`).then(res => {
@@ -90,7 +91,7 @@ function Dashboard(_ref) {
     getStats();
   }, []);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "inboxwp-container inboxwp-pr-[20px] inboxwp-py-[15px]"
+    className: "inboxwp-container inboxwp-pr-[20px] inboxwp-py-[15px] inboxwp-mr-3"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "inboxwp-w-full inboxwp-min-h-[50px] inboxwp-flex inboxwp-justify-between"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -105,7 +106,7 @@ function Dashboard(_ref) {
     className: "inboxwp-mt-1 inboxwp-block inboxwp-w-full inboxwp-rounded-md inboxwp-border-gray-300 inboxwp-py-2 inboxwp-pl-3 inboxwp-pr-10 inboxwp-text-base focus:inboxwp-border-indigo-500 focus:inboxwp-outline-none focus:inboxwp-ring-indigo-500 sm:inboxwp-text-sm inboxwp-text-red-800",
     defaultValue: "Canada"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", null, "Monthly"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", null, "Weekly"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", null, "Daily")))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "inboxwp-w-full inboxwp-flex"
+    className: "inboxwp-w-full inboxwp-flex inboxwp-space-x-4"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_MediaCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
     title: "Delivered Emails",
     loading: loading,
@@ -119,16 +120,16 @@ function Dashboard(_ref) {
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_MediaCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
     title: "Total cost",
     loading: loading,
-    description: "0",
+    description: stats.spam.SpamComplaint || 0,
     img: "https://picsum.photos/seed/picsum/200/200"
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "inboxwp-flex inboxwp-min-h-[400px] inboxwp-justify-between"
+    className: "inboxwp-flex inboxwp-w-full inboxwp-min-h-[400px] inboxwp-justify-between inboxwp-space-x-4"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "inboxwp-w-2/3 inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-m-2 inboxwp-ml-0"
+    className: "lg:inboxwp-w-2/3 inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-my-4"
   }, "left Contents"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "inboxwp-w-1/3 inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-m-2"
+    className: "lg:inboxwp-w-1/3 inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-my-4"
   }, "right contents")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "inboxwp-bg-white inboxwp-flex inboxwp-justify-between inboxwp-m-2 inboxwp-rounded-lg inboxwp-ml-0 inboxwp-p-6"
+    className: "inboxwp-bg-white inboxwp-flex inboxwp-justify-between inboxwp-my-2 inboxwp-rounded-lg inboxwp-p-6"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: " inboxwp-text-gray-900"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", {
@@ -206,7 +207,7 @@ function MediaCard(_ref) {
   } = _ref;
   const imgSrc = 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/546px-McDonald%27s_Golden_Arches.svg.png';
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "lg:inboxwp-w-1/3 inboxwp-flex inboxwp-items-center inboxwp-m-4 inboxwp-ml-0 inboxwp-bg-white inboxwp-rounded-lg inboxwp-px-3 inboxwp-py-6"
+    className: "lg:inboxwp-w-1/3 inboxwp-flex inboxwp-items-center inboxwp-bg-white inboxwp-rounded-lg inboxwp-px-3 inboxwp-py-6"
   }, loading ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Loading__WEBPACK_IMPORTED_MODULE_1__["default"], null) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     className: "inboxwp-w-16 inboxwp-mr-8 inboxwp-mb-10",
     src: img ? img : imgSrc
@@ -216,7 +217,7 @@ function MediaCard(_ref) {
     className: "inboxwp-text-2xl inboxwp-text-gray-900"
   }, title ? title : 'Default title'), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     className: "inboxwp-text-base inboxwp-text-gray-700"
-  }, description ? description : 'Updating...')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, description != undefined ? description : 0)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "inboxwp-self-start inboxwp-relative inboxwp-top-0 -inboxwp-left-[1%] md: lg:inboxwp-left-[12%] inboxwp-hidden lg:inboxwp-block"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
     className: "inboxwp-h-10",
@@ -601,7 +602,7 @@ __webpack_require__.r(__webpack_exports__);
 function HTTP(baseUrl, token) {
   return axios__WEBPACK_IMPORTED_MODULE_0__["default"].create({
     baseURL: baseUrl,
-    timeout: 5000,
+    timeout: 10000,
     headers: {
       'api-key': token
     }

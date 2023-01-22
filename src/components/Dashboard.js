@@ -6,7 +6,8 @@ export default function Dashboard({onDisconnected}) {
     const [loading, setLoading] = useState(true);
     const [stats, setStats] = useState({
         sent: {},
-        bounce: {}
+        bounce: {},
+        spam: {},
     });
     const disconnectSite = () => {
         rest.get(`${inboxwp.ajaxurl}?action=inboxwp_app_disconnect&hash=${inboxwp.hash}`)
@@ -39,7 +40,7 @@ export default function Dashboard({onDisconnected}) {
     }, [])
 
     return (
-        <div className="inboxwp-container inboxwp-pr-[20px] inboxwp-py-[15px]">
+        <div className="inboxwp-container inboxwp-pr-[20px] inboxwp-py-[15px] inboxwp-mr-3">
             <div className="inboxwp-w-full inboxwp-min-h-[50px] inboxwp-flex inboxwp-justify-between">
                 <div className="inboxwp-w-32">
                     <h2 className="inboxwp-text-lg">Dashboard</h2>
@@ -57,22 +58,21 @@ export default function Dashboard({onDisconnected}) {
                     </select>
                 </div>
             </div>
-            <div className="inboxwp-w-full inboxwp-flex">
+            <div className="inboxwp-w-full inboxwp-flex inboxwp-space-x-4">
                 <MediaCard title="Delivered Emails" loading={loading} description={stats.sent.Sent} img="https://picsum.photos/id/1/200/200"/>
                 <MediaCard title="Hard Bounce" loading={loading} description={stats.bounce.HardBounce} img="https://picsum.photos/200"/>
-                <MediaCard title="Total cost" loading={loading} description="0"
-                           img="https://picsum.photos/seed/picsum/200/200"/>
+                <MediaCard title="Total cost" loading={loading} description={stats.spam.SpamComplaint || 0} img="https://picsum.photos/seed/picsum/200/200"/>
             </div>
-            <div className="inboxwp-flex inboxwp-min-h-[400px] inboxwp-justify-between">
-                <div className="inboxwp-w-2/3 inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-m-2 inboxwp-ml-0">
+            <div className="inboxwp-flex inboxwp-w-full inboxwp-min-h-[400px] inboxwp-justify-between inboxwp-space-x-4">
+                <div className="lg:inboxwp-w-2/3 inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-my-4">
                     left Contents
                 </div>
-                <div className="inboxwp-w-1/3 inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-m-2">
+                <div className="lg:inboxwp-w-1/3 inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-my-4">
                     right contents
                 </div>
             </div>
             <div
-                className="inboxwp-bg-white inboxwp-flex inboxwp-justify-between inboxwp-m-2 inboxwp-rounded-lg inboxwp-ml-0 inboxwp-p-6">
+                className="inboxwp-bg-white inboxwp-flex inboxwp-justify-between inboxwp-my-2 inboxwp-rounded-lg inboxwp-p-6">
                 <div className=" inboxwp-text-gray-900">
                     <h2 className="inboxwp-mt-2 inboxwp-text-lg inboxwp-font-medium">Disconnect your site</h2>
                     <p>Disconnect you site from inboxwp app. If you want to cancel your subscription please go to <a
