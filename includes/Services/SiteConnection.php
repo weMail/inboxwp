@@ -2,6 +2,7 @@
 
 namespace WeDevs\Inboxwp\Services;
 
+use WeDevs\Inboxwp\Api\AppApi;
 use WeDevs\Inboxwp\Traits\Singleton;
 
 class SiteConnection
@@ -15,7 +16,7 @@ class SiteConnection
     public function appUrl()
     {
         $redirect_url = admin_url() . '?page=inboxwp';
-        return INBOX_WP_APP_URL . '/checkout?rest_url_prefix=' . rest_get_url_prefix() . '&site_name=' . urlencode(get_bloginfo('name')) . '&site_hash=' . site_hash() . '&home_url=' . untrailingslashit(home_url('/')) . '&site_url=' . untrailingslashit(site_url('/')) . '&site_email=' . get_bloginfo('admin_email') . '&redirect_url=' . $redirect_url;
+        return INBOX_WP_APP_URL . '/checkout?rest_url_prefix=' . rest_get_url_prefix() . '&site_name=' . urlencode(get_bloginfo('name')) . '&site_hash=' . inboxwp_site_hash() . '&home_url=' . untrailingslashit(home_url('/')) . '&site_url=' . untrailingslashit(site_url('/')) . '&site_email=' . get_bloginfo('admin_email') . '&redirect_url=' . $redirect_url;
     }
 
     /**
@@ -25,10 +26,15 @@ class SiteConnection
      */
     public function disconnect()
     {
-        if (inboxwp_api_key()) {
+        if (inboxwp_api_key() && !is_wp_error($this->remoteDisconnect())) {
             delete_option('inbox_wp_app_key');
             return true;
         }
         return false;
+    }
+
+    protected function remoteDisconnect()
+    {
+        return AppApi::instance()->post('/disconnect-site');
     }
 }

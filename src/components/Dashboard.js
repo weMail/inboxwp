@@ -10,12 +10,20 @@ export default function Dashboard({onDisconnected}) {
         spam: {},
     });
     const disconnectSite = () => {
+        setLoading(true);
         rest.get(`${inboxwp.ajaxurl}?action=inboxwp_app_disconnect&hash=${inboxwp.hash}`)
             .then((res) => {
-                onDisconnected()
+                if (res.data.success) {
+                    onDisconnected()
+                } else {
+                    alert(res.data.data.message)
+                }
             })
             .catch((err) => {
                 console.log(err.response.data.message)
+            })
+            .finally(() => {
+                setLoading(false)
             })
     }
     const getStats = () => {
@@ -37,6 +45,9 @@ export default function Dashboard({onDisconnected}) {
 
     useEffect(() => {
         getStats()
+        return () => {
+            setStats({})
+        }
     }, [])
 
     return (
@@ -59,16 +70,16 @@ export default function Dashboard({onDisconnected}) {
                 </div>
             </div>
             <div className="inboxwp-w-full inboxwp-flex inboxwp-space-x-4">
-                <MediaCard title="Delivered Emails" loading={loading} description={stats.sent.Sent} img="https://picsum.photos/id/1/200/200"/>
-                <MediaCard title="Hard Bounce" loading={loading} description={stats.bounce.HardBounce} img="https://picsum.photos/200"/>
-                <MediaCard title="Total cost" loading={loading} description={stats.spam.SpamComplaint || 0} img="https://picsum.photos/seed/picsum/200/200"/>
+                <MediaCard className="inboxwp-w-1/3" title="Delivered Emails" loading={loading} description={stats.sent.Sent || 0} img="https://picsum.photos/id/1/200/200"/>
+                <MediaCard className="inboxwp-w-1/3" title="Hard Bounce" loading={loading} description={stats.bounce.HardBounce || 0} img="https://picsum.photos/200"/>
+                <MediaCard className="inboxwp-w-1/3" title="Spam Complaint" loading={loading} description={stats.spam.SpamComplaint || 0} img="https://picsum.photos/seed/picsum/200/200"/>
             </div>
-            <div className="inboxwp-flex inboxwp-w-full inboxwp-min-h-[400px] inboxwp-justify-between inboxwp-space-x-4">
-                <div className="lg:inboxwp-w-2/3 inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-my-4">
-                    left Contents
+            <div className="inboxwp-flex inboxwp-min-h-[400px] inboxwp-justify-between inboxwp-space-x-4">
+                <div className="inboxwp-w-[66.66%] inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-my-4">
+                    {/*left Contents*/}
                 </div>
-                <div className="lg:inboxwp-w-1/3 inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-my-4">
-                    right contents
+                <div className="inboxwp-w-[32.77%] inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-my-4">
+                    {/*right contents*/}
                 </div>
             </div>
             <div
@@ -81,7 +92,9 @@ export default function Dashboard({onDisconnected}) {
                 </div>
                 <button
                     className="inboxwp-inline-flex inboxwp-items-center inboxwp-rounded-md inboxwp-border inboxwp-border-transparent inboxwp-bg-red-600 inboxwp-px-4 inboxwp-text-sm inboxwp-font-medium inboxwp-text-white inboxwp-shadow-sm hover:inboxwp-bg-red-700 focus:inboxwp-outline-none focus:inboxwp-ring-2 focus:inboxwp-ring-red-500 focus:inboxwp-ring-offset-2"
-                    onClick={disconnectSite}>Disconnect
+                    onClick={disconnectSite}
+                    disabled={loading}
+                >Disconnect
                 </button>
             </div>
         </div>

@@ -4,7 +4,7 @@ export default function MediaCard({title, description, loading, img}) {
     const imgSrc = 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/546px-McDonald%27s_Golden_Arches.svg.png';
     return (
         <div
-            className="lg:inboxwp-w-1/3 inboxwp-flex inboxwp-items-center inboxwp-bg-white inboxwp-rounded-lg inboxwp-px-3 inboxwp-py-6">
+            className="inboxwp-w-full inboxwp-flex inboxwp-items-center inboxwp-bg-white inboxwp-rounded-lg inboxwp-px-3 inboxwp-py-6">
             {loading ? <Loading/> : (
                 <>
                     <img

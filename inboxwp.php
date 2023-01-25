@@ -91,8 +91,8 @@ final class InboxWP
 
         update_option('inbox_wp_version', INBOX_WP_VERSION);
 
-        if (!site_hash()) {
-            set_site_hash();
+        if (!inboxwp_site_hash()) {
+            inboxwp_set_site_hash();
         }
     }
 

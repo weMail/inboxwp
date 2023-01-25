@@ -13,7 +13,7 @@ class AppApi
      *
      * @var string
      */
-    private $baseUrl = INBOX_WP_APP_URL . '/api/v1';
+    private $baseUrl = INBOX_WP_APP_URL . '/api/v1/';
 
     /**
      * The arguments for wp_remote_get or wp_remote_post
@@ -27,7 +27,7 @@ class AppApi
         $defaults = [
             'headers' => [
                 'x-app-key' => inboxwp_api_key(),
-                'x-site-hash' => site_hash(),
+                'x-site-hash' => inboxwp_site_hash(),
                 'Accept' => 'application/json'
             ],
         ];
@@ -51,10 +51,11 @@ class AppApi
      */
     private function build_url($url = '', $query = [])
     {
+        $baseUrl = $this->baseUrl . inboxwp_site_hash();
         if ($url) {
-            $url = $this->baseUrl . $url;
+            $url = $baseUrl . $url;
         } else {
-            $url = $this->baseUrl;
+            $url = $baseUrl;
         }
 
         if (!empty($query)) {

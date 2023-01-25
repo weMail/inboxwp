@@ -68,10 +68,17 @@ function Dashboard(_ref) {
     spam: {}
   });
   const disconnectSite = () => {
+    setLoading(true);
     _core_REST__WEBPACK_IMPORTED_MODULE_1__["default"].get(`${inboxwp.ajaxurl}?action=inboxwp_app_disconnect&hash=${inboxwp.hash}`).then(res => {
-      onDisconnected();
+      if (res.data.success) {
+        onDisconnected();
+      } else {
+        alert(res.data.data.message);
+      }
     }).catch(err => {
       console.log(err.response.data.message);
+    }).finally(() => {
+      setLoading(false);
     });
   };
   const getStats = () => {
@@ -89,6 +96,9 @@ function Dashboard(_ref) {
   };
   (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
     getStats();
+    return () => {
+      setStats({});
+    };
   }, []);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "inboxwp-container inboxwp-pr-[20px] inboxwp-py-[15px] inboxwp-mr-3"
@@ -108,27 +118,30 @@ function Dashboard(_ref) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", null, "Monthly"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", null, "Weekly"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", null, "Daily")))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "inboxwp-w-full inboxwp-flex inboxwp-space-x-4"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_MediaCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: "inboxwp-w-1/3",
     title: "Delivered Emails",
     loading: loading,
-    description: stats.sent.Sent,
+    description: stats.sent.Sent || 0,
     img: "https://picsum.photos/id/1/200/200"
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_MediaCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: "inboxwp-w-1/3",
     title: "Hard Bounce",
     loading: loading,
-    description: stats.bounce.HardBounce,
+    description: stats.bounce.HardBounce || 0,
     img: "https://picsum.photos/200"
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_MediaCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    title: "Total cost",
+    className: "inboxwp-w-1/3",
+    title: "Spam Complaint",
     loading: loading,
     description: stats.spam.SpamComplaint || 0,
     img: "https://picsum.photos/seed/picsum/200/200"
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "inboxwp-flex inboxwp-w-full inboxwp-min-h-[400px] inboxwp-justify-between inboxwp-space-x-4"
+    className: "inboxwp-flex inboxwp-min-h-[400px] inboxwp-justify-between inboxwp-space-x-4"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "lg:inboxwp-w-2/3 inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-my-4"
-  }, "left Contents"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "lg:inboxwp-w-1/3 inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-my-4"
-  }, "right contents")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "inboxwp-w-[66.66%] inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-my-4"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "inboxwp-w-[32.77%] inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-my-4"
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "inboxwp-bg-white inboxwp-flex inboxwp-justify-between inboxwp-my-2 inboxwp-rounded-lg inboxwp-p-6"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: " inboxwp-text-gray-900"
@@ -139,7 +152,8 @@ function Dashboard(_ref) {
     href: "http://app.inboxwp.test/dashboard"
   }, "dashboard of InboxWP app"))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     className: "inboxwp-inline-flex inboxwp-items-center inboxwp-rounded-md inboxwp-border inboxwp-border-transparent inboxwp-bg-red-600 inboxwp-px-4 inboxwp-text-sm inboxwp-font-medium inboxwp-text-white inboxwp-shadow-sm hover:inboxwp-bg-red-700 focus:inboxwp-outline-none focus:inboxwp-ring-2 focus:inboxwp-ring-red-500 focus:inboxwp-ring-offset-2",
-    onClick: disconnectSite
+    onClick: disconnectSite,
+    disabled: loading
   }, "Disconnect")));
 }
 
@@ -207,7 +221,7 @@ function MediaCard(_ref) {
   } = _ref;
   const imgSrc = 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/546px-McDonald%27s_Golden_Arches.svg.png';
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "lg:inboxwp-w-1/3 inboxwp-flex inboxwp-items-center inboxwp-bg-white inboxwp-rounded-lg inboxwp-px-3 inboxwp-py-6"
+    className: "inboxwp-w-full inboxwp-flex inboxwp-items-center inboxwp-bg-white inboxwp-rounded-lg inboxwp-px-3 inboxwp-py-6"
   }, loading ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Loading__WEBPACK_IMPORTED_MODULE_1__["default"], null) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     className: "inboxwp-w-16 inboxwp-mr-8 inboxwp-mb-10",
     src: img ? img : imgSrc

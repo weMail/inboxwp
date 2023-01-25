@@ -48,7 +48,7 @@ class InboxWpMailer extends PHPMailer
     protected function attemptToSend()
     {
         return AppApi::instance()->post(
-            '/' . site_hash() . '/email/send',
+            '/email/send',
             array(
                 'to' => $this->formatEmailAddress($this->phpmailer->getToAddresses()),
                 'bcc' => $this->phpmailer->getBccAddresses(),

@@ -16,6 +16,6 @@ class Home
         if (! inboxwp_api_key()) {
             return false;
         }
-        return AppApi::instance()->get('/' . site_hash() . '/stats', [], ['timeout' => 2000]);
+        return AppApi::instance()->get('/stats', [], ['timeout' => 2000]);
     }
 }

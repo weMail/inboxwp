@@ -29,7 +29,7 @@ function inboxwp_api_key()
  *
  * @return mixed
  */
-function site_hash()
+function inboxwp_site_hash()
 {
     return get_option('inbox_wp_site_hash');
 }
@@ -40,7 +40,7 @@ function site_hash()
  * @param string $hash
  * @return mixed
  */
-function set_site_hash($hash = '')
+function inboxwp_set_site_hash($hash = '')
 {
     if ($hash) {
         update_option('inbox_wp_site_hash', $hash);
