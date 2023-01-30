@@ -16,6 +16,10 @@ class Home
         if (! inboxwp_api_key()) {
             return false;
         }
-        return AppApi::instance()->get('/stats', [], ['timeout' => 2000]);
+        $stats = AppApi::instance()->get('/stats', [], ['timeout' => 2000]);
+        if (is_wp_error($stats)) {
+            return false;
+        }
+        return $stats;
     }
 }

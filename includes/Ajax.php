@@ -64,7 +64,7 @@ class Ajax
             wp_send_json_error(['message' => __('Opps! something went wrong.', 'inboxwp')]);
         }
 
-        wp_send_json_error(['message' => __('Opps! bad request.', 'inboxwp')]);
+        wp_send_json_error(['message' => __('Opps! bad request.', 'inboxwp')], 403);
     }
 
     public function get_stats()

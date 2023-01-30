@@ -116,16 +116,29 @@ class AppApi
     /**
      * API - PUT request caller
      *
-     * @param array  $data PUT data
-     * @param array  $args wp_remote_request argument overrides
-     *
-     * @return mixed
+     * @param string $url
+     * @param array $data
+     * @param array $args
+     * @return array|mixed|WP_Error
      */
-    public function put($data, $args = [])
+    public function put($url = '', $data = [], $args = [])
     {
         $data['_method'] = 'put';
 
-        return $this->post($data, $args);
+        return $this->post($url, $data, $args);
+    }
+
+    /**
+     * @param array $data
+     * @param string $url
+     * @param array $args
+     * @return array|mixed|WP_Error
+     */
+    public function patch($url = '', $data = [], $args = [])
+    {
+        $data['_method'] = 'patch';
+
+        return $this->post($url, $data, $args);
     }
 
     /**

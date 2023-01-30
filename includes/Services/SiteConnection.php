@@ -26,11 +26,9 @@ class SiteConnection
      */
     public function disconnect()
     {
-        if (inboxwp_api_key() && !is_wp_error($this->remoteDisconnect())) {
-            delete_option('inbox_wp_app_key');
-            return true;
-        }
-        return false;
+        $this->remoteDisconnect();
+        delete_option('inbox_wp_app_key');
+        return true;
     }
 
     protected function remoteDisconnect()
