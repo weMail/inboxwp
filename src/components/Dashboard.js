@@ -1,6 +1,9 @@
 import rest from "../core/REST";
 import MediaCard from "./MediaCard";
 import {useEffect, useState} from 'react';
+import Send from "../icons/Send"
+import FailedMail from "../icons/FailedMail"
+import SpamComplaint from "../icons/SpamComplaint"
 
 export default function Dashboard({onDisconnected}) {
     const [loading, setLoading] = useState(true);
@@ -70,9 +73,14 @@ export default function Dashboard({onDisconnected}) {
                 </div>
             </div>
             <div className="inboxwp-w-full inboxwp-flex inboxwp-space-x-4">
-                <MediaCard className="inboxwp-w-1/3" title="Delivered Emails" loading={loading} description={stats.sent.Sent || 0} img="https://picsum.photos/id/1/200/200"/>
-                <MediaCard className="inboxwp-w-1/3" title="Hard Bounce" loading={loading} description={stats.bounce.HardBounce || 0} img="https://picsum.photos/200"/>
-                <MediaCard className="inboxwp-w-1/3" title="Spam Complaint" loading={loading} description={stats.spam.SpamComplaint || 0} img="https://picsum.photos/seed/picsum/200/200"/>
+                <MediaCard className="inboxwp-w-1/3"
+                           title="Delivered Emails"
+                           loading={loading}
+                           description={stats.sent.Sent || 0}
+                           image={<Send/>}
+                />
+                <MediaCard className="inboxwp-w-1/3" title="Hard Bounce" loading={loading} description={stats.bounce.HardBounce || 0} image={<FailedMail/>}/>
+                <MediaCard className="inboxwp-w-1/3" title="Spam Complaint" loading={loading} description={stats.spam.SpamComplaint || 0} image={<SpamComplaint/>} border={false} />
             </div>
             <div className="inboxwp-flex inboxwp-min-h-[400px] inboxwp-justify-between inboxwp-space-x-4">
                 <div className="inboxwp-w-[66.66%] inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-my-4">

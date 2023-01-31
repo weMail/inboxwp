@@ -53,6 +53,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _MediaCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MediaCard */ "./src/components/MediaCard.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _icons_Send__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../icons/Send */ "./src/icons/Send.js");
+/* harmony import */ var _icons_FailedMail__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../icons/FailedMail */ "./src/icons/FailedMail.js");
+/* harmony import */ var _icons_SpamComplaint__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../icons/SpamComplaint */ "./src/icons/SpamComplaint.js");
+
+
+
 
 
 
@@ -122,19 +128,20 @@ function Dashboard(_ref) {
     title: "Delivered Emails",
     loading: loading,
     description: stats.sent.Sent || 0,
-    img: "https://picsum.photos/id/1/200/200"
+    image: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_icons_Send__WEBPACK_IMPORTED_MODULE_4__["default"], null)
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_MediaCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
     className: "inboxwp-w-1/3",
     title: "Hard Bounce",
     loading: loading,
     description: stats.bounce.HardBounce || 0,
-    img: "https://picsum.photos/200"
+    image: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_icons_FailedMail__WEBPACK_IMPORTED_MODULE_5__["default"], null)
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_MediaCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
     className: "inboxwp-w-1/3",
     title: "Spam Complaint",
     loading: loading,
     description: stats.spam.SpamComplaint || 0,
-    img: "https://picsum.photos/seed/picsum/200/200"
+    image: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_icons_SpamComplaint__WEBPACK_IMPORTED_MODULE_6__["default"], null),
+    border: false
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "inboxwp-flex inboxwp-min-h-[400px] inboxwp-justify-between inboxwp-space-x-4"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -175,6 +182,8 @@ __webpack_require__.r(__webpack_exports__);
 
 function Loading() {
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "inboxwp-flex inboxwp-items-start inboxwp-bg-white inboxwp-rounded-lg inboxwp-px-3 inboxwp-py-6"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     role: "status",
     className: "inboxwp-max-w-sm animate-pulse"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -191,7 +200,7 @@ function Loading() {
     className: "inboxwp-h-2 inboxwp-bg-gray-200 inboxwp-rounded-full inboxwp-max-w-[360px]"
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "inboxwp-sr-only"
-  }, "Loading..."));
+  }, "Loading...")));
 }
 
 /***/ }),
@@ -210,327 +219,79 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Loading */ "./src/components/Loading.js");
+/* harmony import */ var _icons_Send__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../icons/Send */ "./src/icons/Send.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/UsersIcon.js");
 
 
+
+
+
+const stats = [{
+  id: 1,
+  name: 'Total Subscribers',
+  stat: '71,897',
+  icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_3__["default"],
+  change: '122',
+  changeType: 'increase'
+}];
+function classNames() {
+  for (var _len = arguments.length, classes = new Array(_len), _key = 0; _key < _len; _key++) {
+    classes[_key] = arguments[_key];
+  }
+  return classes.filter(Boolean).join(' ');
+}
 function MediaCard(_ref) {
   let {
     title,
     description,
     loading,
-    img
+    image = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_icons_Send__WEBPACK_IMPORTED_MODULE_2__["default"], null),
+    border = false
   } = _ref;
-  const imgSrc = 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/546px-McDonald%27s_Golden_Arches.svg.png';
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "inboxwp-w-full inboxwp-flex inboxwp-items-center inboxwp-bg-white inboxwp-rounded-lg inboxwp-px-3 inboxwp-py-6"
-  }, loading ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Loading__WEBPACK_IMPORTED_MODULE_1__["default"], null) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    className: "inboxwp-w-16 inboxwp-mr-8 inboxwp-mb-10",
-    src: img ? img : imgSrc
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "inboxwp-pr-6 inboxwp-mb-10"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
-    className: "inboxwp-text-2xl inboxwp-text-gray-900"
+    className: "inboxwp-w-full"
+  }, loading ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Loading__WEBPACK_IMPORTED_MODULE_1__["default"], null) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("dl", {
+    className: "inboxwp-mt-5"
+  }, stats.map(item => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    key: item.id,
+    after: "",
+    className: `
+                                    inboxwp-relative
+                                    inboxwp-flex
+                                    inboxwp-place-content-between
+                                    inboxwp-overflow-hidden
+                                    inboxwp-rounded-lg
+                                    inboxwp-bg-white
+                                    inboxwp-px-4
+                                    inboxwp-pt-5
+                                    inboxwp-pb-6
+                                    inboxwp-shadow
+                                    sm:inboxwp-px-6
+                                    sm:inboxwp-pt-6
+                                    ${border ? "after:inboxwp-absolute after:inboxwp-bottom-[27px] after:inboxwp-left-[89px] after:inboxwp-w-[110.2px] after:inboxwp-h-[4px] after:inboxwp-bg-[#6366F1] after:inboxwp-text-red-800 after:inboxwp-rounded-[53px]" : ''}
+                                `
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "inboxwp-flex"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("dt", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "inboxwp-absolute inboxwp-rounded-md"
+  }, image)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("dd", {
+    className: "inboxwp-ml-16 inboxwp-pb-6 sm:inboxwp-pb-7"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "inboxwp-text-[14px] inboxwp-text-[#6B7280] inboxwp-font-medium"
   }, title ? title : 'Default title'), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    className: "inboxwp-text-base inboxwp-text-gray-700"
-  }, description != undefined ? description : 0)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "inboxwp-self-start inboxwp-relative inboxwp-top-0 -inboxwp-left-[1%] md: lg:inboxwp-left-[12%] inboxwp-hidden lg:inboxwp-block"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
-    className: "inboxwp-h-10",
-    version: "1.1",
-    viewBox: "0 0 700 700"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("defs", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("symbol", {
-    id: "w",
-    overflow: "visible"
+    className: "inboxwp-text-[24px] inboxwp-text-[#111827] inboxwp-font-semibold"
+  }, description != undefined ? description : 0))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    width: "20",
+    height: "20",
+    viewBox: "0 0 20 20",
+    fill: "none",
+    xmlns: "http://www.w3.org/2000/svg"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "m23.453-1.4062c-1.2109 0.625-2.4688 1.1016-3.7812 1.4219s-2.6836 0.48438-4.1094 0.48438c-4.25 0-7.6172-1.1875-10.094-3.5625-2.4805-2.375-3.7188-5.5977-3.7188-9.6719 0-4.0703 1.2383-7.2969 3.7188-9.6719 2.4766-2.3828 5.8438-3.5781 10.094-3.5781 1.4258 0 2.7969 0.16406 4.1094 0.48438 1.3125 0.32422 2.5703 0.79688 3.7812 1.4219v5.2812c-1.2188-0.83203-2.4219-1.4414-3.6094-1.8281-1.1875-0.38281-2.4375-0.57812-3.75-0.57812-2.3438 0-4.1875 0.75-5.5312 2.25s-2.0156 3.5742-2.0156 6.2188c0 2.6367 0.67188 4.7109 2.0156 6.2188 1.3438 1.5 3.1875 2.25 5.5312 2.25 1.3125 0 2.5625-0.19141 3.75-0.57812 1.1875-0.39453 2.3906-1.0078 3.6094-1.8438z"
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("symbol", {
-    id: "d",
-    overflow: "visible"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "m17.156-13.922c-0.53125-0.25-1.0625-0.42969-1.5938-0.54688-0.53125-0.125-1.0625-0.1875-1.5938-0.1875-1.5742 0-2.7891 0.50781-3.6406 1.5156-0.84375 1-1.2656 2.4453-1.2656 4.3281v8.8125h-6.125v-19.141h6.125v3.1406c0.78125-1.25 1.6797-2.1602 2.7031-2.7344 1.0195-0.58203 2.2422-0.875 3.6719-0.875 0.19531 0 0.41406 0.011719 0.65625 0.03125 0.23828 0.023437 0.58594 0.058594 1.0469 0.10938z"
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("symbol", {
-    id: "c",
-    overflow: "visible"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "m22.047-9.625v1.75h-14.312c0.15625 1.4375 0.67578 2.5156 1.5625 3.2344 0.88281 0.71094 2.125 1.0625 3.7188 1.0625 1.2891 0 2.6094-0.1875 3.9531-0.5625 1.3516-0.38281 2.7422-0.96094 4.1719-1.7344v4.7188c-1.4492 0.54297-2.8984 0.95312-4.3438 1.2344-1.4492 0.28125-2.8984 0.42188-4.3438 0.42188-3.4609 0-6.1523-0.87891-8.0781-2.6406-1.918-1.7578-2.875-4.2266-2.875-7.4062 0-3.125 0.94141-5.582 2.8281-7.375 1.8828-1.7891 4.4766-2.6875 7.7812-2.6875 3.0078 0 5.4141 0.90625 7.2188 2.7188 1.8125 1.8125 2.7188 4.2344 2.7188 7.2656zm-6.2969-2.0312c0-1.1641-0.33984-2.1016-1.0156-2.8125-0.67969-0.70703-1.5625-1.0625-2.6562-1.0625-1.1797 0-2.1406 0.33594-2.8906 1-0.74219 0.66797-1.1992 1.625-1.375 2.875z"
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("symbol", {
-    id: "b",
-    overflow: "visible"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "m11.516-8.6094c-1.2734 0-2.2305 0.21875-2.875 0.65625-0.64844 0.42969-0.96875 1.0625-0.96875 1.9062 0 0.77344 0.25781 1.375 0.78125 1.8125 0.51953 0.4375 1.2383 0.65625 2.1562 0.65625 1.1562 0 2.125-0.41016 2.9062-1.2344 0.78906-0.82031 1.1875-1.8516 1.1875-3.0938v-0.70312zm9.3438-2.3125v10.922h-6.1562v-2.8438c-0.82422 1.168-1.75 2.0156-2.7812 2.5469-1.0234 0.53125-2.2656 0.79688-3.7344 0.79688-1.9805 0-3.5898-0.57812-4.8281-1.7344-1.2422-1.1562-1.8594-2.6602-1.8594-4.5156 0-2.2383 0.76953-3.8789 2.3125-4.9219 1.5508-1.0508 3.9766-1.5781 7.2812-1.5781h3.6094v-0.48438c0-0.96875-0.38672-1.6758-1.1562-2.125-0.76172-0.44531-1.9492-0.67188-3.5625-0.67188-1.3125 0-2.5391 0.13281-3.6719 0.39062-1.125 0.26172-2.1719 0.65234-3.1406 1.1719v-4.6562c1.3125-0.32031 2.6289-0.56641 3.9531-0.73438 1.3203-0.16406 2.6445-0.25 3.9688-0.25 3.4453 0 5.9375 0.68359 7.4688 2.0469 1.5312 1.3672 2.2969 3.5781 2.2969 6.6406z"
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("symbol", {
-    id: "e",
-    overflow: "visible"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "m9.625-24.578v5.4375h6.2969v4.375h-6.2969v8.125c0 0.88672 0.17578 1.4844 0.53125 1.7969 0.35156 0.3125 1.0508 0.46875 2.0938 0.46875h3.1406v4.375h-5.2344c-2.418 0-4.1328-0.50391-5.1406-1.5156-1.0117-1.0078-1.5156-2.7188-1.5156-5.125v-8.125h-3.0312v-4.375h3.0312v-5.4375z"
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("symbol", {
-    id: "l",
-    overflow: "visible"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "m15.969-16.344v-10.25h6.1406v26.594h-6.1406v-2.7656c-0.84375 1.125-1.7773 1.9531-2.7969 2.4844-1.0117 0.51953-2.1836 0.78125-3.5156 0.78125-2.3555 0-4.293-0.9375-5.8125-2.8125-1.5117-1.875-2.2656-4.2852-2.2656-7.2344 0-2.957 0.75391-5.375 2.2656-7.25 1.5195-1.875 3.457-2.8125 5.8125-2.8125 1.3203 0 2.4922 0.26562 3.5156 0.79688 1.0195 0.53125 1.9531 1.3555 2.7969 2.4688zm-4.0469 12.391c1.3125 0 2.3125-0.47266 3-1.4219 0.69531-0.95703 1.0469-2.3477 1.0469-4.1719 0-1.8203-0.35156-3.2109-1.0469-4.1719-0.6875-0.95703-1.6875-1.4375-3-1.4375-1.293 0-2.2891 0.48047-2.9844 1.4375-0.6875 0.96094-1.0312 2.3516-1.0312 4.1719 0 1.8242 0.34375 3.2148 1.0312 4.1719 0.69531 0.94922 1.6914 1.4219 2.9844 1.4219z"
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("symbol", {
-    id: "k",
-    overflow: "visible"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "m13.125-3.9531c1.3125 0 2.3125-0.47266 3-1.4219 0.6875-0.95703 1.0312-2.3477 1.0312-4.1719 0-1.8203-0.34375-3.2109-1.0312-4.1719-0.6875-0.95703-1.6875-1.4375-3-1.4375s-2.3203 0.48438-3.0156 1.4531c-0.69922 0.96094-1.0469 2.3438-1.0469 4.1562 0 1.8047 0.34766 3.1875 1.0469 4.1562 0.69531 0.96094 1.7031 1.4375 3.0156 1.4375zm-4.0625-12.391c0.84375-1.1133 1.7734-1.9375 2.7969-2.4688 1.0312-0.53125 2.207-0.79688 3.5312-0.79688 2.3633 0 4.3008 0.9375 5.8125 2.8125 1.5195 1.875 2.2812 4.293 2.2812 7.25 0 2.9492-0.76172 5.3594-2.2812 7.2344-1.5117 1.875-3.4492 2.8125-5.8125 2.8125-1.3242 0-2.5-0.26562-3.5312-0.79688-1.0234-0.53125-1.9531-1.3516-2.7969-2.4688v2.7656h-6.125v-26.594h6.125z"
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("symbol", {
-    id: "f",
-    overflow: "visible"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "m0.42188-19.141h6.125l5.1406 12.984 4.375-12.984h6.125l-8.0469 20.953c-0.8125 2.125-1.7617 3.6094-2.8438 4.4531-1.0742 0.85156-2.4922 1.2812-4.25 1.2812h-3.5469v-4.0156h1.9219c1.0312 0 1.7812-0.16797 2.25-0.5 0.47656-0.32422 0.84766-0.91406 1.1094-1.7656l0.17188-0.53125z"
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("symbol", {
-    id: "j",
-    overflow: "visible"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "m-0.34375-25.516h7.2031l5.7969 9.0938 5.8125-9.0938h7.2188l-9.7188 14.766v10.75h-6.5938v-10.75z"
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("symbol", {
-    id: "a",
-    overflow: "visible"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "m12.047-15.234c-1.3555 0-2.3906 0.49219-3.1094 1.4688-0.71094 0.96875-1.0625 2.375-1.0625 4.2188 0 1.8359 0.35156 3.2422 1.0625 4.2188 0.71875 0.96875 1.7539 1.4531 3.1094 1.4531 1.332 0 2.3516-0.48438 3.0625-1.4531 0.70703-0.97656 1.0625-2.3828 1.0625-4.2188 0-1.8438-0.35547-3.25-1.0625-4.2188-0.71094-0.97656-1.7305-1.4688-3.0625-1.4688zm0-4.375c3.2891 0 5.8633 0.89062 7.7188 2.6719 1.8516 1.7812 2.7812 4.2461 2.7812 7.3906 0 3.1367-0.92969 5.5938-2.7812 7.375-1.8555 1.7812-4.4297 2.6719-7.7188 2.6719-3.3047 0-5.8867-0.89062-7.75-2.6719-1.8672-1.7812-2.7969-4.2383-2.7969-7.375 0-3.1445 0.92969-5.6094 2.7969-7.3906 1.8633-1.7812 4.4453-2.6719 7.75-2.6719z"
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("symbol", {
-    id: "v",
-    overflow: "visible"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "m17.891-18.547v4.6562c-1.3125-0.55078-2.5781-0.96094-3.7969-1.2344-1.2188-0.26953-2.3711-0.40625-3.4531-0.40625-1.1562 0-2.0156 0.14844-2.5781 0.4375-0.5625 0.29297-0.84375 0.74219-0.84375 1.3438 0 0.49219 0.21094 0.86719 0.64062 1.125 0.42578 0.26172 1.1914 0.45312 2.2969 0.57812l1.0781 0.15625c3.125 0.39844 5.2266 1.0547 6.3125 1.9688 1.082 0.90625 1.625 2.3359 1.625 4.2812 0 2.043-0.75781 3.5781-2.2656 4.6094-1.5 1.0234-3.7422 1.5312-6.7188 1.5312-1.2734 0-2.5859-0.10547-3.9375-0.3125-1.3438-0.19531-2.7266-0.49219-4.1406-0.89062v-4.6406c1.2188 0.59375 2.4688 1.0391 3.75 1.3281 1.2812 0.29297 2.582 0.4375 3.9062 0.4375 1.1875 0 2.082-0.16016 2.6875-0.48438 0.60156-0.33203 0.90625-0.82031 0.90625-1.4688 0-0.55078-0.21094-0.95703-0.625-1.2188-0.41797-0.26953-1.2461-0.48438-2.4844-0.64062l-1.0781-0.125c-2.7188-0.34375-4.625-0.97266-5.7188-1.8906-1.0938-0.92578-1.6406-2.332-1.6406-4.2188 0-2.0195 0.69141-3.5195 2.0781-4.5 1.3945-0.98828 3.5234-1.4844 6.3906-1.4844 1.1328 0 2.3203 0.089844 3.5625 0.26562 1.2383 0.16797 2.5859 0.43359 4.0469 0.79688z"
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("symbol", {
-    id: "i",
-    overflow: "visible"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "m2.9375-26.594h6.125v26.594h-6.125z"
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("symbol", {
-    id: "h",
-    overflow: "visible"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "m0.53125-19.141h6.1094l4.7812 13.234 4.75-13.234h6.125l-7.5312 19.141h-6.7188z"
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("symbol", {
-    id: "u",
-    overflow: "visible"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "m20.969-24.719v5.4062c-1.3984-0.625-2.7617-1.0938-4.0938-1.4062-1.3359-0.32031-2.5938-0.48438-3.7812-0.48438-1.5742 0-2.7344 0.21875-3.4844 0.65625-0.75 0.42969-1.125 1.0938-1.125 2 0 0.6875 0.25 1.2266 0.75 1.6094 0.50781 0.375 1.4297 0.69922 2.7656 0.96875l2.7969 0.57812c2.8438 0.5625 4.8594 1.4297 6.0469 2.5938 1.1953 1.1562 1.7969 2.8086 1.7969 4.9531 0 2.8125-0.83594 4.9062-2.5 6.2812-1.668 1.375-4.2148 2.0625-7.6406 2.0625-1.625 0-3.2578-0.15625-4.8906-0.46875-1.625-0.30078-3.25-0.75391-4.875-1.3594v-5.5625c1.625 0.86719 3.1953 1.5234 4.7188 1.9688 1.5195 0.4375 2.9883 0.65625 4.4062 0.65625 1.4375 0 2.5352-0.23828 3.2969-0.71875 0.75781-0.47656 1.1406-1.1641 1.1406-2.0625 0-0.78906-0.26172-1.3984-0.78125-1.8281-0.51172-0.4375-1.543-0.82812-3.0938-1.1719l-2.5469-0.5625c-2.5547-0.55078-4.418-1.4219-5.5938-2.6094-1.1797-1.1953-1.7656-2.8125-1.7656-4.8438 0-2.5391 0.81641-4.4922 2.4531-5.8594 1.6445-1.375 4.0039-2.0625 7.0781-2.0625 1.4062 0 2.8477 0.10938 4.3281 0.32812 1.4766 0.21094 3.0078 0.52344 4.5938 0.9375z"
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("symbol", {
-    id: "g",
-    overflow: "visible"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "m20.672-15.969c0.78125-1.1758 1.7031-2.0781 2.7656-2.7031s2.2344-0.9375 3.5156-0.9375c2.1953 0 3.8672 0.68359 5.0156 2.0469 1.1562 1.3555 1.7344 3.3242 1.7344 5.9062v11.656h-6.1562v-9.9844c0.007813-0.14453 0.015625-0.29688 0.015625-0.45312 0.007812-0.16406 0.015625-0.39453 0.015625-0.6875 0-1.3516-0.19922-2.332-0.59375-2.9375-0.39844-0.61328-1.043-0.92188-1.9375-0.92188-1.1562 0-2.0547 0.48047-2.6875 1.4375-0.63672 0.96094-0.96484 2.3398-0.98438 4.1406v9.4062h-6.1406v-9.9844c0-2.1133-0.18359-3.4727-0.54688-4.0781-0.36719-0.61328-1.0156-0.92188-1.9531-0.92188-1.1797 0-2.0859 0.48438-2.7188 1.4531-0.63672 0.96094-0.95312 2.3281-0.95312 4.1094v9.4219h-6.1562v-19.141h6.1562v2.7969c0.75-1.082 1.6094-1.8945 2.5781-2.4375 0.97656-0.55078 2.0547-0.82812 3.2344-0.82812 1.3125 0 2.4727 0.32422 3.4844 0.96875 1.0195 0.63672 1.7891 1.5273 2.3125 2.6719z"
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("symbol", {
-    id: "t",
-    overflow: "visible"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "m15.531-26.594v4.0156h-3.375c-0.86719 0-1.4688 0.15625-1.8125 0.46875s-0.51562 0.85938-0.51562 1.6406v1.3281h5.2344v4.375h-5.2344v14.766h-6.125v-14.766h-3.0312v-4.375h3.0312v-1.3281c0-2.082 0.57812-3.625 1.7344-4.625 1.1641-1 2.9727-1.5 5.4219-1.5z"
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("symbol", {
-    id: "s",
-    overflow: "visible"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "m22.188-11.656v11.656h-6.1562v-8.8906c0-1.6758-0.039062-2.8281-0.10938-3.4531-0.074219-0.625-0.20312-1.082-0.39062-1.375-0.24219-0.40625-0.5625-0.71875-0.96875-0.9375s-0.875-0.32812-1.4062-0.32812c-1.2734 0-2.2734 0.49609-3 1.4844-0.73047 0.98047-1.0938 2.3398-1.0938 4.0781v9.4219h-6.125v-26.594h6.125v10.25c0.91406-1.1133 1.8906-1.9375 2.9219-2.4688 1.0391-0.53125 2.1914-0.79688 3.4531-0.79688 2.207 0 3.8828 0.68359 5.0312 2.0469 1.1445 1.3555 1.7188 3.3242 1.7188 5.9062z"
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("symbol", {
-    id: "r",
-    overflow: "visible"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "m3.2188-25.516h7.3438l9.2812 17.5v-17.5h6.2344v25.516h-7.3438l-9.2812-17.5v17.5h-6.2344z"
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("symbol", {
-    id: "q",
-    overflow: "visible"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "m2.7344-7.4531v-11.688h6.1562v1.9062c0 1.043-0.007813 2.3516-0.015625 3.9219-0.011719 1.5625-0.015625 2.6055-0.015625 3.125 0 1.543 0.035156 2.6523 0.10938 3.3281 0.082031 0.67969 0.21875 1.168 0.40625 1.4688 0.25781 0.40625 0.58594 0.71875 0.98438 0.9375 0.40625 0.21094 0.875 0.3125 1.4062 0.3125 1.2695 0 2.2695-0.48828 3-1.4688 0.72656-0.97656 1.0938-2.3359 1.0938-4.0781v-9.4531h6.125v19.141h-6.125v-2.7656c-0.92969 1.1172-1.9062 1.9375-2.9375 2.4688s-2.168 0.79688-3.4062 0.79688c-2.2109 0-3.8906-0.67578-5.0469-2.0312-1.1562-1.3633-1.7344-3.3359-1.7344-5.9219z"
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("symbol", {
-    id: "p",
-    overflow: "visible"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "m22.188-11.656v11.656h-6.1562v-8.9219c0-1.6562-0.039062-2.7969-0.10938-3.4219-0.074219-0.625-0.20312-1.082-0.39062-1.375-0.24219-0.40625-0.5625-0.71875-0.96875-0.9375s-0.875-0.32812-1.4062-0.32812c-1.2734 0-2.2734 0.49609-3 1.4844-0.73047 0.98047-1.0938 2.3398-1.0938 4.0781v9.4219h-6.125v-19.141h6.125v2.7969c0.91406-1.1133 1.8906-1.9375 2.9219-2.4688 1.0391-0.53125 2.1914-0.79688 3.4531-0.79688 2.207 0 3.8828 0.68359 5.0312 2.0469 1.1445 1.3555 1.7188 3.3242 1.7188 5.9062z"
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("symbol", {
-    id: "o",
-    overflow: "visible"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "m3.2188-25.516h10.922c3.2383 0 5.7266 0.72656 7.4688 2.1719 1.7383 1.4375 2.6094 3.4922 2.6094 6.1562 0 2.6797-0.87109 4.7344-2.6094 6.1719-1.7422 1.4375-4.2305 2.1562-7.4688 2.1562h-4.3438v8.8594h-6.5781zm6.5781 4.7656v7.125h3.6406c1.2695 0 2.2539-0.30469 2.9531-0.92188 0.69531-0.625 1.0469-1.5039 1.0469-2.6406 0-1.1445-0.35156-2.0234-1.0469-2.6406-0.69922-0.61328-1.6836-0.92188-2.9531-0.92188z"
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("symbol", {
-    id: "n",
-    overflow: "visible"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "m2.9375-19.141h6.125v18.797c0 2.5625-0.62109 4.5156-1.8594 5.8594-1.2305 1.3516-3.0117 2.0312-5.3438 2.0312h-3.0156v-4.0156h1.0469c1.1641 0 1.9609-0.26172 2.3906-0.78125 0.4375-0.52344 0.65625-1.5547 0.65625-3.0938zm0-7.4531h6.125v4.9844h-6.125z"
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("symbol", {
-    id: "m",
-    overflow: "visible"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "m18.406-18.547v5c-0.83594-0.57031-1.6719-0.99219-2.5156-1.2656-0.83594-0.28125-1.6992-0.42188-2.5938-0.42188-1.7109 0-3.043 0.5-4 1.5-0.94922 1-1.4219 2.3984-1.4219 4.1875 0 1.7812 0.47266 3.1719 1.4219 4.1719 0.95703 1 2.2891 1.5 4 1.5 0.95703 0 1.8633-0.14062 2.7188-0.42188 0.86328-0.28906 1.6602-0.71875 2.3906-1.2812v5.0156c-0.96094 0.35547-1.9336 0.61719-2.9219 0.79688-0.98047 0.17578-1.9648 0.26562-2.9531 0.26562-3.4609 0-6.1641-0.88281-8.1094-2.6562-1.9492-1.7695-2.9219-4.2344-2.9219-7.3906s0.97266-5.6172 2.9219-7.3906c1.9453-1.7812 4.6484-2.6719 8.1094-2.6719 1 0 1.9844 0.089844 2.9531 0.26562 0.97656 0.17969 1.9531 0.44531 2.9219 0.79688z"
-  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("g", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "m357 196c-11.578 0-21-9.4219-21-21s9.4219-21 21-21 21 9.4219 21 21-9.4219 21-21 21zm0-28c-3.8633 0-7 3.1367-7 7s3.1367 7 7 7 7-3.1367 7-7-3.1367-7-7-7z"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "m357 486.5c-115.79 0-210-94.207-210-210s94.207-210 210-210 210 94.207 210 210-94.207 210-210 210zm0-406c-108.07 0-196 87.926-196 196s87.926 196 196 196 196-87.926 196-196-87.926-196-196-196z"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "m357 406c-15.441 0-28-12.559-28-28v-133c0-15.441 12.559-28 28-28s28 12.559 28 28v133c0 15.441-12.559 28-28 28zm0-175c-7.7227 0-14 6.2773-14 14v133c0 7.7227 6.2773 14 14 14s14-6.2773 14-14v-133c0-7.7227-6.2773-14-14-14z"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "70",
-    y: "665",
-    xlinkHref: "#w"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "95.6875",
-    y: "665",
-    xlinkHref: "#d"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "112.945312",
-    y: "665",
-    xlinkHref: "#c"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "136.683594",
-    y: "665",
-    xlinkHref: "#b"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "160.304688",
-    y: "665",
-    xlinkHref: "#e"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "177.035156",
-    y: "665",
-    xlinkHref: "#c"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "200.773438",
-    y: "665",
-    xlinkHref: "#l"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "238.011719",
-    y: "665",
-    xlinkHref: "#k"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "263.0625",
-    y: "665",
-    xlinkHref: "#f"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "298.0625",
-    y: "665",
-    xlinkHref: "#j"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "323.40625",
-    y: "665",
-    xlinkHref: "#b"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "347.027344",
-    y: "665",
-    xlinkHref: "#d"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "364.289062",
-    y: "665",
-    xlinkHref: "#a"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "388.332031",
-    y: "665",
-    xlinkHref: "#v"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "409.164062",
-    y: "665",
-    xlinkHref: "#i"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "421.164062",
-    y: "665",
-    xlinkHref: "#b"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "444.78125",
-    y: "665",
-    xlinkHref: "#h"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "479.78125",
-    y: "665",
-    xlinkHref: "#u"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "504.988281",
-    y: "665",
-    xlinkHref: "#b"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "528.605469",
-    y: "665",
-    xlinkHref: "#g"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "565.074219",
-    y: "665",
-    xlinkHref: "#a"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "589.121094",
-    y: "665",
-    xlinkHref: "#f"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "611.9375",
-    y: "665",
-    xlinkHref: "#i"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "623.933594",
-    y: "665",
-    xlinkHref: "#a"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "647.976562",
-    y: "665",
-    xlinkHref: "#h"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "70",
-    y: "700",
-    xlinkHref: "#t"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "85.226562",
-    y: "700",
-    xlinkHref: "#d"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "102.488281",
-    y: "700",
-    xlinkHref: "#a"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "126.53125",
-    y: "700",
-    xlinkHref: "#g"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "175.1875",
-    y: "700",
-    xlinkHref: "#e"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "191.917969",
-    y: "700",
-    xlinkHref: "#s"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "216.835938",
-    y: "700",
-    xlinkHref: "#c"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "252.757812",
-    y: "700",
-    xlinkHref: "#r"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "282.050781",
-    y: "700",
-    xlinkHref: "#a"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "306.097656",
-    y: "700",
-    xlinkHref: "#q"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "331.011719",
-    y: "700",
-    xlinkHref: "#p"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "368.117188",
-    y: "700",
-    xlinkHref: "#o"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "393.765625",
-    y: "700",
-    xlinkHref: "#d"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "411.027344",
-    y: "700",
-    xlinkHref: "#a"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "435.074219",
-    y: "700",
-    xlinkHref: "#n"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "447.070312",
-    y: "700",
-    xlinkHref: "#c"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "470.808594",
-    y: "700",
-    xlinkHref: "#m"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("use", {
-    x: "491.554687",
-    y: "700",
-    xlinkHref: "#e"
-  }))))));
+    fillRule: "evenodd",
+    clipRule: "evenodd",
+    d: "M1.41406 9.99992C1.41406 5.25808 5.25808 1.41406 9.99992 1.41406C14.7418 1.41406 18.5858 5.25808 18.5858 9.99992C18.5858 14.7418 14.7418 18.5858 9.99992 18.5858C5.25808 18.5858 1.41406 14.7418 1.41406 9.99992ZM9.99992 3.43426C6.37381 3.43426 3.43426 6.37381 3.43426 9.99992C3.43426 13.626 6.37381 16.5656 9.99992 16.5656C13.626 16.5656 16.5656 13.626 16.5656 9.99992C16.5656 6.37381 13.626 3.43426 9.99992 3.43426ZM10.0001 5.95972C10.558 5.95972 11.0102 6.41196 11.0102 6.96982V10.0001C11.0102 10.558 10.558 11.0102 10.0001 11.0102C9.44225 11.0102 8.99002 10.558 8.99002 10.0001V6.96982C8.99002 6.41196 9.44225 5.95972 10.0001 5.95972ZM10.0003 13.7879C10.4187 13.7879 10.7579 13.4487 10.7579 13.0303C10.7579 12.6119 10.4187 12.2727 10.0003 12.2727C9.58192 12.2727 9.24274 12.6119 9.24274 13.0303C9.24274 13.4487 9.58192 13.7879 10.0003 13.7879Z",
+    fill: "#D0D1D2"
+  }))))))));
 }
 
 /***/ }),
@@ -640,6 +401,109 @@ const REST = (0,_HTTP__WEBPACK_IMPORTED_MODULE_0__["default"])('http://appsero.t
 
 /***/ }),
 
+/***/ "./src/icons/FailedMail.js":
+/*!*********************************!*\
+  !*** ./src/icons/FailedMail.js ***!
+  \*********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ FailedMail; }
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+
+function FailedMail() {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    width: "48",
+    height: "48",
+    viewBox: "0 0 48 48",
+    fill: "none",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("rect", {
+    width: "48",
+    height: "48",
+    rx: "6",
+    fill: "#FFEAEA"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    fillRule: "evenodd",
+    clipRule: "evenodd",
+    d: "M25.998 19.1016C25.998 16.8399 27.838 15 30.0996 15C32.3613 15 34.2012 16.8399 34.2012 19.1016C34.2012 21.3632 32.3613 23.2031 30.0996 23.2031C27.838 23.2031 25.998 21.3632 25.998 19.1016ZM32.5427 20.7159C32.8499 20.2527 33.0293 19.6979 33.0293 19.1016C33.0293 17.4861 31.7151 16.1719 30.0996 16.1719C29.5033 16.1719 28.9485 16.3513 28.4852 16.6585L32.5427 20.7159ZM27.6565 17.4872C27.3494 17.9504 27.1699 18.5052 27.1699 19.1016C27.1699 20.717 28.4842 22.0313 30.0996 22.0313C30.6959 22.0313 31.2507 21.8518 31.714 21.5446L27.6565 17.4872ZM26.6223 23.0629L22.9902 25.9683L15.1391 19.6875H24.8585C25.0074 21.0274 25.6602 22.2172 26.6223 23.0629ZM31.7793 24.102V33H14.2012V20.4379L22.9902 27.4692L27.6277 23.759C28.3656 24.1519 29.207 24.375 30.0996 24.375C30.6788 24.375 31.2437 24.2824 31.7793 24.102Z",
+    fill: "#FF7878"
+  }));
+}
+
+/***/ }),
+
+/***/ "./src/icons/Send.js":
+/*!***************************!*\
+  !*** ./src/icons/Send.js ***!
+  \***************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ Send; }
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+
+function Send() {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    width: "48",
+    height: "48",
+    viewBox: "0 0 48 48",
+    fill: "none",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("rect", {
+    width: "48",
+    height: "48",
+    rx: "6",
+    fill: "#EFF3FE"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M34 14L14 25.25L20.3916 27.6172L30.25 18.375L22.7514 28.4913L22.7575 28.4936L22.75 28.4913V34L26.3344 29.8183L30.875 31.5L34 14Z",
+    fill: "#8284FF"
+  }));
+}
+
+/***/ }),
+
+/***/ "./src/icons/SpamComplaint.js":
+/*!************************************!*\
+  !*** ./src/icons/SpamComplaint.js ***!
+  \************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ SpamComplaint; }
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+
+function SpamComplaint() {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "inboxwp-bg-[#faf8e3] inboxwp-w-12 inboxwp-h-12 inboxwp-rounded-md"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    className: "inboxwp-absolute inboxwp-w-[50%] inboxwp-mt-[25%] inboxwp-ml-[25%] inboxwp-h-[50%]]",
+    viewBox: "0 0 16 16",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "m 3 0 c -1.644531 0 -3 1.355469 -3 3 v 6 c 0 1.644531 1.355469 3 3 3 h 3 c 0.550781 0 1 -0.449219 1 -1 s -0.449219 -1 -1 -1 h -3 c -0.570312 0 -1 -0.429688 -1 -1 v -5.796875 l 4.613281 3.074219 c 0.835938 0.558594 1.9375 0.558594 2.773438 0 l 4.613281 -3.074219 v 2.796875 c 0 0.550781 0.449219 1 1 1 s 1 -0.449219 1 -1 v -3 c 0 -1.644531 -1.355469 -3 -3 -3 z m 0.800781 2 h 8.398438 l -3.921875 2.613281 c -0.171875 0.113281 -0.382813 0.113281 -0.554688 0 z m 0 0",
+    fill: "#9c8e02"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "m 8.875 8 c -0.492188 0 -0.875 0.382812 -0.875 0.875 v 6.25 c 0 0.492188 0.382812 0.875 0.875 0.875 h 6.25 c 0.492188 0 0.875 -0.382812 0.875 -0.875 v -6.25 c 0 -0.492188 -0.382812 -0.875 -0.875 -0.875 z m 2.125 1 h 2 v 2.5 s 0 0.5 -0.5 0.5 h -1 c -0.5 0 -0.5 -0.5 -0.5 -0.5 z m 0.5 4 h 1 c 0.277344 0 0.5 0.222656 0.5 0.5 v 1 c 0 0.277344 -0.222656 0.5 -0.5 0.5 h -1 c -0.277344 0 -0.5 -0.222656 -0.5 -0.5 v -1 c 0 -0.277344 0.222656 -0.5 0.5 -0.5 z m 0 0",
+    className: "warning",
+    fill: "#5c5a04"
+  })));
+}
+
+/***/ }),
+
 /***/ "./src/pages/Home.js":
 /*!***************************!*\
   !*** ./src/pages/Home.js ***!
@@ -741,6 +605,45 @@ module.exports = window["wp"]["element"];
 
 "use strict";
 module.exports = window["wp"]["i18n"];
+
+/***/ }),
+
+/***/ "./node_modules/@heroicons/react/24/outline/esm/UsersIcon.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@heroicons/react/24/outline/esm/UsersIcon.js ***!
+  \*******************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+
+
+function UsersIcon({
+  title,
+  titleId,
+  ...props
+}, svgRef) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", Object.assign({
+    xmlns: "http://www.w3.org/2000/svg",
+    fill: "none",
+    viewBox: "0 0 24 24",
+    strokeWidth: 1.5,
+    stroke: "currentColor",
+    "aria-hidden": "true",
+    ref: svgRef,
+    "aria-labelledby": titleId
+  }, props), title ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("title", {
+    id: titleId
+  }, title) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    d: "M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"
+  }));
+}
+
+const ForwardRef = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(UsersIcon);
+/* harmony default export */ __webpack_exports__["default"] = (ForwardRef);
 
 /***/ }),
 
