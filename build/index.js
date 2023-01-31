@@ -220,20 +220,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Loading */ "./src/components/Loading.js");
 /* harmony import */ var _icons_Send__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../icons/Send */ "./src/icons/Send.js");
-/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/UsersIcon.js");
 
 
 
-
-
-const stats = [{
-  id: 1,
-  name: 'Total Subscribers',
-  stat: '71,897',
-  icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_3__["default"],
-  change: '122',
-  changeType: 'increase'
-}];
 function classNames() {
   for (var _len = arguments.length, classes = new Array(_len), _key = 0; _key < _len; _key++) {
     classes[_key] = arguments[_key];
@@ -252,8 +241,7 @@ function MediaCard(_ref) {
     className: "inboxwp-w-full"
   }, loading ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Loading__WEBPACK_IMPORTED_MODULE_1__["default"], null) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("dl", {
     className: "inboxwp-mt-5"
-  }, stats.map(item => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    key: item.id,
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     after: "",
     className: `
                                     inboxwp-relative
@@ -291,7 +279,7 @@ function MediaCard(_ref) {
     clipRule: "evenodd",
     d: "M1.41406 9.99992C1.41406 5.25808 5.25808 1.41406 9.99992 1.41406C14.7418 1.41406 18.5858 5.25808 18.5858 9.99992C18.5858 14.7418 14.7418 18.5858 9.99992 18.5858C5.25808 18.5858 1.41406 14.7418 1.41406 9.99992ZM9.99992 3.43426C6.37381 3.43426 3.43426 6.37381 3.43426 9.99992C3.43426 13.626 6.37381 16.5656 9.99992 16.5656C13.626 16.5656 16.5656 13.626 16.5656 9.99992C16.5656 6.37381 13.626 3.43426 9.99992 3.43426ZM10.0001 5.95972C10.558 5.95972 11.0102 6.41196 11.0102 6.96982V10.0001C11.0102 10.558 10.558 11.0102 10.0001 11.0102C9.44225 11.0102 8.99002 10.558 8.99002 10.0001V6.96982C8.99002 6.41196 9.44225 5.95972 10.0001 5.95972ZM10.0003 13.7879C10.4187 13.7879 10.7579 13.4487 10.7579 13.0303C10.7579 12.6119 10.4187 12.2727 10.0003 12.2727C9.58192 12.2727 9.24274 12.6119 9.24274 13.0303C9.24274 13.4487 9.58192 13.7879 10.0003 13.7879Z",
     fill: "#D0D1D2"
-  }))))))));
+  })))))));
 }
 
 /***/ }),
@@ -605,45 +593,6 @@ module.exports = window["wp"]["element"];
 
 "use strict";
 module.exports = window["wp"]["i18n"];
-
-/***/ }),
-
-/***/ "./node_modules/@heroicons/react/24/outline/esm/UsersIcon.js":
-/*!*******************************************************************!*\
-  !*** ./node_modules/@heroicons/react/24/outline/esm/UsersIcon.js ***!
-  \*******************************************************************/
-/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-
-
-function UsersIcon({
-  title,
-  titleId,
-  ...props
-}, svgRef) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", Object.assign({
-    xmlns: "http://www.w3.org/2000/svg",
-    fill: "none",
-    viewBox: "0 0 24 24",
-    strokeWidth: 1.5,
-    stroke: "currentColor",
-    "aria-hidden": "true",
-    ref: svgRef,
-    "aria-labelledby": titleId
-  }, props), title ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("title", {
-    id: titleId
-  }, title) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    d: "M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"
-  }));
-}
-
-const ForwardRef = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(UsersIcon);
-/* harmony default export */ __webpack_exports__["default"] = (ForwardRef);
 
 /***/ }),
 
