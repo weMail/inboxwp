@@ -16,7 +16,7 @@ class APP extends RestController
      *
      * @var string
      */
-    protected $rest_base = '/app';
+    protected $rest_base = '/site';
 
     /**
      * Register all routes for this class
@@ -26,6 +26,7 @@ class APP extends RestController
     public function register_routes()
     {
         $this->post('/connect', 'set_secrete', 'check_secret_key');
+        $this->post('/disconnect', 'remove_secrete', 'check_secret_key');
     }
 
     /**
@@ -62,5 +63,16 @@ class APP extends RestController
             'admin_email'       => isset($user->data->user_email) ? $user->data->user_email : '',
             'admin_url'         => admin_url(),
         ]);
+    }
+
+    /**
+     * Remove the app secrete
+     *
+     * @return \WP_REST_Response
+     */
+    public function remove_secrete()
+    {
+        update_option('inbox_wp_app_key', '');
+        return $this->respond(['success' => true, 'message' => 'Successfully removed the api key']);
     }
 }

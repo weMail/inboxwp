@@ -274,8 +274,19 @@ abstract class RestController extends WP_REST_Controller
      */
     public function check_secret_key($request)
     {
-        if ($key = $request->get_header('inboxwp-secret')) {
-            if (inboxwp_site_hash() == $key) {
+        $appKey = $request->get_header('app-key');
+        $hash = $request->get_header('inboxwp-secret');
+
+        // check the app key is present and valid
+        if ($appKey && inboxwp_api_key()) {
+            if (inboxwp_api_key() != $appKey) {
+                return false;
+            }
+        }
+
+        // Finally checking the secrete key
+        if ($hash) {
+            if (inboxwp_site_hash() == $hash) {
                 return true;
             }
         }
