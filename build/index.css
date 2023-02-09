@@ -687,6 +687,9 @@ select {
 .inboxwp-relative {
   position: relative;
 }
+.inboxwp-top-8 {
+  top: 2rem;
+}
 .inboxwp-m-auto {
   margin: auto;
 }
@@ -735,6 +738,12 @@ select {
 .inboxwp-ml-\[25\%\] {
   margin-left: 25%;
 }
+.inboxwp-mb-6 {
+  margin-bottom: 1.5rem;
+}
+.inboxwp-mb-0 {
+  margin-bottom: 0px;
+}
 .inboxwp-block {
   display: block;
 }
@@ -753,20 +762,17 @@ select {
 .inboxwp-h-12 {
   height: 3rem;
 }
-.inboxwp-h-\[600px\] {
-  height: 600px;
-}
 .inboxwp-h-full {
   height: 100%;
 }
-.inboxwp-h-\[50\%\] {
-  height: 50%;
+.inboxwp-h-\[600px\] {
+  height: 600px;
 }
-.inboxwp-min-h-\[50px\] {
-  min-height: 50px;
+.inboxwp-h-\[90\%\] {
+  height: 90%;
 }
-.inboxwp-min-h-\[400px\] {
-  min-height: 400px;
+.inboxwp-h-\[85\%\] {
+  height: 85%;
 }
 .inboxwp-w-full {
   width: 100%;
@@ -795,6 +801,9 @@ select {
 .inboxwp-w-\[50\%\] {
   width: 50%;
 }
+.inboxwp-min-w-0 {
+  min-width: 0px;
+}
 .inboxwp-max-w-sm {
   max-width: 24rem;
 }
@@ -806,6 +815,9 @@ select {
 }
 .inboxwp-max-w-\[300px\] {
   max-width: 300px;
+}
+.inboxwp-flex-wrap {
+  flex-wrap: wrap;
 }
 .inboxwp-place-content-between {
   place-content: space-between;
@@ -827,6 +839,9 @@ select {
 .inboxwp-overflow-hidden {
   overflow: hidden;
 }
+.inboxwp-break-words {
+  overflow-wrap: break-word;
+}
 .inboxwp-rounded-md {
   border-radius: 0.375rem;
 }
@@ -835,6 +850,10 @@ select {
 }
 .inboxwp-rounded-full {
   border-radius: 9999px;
+}
+.inboxwp-rounded-t {
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
 }
 .inboxwp-border {
   border-width: 1px;
@@ -866,15 +885,14 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(250 248 227 / var(--tw-bg-opacity));
 }
+.inboxwp-bg-transparent {
+  background-color: transparent;
+}
 .inboxwp-p-3 {
   padding: 0.75rem;
 }
 .inboxwp-p-6 {
   padding: 1.5rem;
-}
-.inboxwp-py-\[15px\] {
-  padding-top: 15px;
-  padding-bottom: 15px;
 }
 .inboxwp-py-2 {
   padding-top: 0.5rem;
@@ -896,13 +914,9 @@ select {
   padding-left: 12rem;
   padding-right: 12rem;
 }
-.inboxwp-py-\[10px\] {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-.inboxwp-py-0 {
-  padding-top: 0px;
-  padding-bottom: 0px;
+.inboxwp-py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 .inboxwp-pr-\[20px\] {
   padding-right: 20px;
@@ -939,6 +953,10 @@ select {
 }
 .inboxwp-text-\[24px\] {
   font-size: 24px;
+}
+.inboxwp-text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 .inboxwp-font-medium {
   font-weight: 500;

@@ -36,10 +36,10 @@ const App = () => {
 
 /***/ }),
 
-/***/ "./src/components/BartChart.tsx":
-/*!**************************************!*\
-  !*** ./src/components/BartChart.tsx ***!
-  \**************************************/
+/***/ "./src/components/BartChart.js":
+/*!*************************************!*\
+  !*** ./src/components/BartChart.js ***!
+  \*************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -161,17 +161,13 @@ function BarChart() {
     };
   }, []);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "inboxwp-flex inboxwp-flex-col inboxwp-min-w-0 inboxwp-break-words inboxwp-bg-white inboxwp-w-full inboxwp-mb-6"
+    className: "inboxwp-h-full inboxwp-relative inboxwp-bg-white inboxwp-w-full inboxwp-mb-6"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "inboxwp-rounded-t inboxwp-mb-0 inboxwp-px-4 inboxwp-py-3 inboxwp-bg-transparent"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "inboxwp-flex inboxwp-flex-wrap inboxwp-items-center"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "inboxwp-w-full inboxwp-max-w-full inboxwp-flex-grow inboxwp-flex-1"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", {
-    className: "inboxwp-text-blueGray-700 inboxwp-text-lg inboxwp-font-semibold"
-  }, "Log for last 30 days")))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "inboxwp-p-6 inboxwp-absolute inboxwp-m-auto inboxwp-h-[95%] inboxwp-top-8 inboxwp-w-full inboxwp-h-full"
+    className: "inboxwp-text-blue-gray-700 inboxwp-text-lg inboxwp-font-semibold"
+  }, "Log for last 30 days")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "inboxwp-m-auto inboxwp-absolute inboxwp-h-[85%] inboxwp-w-full"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("canvas", {
     id: "bar-chart"
   }))));
@@ -199,8 +195,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _icons_Send__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../icons/Send */ "./src/icons/Send.js");
 /* harmony import */ var _icons_FailedMail__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../icons/FailedMail */ "./src/icons/FailedMail.js");
 /* harmony import */ var _icons_SpamComplaint__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../icons/SpamComplaint */ "./src/icons/SpamComplaint.js");
-/* harmony import */ var _BartChart__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./BartChart */ "./src/components/BartChart.tsx");
-/* harmony import */ var _PieChart__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./PieChart */ "./src/components/PieChart.tsx");
+/* harmony import */ var _BartChart__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./BartChart */ "./src/components/BartChart.js");
+/* harmony import */ var _PieChart__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./PieChart */ "./src/components/PieChart.js");
 
 
 
@@ -292,7 +288,7 @@ function Dashboard(_ref) {
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "inboxwp-flex inboxwp-justify-between inboxwp-space-x-4"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "inboxwp-relative inboxwp-w-[66.66%] inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-my-4"
+    className: "inboxwp-w-[66.66%] inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-my-4"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_BartChart__WEBPACK_IMPORTED_MODULE_7__["default"], null)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "inboxwp-w-[32.77%] inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-my-4"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_PieChart__WEBPACK_IMPORTED_MODULE_8__["default"], null))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -496,10 +492,10 @@ function NotConnected() {
 
 /***/ }),
 
-/***/ "./src/components/PieChart.tsx":
-/*!*************************************!*\
-  !*** ./src/components/PieChart.tsx ***!
-  \*************************************/
+/***/ "./src/components/PieChart.js":
+/*!************************************!*\
+  !*** ./src/components/PieChart.js ***!
+  \************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

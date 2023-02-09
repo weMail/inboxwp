@@ -112,17 +112,13 @@ export default function BarChart() {
   }, []);
   return (
     <>
-      <div className="inboxwp-flex inboxwp-flex-col inboxwp-min-w-0 inboxwp-break-words inboxwp-bg-white inboxwp-w-full inboxwp-mb-6">
+      <div className="inboxwp-h-full inboxwp-relative inboxwp-bg-white inboxwp-w-full inboxwp-mb-6">
         <div className="inboxwp-rounded-t inboxwp-mb-0 inboxwp-px-4 inboxwp-py-3 inboxwp-bg-transparent">
-          <div className="inboxwp-flex inboxwp-flex-wrap inboxwp-items-center">
-            <div className="inboxwp-w-full inboxwp-max-w-full inboxwp-flex-grow inboxwp-flex-1">
-              <h2 className="inboxwp-text-blueGray-700 inboxwp-text-lg inboxwp-font-semibold">
-                Log for last 30 days
-              </h2>
-            </div>
-          </div>
+          <h2 className="inboxwp-text-blue-gray-700 inboxwp-text-lg inboxwp-font-semibold">
+            Log for last 30 days
+          </h2>
         </div>
-        <div className="inboxwp-p-6 inboxwp-absolute inboxwp-m-auto inboxwp-h-[95%] inboxwp-top-8 inboxwp-w-full inboxwp-h-full">
+        <div className="inboxwp-m-auto inboxwp-absolute inboxwp-h-[85%] inboxwp-w-full">
           <canvas id="bar-chart"></canvas>
         </div>
       </div>
