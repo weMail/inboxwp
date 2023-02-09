@@ -4,6 +4,8 @@ import {useEffect, useState} from 'react';
 import Send from "../icons/Send"
 import FailedMail from "../icons/FailedMail"
 import SpamComplaint from "../icons/SpamComplaint"
+import BarChart from "./BartChart";
+import PieChart from "./PieChart";
 
 export default function Dashboard({onDisconnected}) {
     const [loading, setLoading] = useState(true);
@@ -54,8 +56,8 @@ export default function Dashboard({onDisconnected}) {
     }, [])
 
     return (
-        <div className="inboxwp-container inboxwp-pr-[20px] inboxwp-py-[15px] inboxwp-mr-3">
-            <div className="inboxwp-w-full inboxwp-min-h-[50px] inboxwp-flex inboxwp-justify-between">
+        <div className="inboxwp-container inboxwp-pr-[20px] inboxwp-py-2 inboxwp-mr-3">
+            <div className="inboxwp-w-full inboxwp-flex inboxwp-justify-between">
                 <div className="inboxwp-w-32">
                     <h2 className="inboxwp-text-lg">Dashboard</h2>
                 </div>
@@ -63,7 +65,7 @@ export default function Dashboard({onDisconnected}) {
                     <select
                         id="location"
                         name="location"
-                        className="inboxwp-mt-1 inboxwp-block inboxwp-w-full inboxwp-rounded-md inboxwp-border-gray-300 inboxwp-py-2 inboxwp-pl-3 inboxwp-pr-10 inboxwp-text-base focus:inboxwp-border-indigo-500 focus:inboxwp-outline-none focus:inboxwp-ring-indigo-500 sm:inboxwp-text-sm inboxwp-text-red-800"
+                        className="inboxwp-mt-1 inboxwp-block inboxwp-w-full inboxwp-rounded-md inboxwp-border-gray-300 inboxwp-pl-3 inboxwp-pr-10 inboxwp-text-base focus:inboxwp-border-indigo-500 focus:inboxwp-outline-none focus:inboxwp-ring-indigo-500 sm:inboxwp-text-sm inboxwp-text-red-800"
                         defaultValue="Canada"
                     >
                         <option>Monthly</option>
@@ -82,12 +84,12 @@ export default function Dashboard({onDisconnected}) {
                 <MediaCard className="inboxwp-w-1/3" title="Hard Bounce" loading={loading} description={stats.bounce.HardBounce || 0} image={<FailedMail/>}/>
                 <MediaCard className="inboxwp-w-1/3" title="Spam Complaint" loading={loading} description={stats.spam.SpamComplaint || 0} image={<SpamComplaint/>} border={false} />
             </div>
-            <div className="inboxwp-flex inboxwp-min-h-[400px] inboxwp-justify-between inboxwp-space-x-4">
-                <div className="inboxwp-w-[66.66%] inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-my-4">
-                    {/*left Contents*/}
+            <div className="inboxwp-flex inboxwp-justify-between inboxwp-space-x-4">
+                <div className="inboxwp-relative inboxwp-w-[66.66%] inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-my-4">
+                    <BarChart/>
                 </div>
                 <div className="inboxwp-w-[32.77%] inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-my-4">
-                    {/*right contents*/}
+                    <PieChart/>
                 </div>
             </div>
             <div
