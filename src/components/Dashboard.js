@@ -84,7 +84,7 @@ export default function Dashboard({onDisconnected}) {
                 <MediaCard className="inboxwp-w-1/3" title="Hard Bounce" loading={loading} description={stats.bounce.HardBounce || 0} image={<FailedMail/>}/>
                 <MediaCard className="inboxwp-w-1/3" title="Spam Complaint" loading={loading} description={stats.spam.SpamComplaint || 0} image={<SpamComplaint/>} border={false} />
             </div>
-            <div className="inboxwp-flex inboxwp-justify-between inboxwp-space-x-4">
+            <div className="inboxwp-flex inboxwp-justify-between inboxwp-space-x-4 inboxwp-h-[400px]">
                 <div className="inboxwp-w-[66.66%] inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-my-4">
                     <BarChart/>
                 </div>

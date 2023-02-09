@@ -85,7 +85,7 @@ export default function PieChart() {
               </h2>
           </div>
         </div>
-        <div className="inboxwp-m-auto inboxwp-h-[90%] inboxwp-top-8 inboxwp-p-6 inboxwp-w-full">
+        <div className="inboxwp-m-auto inboxwp-h-[300px] inboxwp-w-full inboxwp-pl-[10%]">
           <canvas id="pie-chart"></canvas>
         </div>
       </div>
