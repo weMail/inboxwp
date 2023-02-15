@@ -1,6 +1,3 @@
-/*!********************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/style/main.scss ***!
-  \********************************************************************************************************************************************************************************************************************************************/
 /*
 ! tailwindcss v3.2.4 | MIT License | https://tailwindcss.com
 *//*
@@ -636,41 +633,34 @@ select {
   --tw-backdrop-opacity:  ;
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
-}
-.inboxwp-container {
+}.inboxwp-container {
   width: 100%;
-}
-@media (min-width: 640px) {
+}@media (min-width: 640px) {
 
   .inboxwp-container {
     max-width: 640px;
   }
-}
-@media (min-width: 768px) {
+}@media (min-width: 768px) {
 
   .inboxwp-container {
     max-width: 768px;
   }
-}
-@media (min-width: 1024px) {
+}@media (min-width: 1024px) {
 
   .inboxwp-container {
     max-width: 1024px;
   }
-}
-@media (min-width: 1280px) {
+}@media (min-width: 1280px) {
 
   .inboxwp-container {
     max-width: 1280px;
   }
-}
-@media (min-width: 1536px) {
+}@media (min-width: 1536px) {
 
   .inboxwp-container {
     max-width: 1536px;
   }
-}
-.inboxwp-sr-only {
+}.inboxwp-sr-only {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -680,399 +670,285 @@ select {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
-}
-.inboxwp-absolute {
+}.inboxwp-absolute {
   position: absolute;
-}
-.inboxwp-relative {
+}.inboxwp-relative {
   position: relative;
-}
-.inboxwp-m-auto {
+}.inboxwp-m-auto {
   margin: auto;
-}
-.inboxwp-my-4 {
+}.inboxwp-my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
-}
-.inboxwp-my-2 {
+}.inboxwp-my-2 {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
-}
-.inboxwp-mx-auto {
+}.inboxwp-mx-auto {
   margin-left: auto;
   margin-right: auto;
-}
-.inboxwp-mb-6 {
+}.inboxwp-mb-6 {
   margin-bottom: 1.5rem;
-}
-.inboxwp-mb-0 {
+}.inboxwp-mb-0 {
   margin-bottom: 0px;
-}
-.inboxwp-mr-3 {
+}.inboxwp-mr-3 {
   margin-right: 0.75rem;
-}
-.inboxwp-mt-1 {
+}.inboxwp-mt-1 {
   margin-top: 0.25rem;
-}
-.inboxwp-mt-2 {
+}.inboxwp-mt-2 {
   margin-top: 0.5rem;
-}
-.inboxwp-mb-4 {
+}.inboxwp-mb-4 {
   margin-bottom: 1rem;
-}
-.inboxwp-mb-2\.5 {
+}.inboxwp-mb-2\.5 {
   margin-bottom: 0.625rem;
-}
-.inboxwp-mb-2 {
+}.inboxwp-mb-2 {
   margin-bottom: 0.5rem;
-}
-.inboxwp-mt-5 {
+}.inboxwp-mt-5 {
   margin-top: 1.25rem;
-}
-.inboxwp-ml-16 {
+}.inboxwp-ml-16 {
   margin-left: 4rem;
-}
-.inboxwp-mt-6 {
+}.inboxwp-mt-6 {
   margin-top: 1.5rem;
-}
-.inboxwp-mt-\[25\%\] {
+}.inboxwp-mt-\[25\%\] {
   margin-top: 25%;
-}
-.inboxwp-ml-\[25\%\] {
+}.inboxwp-ml-\[25\%\] {
   margin-left: 25%;
-}
-.inboxwp-block {
+}.inboxwp-block {
   display: block;
-}
-.inboxwp-flex {
+}.inboxwp-flex {
   display: flex;
-}
-.inboxwp-inline-flex {
+}.inboxwp-inline-flex {
   display: inline-flex;
-}
-.inboxwp-h-full {
+}.inboxwp-h-full {
   height: 100%;
-}
-.inboxwp-h-\[85\%\] {
+}.inboxwp-h-\[85\%\] {
   height: 85%;
-}
-.inboxwp-h-\[400px\] {
+}.inboxwp-h-\[400px\] {
   height: 400px;
-}
-.inboxwp-h-2\.5 {
+}.inboxwp-h-2\.5 {
   height: 0.625rem;
-}
-.inboxwp-h-2 {
+}.inboxwp-h-2 {
   height: 0.5rem;
-}
-.inboxwp-h-12 {
+}.inboxwp-h-12 {
   height: 3rem;
-}
-.inboxwp-h-\[300px\] {
+}.inboxwp-h-\[300px\] {
   height: 300px;
-}
-.inboxwp-w-full {
+}.inboxwp-w-full {
   width: 100%;
-}
-.inboxwp-w-32 {
+}.inboxwp-w-32 {
   width: 8rem;
-}
-.inboxwp-w-1\/3 {
+}.inboxwp-w-1\/3 {
   width: 33.333333%;
-}
-.inboxwp-w-\[66\.66\%\] {
+}.inboxwp-w-\[66\.66\%\] {
   width: 66.66%;
-}
-.inboxwp-w-\[32\.77\%\] {
+}.inboxwp-w-\[32\.77\%\] {
   width: 32.77%;
-}
-.inboxwp-w-48 {
+}.inboxwp-w-48 {
   width: 12rem;
-}
-.inboxwp-w-2\/3 {
+}.inboxwp-w-2\/3 {
   width: 66.666667%;
-}
-.inboxwp-w-12 {
+}.inboxwp-w-12 {
   width: 3rem;
-}
-.inboxwp-w-\[50\%\] {
+}.inboxwp-w-\[50\%\] {
   width: 50%;
-}
-.inboxwp-min-w-0 {
+}.inboxwp-min-w-0 {
   min-width: 0px;
-}
-.inboxwp-max-w-sm {
+}.inboxwp-max-w-sm {
   max-width: 24rem;
-}
-.inboxwp-max-w-\[360px\] {
+}.inboxwp-max-w-\[360px\] {
   max-width: 360px;
-}
-.inboxwp-max-w-\[330px\] {
+}.inboxwp-max-w-\[330px\] {
   max-width: 330px;
-}
-.inboxwp-max-w-\[300px\] {
+}.inboxwp-max-w-\[300px\] {
   max-width: 300px;
-}
-.inboxwp-flex-wrap {
+}.inboxwp-flex-wrap {
   flex-wrap: wrap;
-}
-.inboxwp-place-content-between {
+}.inboxwp-place-content-between {
   place-content: space-between;
-}
-.inboxwp-items-start {
+}.inboxwp-items-start {
   align-items: flex-start;
-}
-.inboxwp-items-center {
+}.inboxwp-items-center {
   align-items: center;
-}
-.inboxwp-justify-between {
+}.inboxwp-justify-between {
   justify-content: space-between;
-}
-.inboxwp-space-x-4 > :not([hidden]) ~ :not([hidden]) {
+}.inboxwp-space-x-4 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(1rem * var(--tw-space-x-reverse));
   margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
-}
-.inboxwp-overflow-hidden {
+}.inboxwp-overflow-hidden {
   overflow: hidden;
-}
-.inboxwp-break-words {
+}.inboxwp-break-words {
   overflow-wrap: break-word;
-}
-.inboxwp-rounded-md {
+}.inboxwp-rounded-md {
   border-radius: 0.375rem;
-}
-.inboxwp-rounded-lg {
+}.inboxwp-rounded-lg {
   border-radius: 0.5rem;
-}
-.inboxwp-rounded-full {
+}.inboxwp-rounded-full {
   border-radius: 9999px;
-}
-.inboxwp-rounded-t {
+}.inboxwp-rounded-t {
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
-}
-.inboxwp-border {
+}.inboxwp-border {
   border-width: 1px;
-}
-.inboxwp-border-gray-300 {
+}.inboxwp-border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
-}
-.inboxwp-border-transparent {
+}.inboxwp-border-transparent {
   border-color: transparent;
-}
-.inboxwp-bg-white {
+}.inboxwp-bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-.inboxwp-bg-transparent {
+}.inboxwp-bg-transparent {
   background-color: transparent;
-}
-.inboxwp-bg-red-600 {
+}.inboxwp-bg-red-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(220 38 38 / var(--tw-bg-opacity));
-}
-.inboxwp-bg-gray-200 {
+}.inboxwp-bg-gray-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
-}
-.inboxwp-bg-indigo-600 {
+}.inboxwp-bg-indigo-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(79 70 229 / var(--tw-bg-opacity));
-}
-.inboxwp-bg-\[\#faf8e3\] {
+}.inboxwp-bg-\[\#faf8e3\] {
   --tw-bg-opacity: 1;
   background-color: rgb(250 248 227 / var(--tw-bg-opacity));
-}
-.inboxwp-p-3 {
+}.inboxwp-p-3 {
   padding: 0.75rem;
-}
-.inboxwp-p-6 {
+}.inboxwp-p-6 {
   padding: 1.5rem;
-}
-.inboxwp-px-4 {
+}.inboxwp-px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
-}
-.inboxwp-py-3 {
+}.inboxwp-py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-}
-.inboxwp-py-2 {
+}.inboxwp-py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-}
-.inboxwp-px-3 {
+}.inboxwp-px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
-}
-.inboxwp-py-6 {
+}.inboxwp-py-6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
-}
-.inboxwp-px-48 {
+}.inboxwp-px-48 {
   padding-left: 12rem;
   padding-right: 12rem;
-}
-.inboxwp-pr-\[20px\] {
+}.inboxwp-pr-\[20px\] {
   padding-right: 20px;
-}
-.inboxwp-pl-3 {
+}.inboxwp-pl-3 {
   padding-left: 0.75rem;
-}
-.inboxwp-pr-10 {
+}.inboxwp-pr-10 {
   padding-right: 2.5rem;
-}
-.inboxwp-pt-5 {
+}.inboxwp-pt-5 {
   padding-top: 1.25rem;
-}
-.inboxwp-pb-6 {
+}.inboxwp-pb-6 {
   padding-bottom: 1.5rem;
-}
-.inboxwp-pl-\[10\%\] {
+}.inboxwp-pl-\[10\%\] {
   padding-left: 10%;
-}
-.inboxwp-text-center {
+}.inboxwp-text-center {
   text-align: center;
-}
-.inboxwp-text-lg {
+}.inboxwp-text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
-}
-.inboxwp-text-base {
+}.inboxwp-text-base {
   font-size: 1rem;
   line-height: 1.5rem;
-}
-.inboxwp-text-sm {
+}.inboxwp-text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
-}
-.inboxwp-text-\[14px\] {
+}.inboxwp-text-\[14px\] {
   font-size: 14px;
-}
-.inboxwp-text-\[24px\] {
+}.inboxwp-text-\[24px\] {
   font-size: 24px;
-}
-.inboxwp-text-xl {
+}.inboxwp-text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
-}
-.inboxwp-font-semibold {
+}.inboxwp-font-semibold {
   font-weight: 600;
-}
-.inboxwp-font-medium {
+}.inboxwp-font-medium {
   font-weight: 500;
-}
-.inboxwp-text-red-800 {
+}.inboxwp-text-red-800 {
   --tw-text-opacity: 1;
   color: rgb(153 27 27 / var(--tw-text-opacity));
-}
-.inboxwp-text-gray-900 {
+}.inboxwp-text-gray-900 {
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
-}
-.inboxwp-text-blue-500 {
+}.inboxwp-text-blue-500 {
   --tw-text-opacity: 1;
   color: rgb(59 130 246 / var(--tw-text-opacity));
-}
-.inboxwp-text-white {
+}.inboxwp-text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-.inboxwp-text-\[\#6B7280\] {
+}.inboxwp-text-\[\#6B7280\] {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
-}
-.inboxwp-text-\[\#111827\] {
+}.inboxwp-text-\[\#111827\] {
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
-}
-.inboxwp-text-gray-400 {
+}.inboxwp-text-gray-400 {
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity));
-}
-.inboxwp-text-gray-500 {
+}.inboxwp-text-gray-500 {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
-}
-.inboxwp-shadow-sm {
+}.inboxwp-shadow-sm {
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-.inboxwp-shadow {
+}.inboxwp-shadow {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-.after\:inboxwp-absolute::after {
+}.after\:inboxwp-absolute::after {
   content: var(--tw-content);
   position: absolute;
-}
-.after\:inboxwp-bottom-\[27px\]::after {
+}.after\:inboxwp-bottom-\[27px\]::after {
   content: var(--tw-content);
   bottom: 27px;
-}
-.after\:inboxwp-left-\[89px\]::after {
+}.after\:inboxwp-left-\[89px\]::after {
   content: var(--tw-content);
   left: 89px;
-}
-.after\:inboxwp-h-\[4px\]::after {
+}.after\:inboxwp-h-\[4px\]::after {
   content: var(--tw-content);
   height: 4px;
-}
-.after\:inboxwp-w-\[110\.2px\]::after {
+}.after\:inboxwp-w-\[110\.2px\]::after {
   content: var(--tw-content);
   width: 110.2px;
-}
-.after\:inboxwp-rounded-\[53px\]::after {
+}.after\:inboxwp-rounded-\[53px\]::after {
   content: var(--tw-content);
   border-radius: 53px;
-}
-.after\:inboxwp-bg-\[\#6366F1\]::after {
+}.after\:inboxwp-bg-\[\#6366F1\]::after {
   content: var(--tw-content);
   --tw-bg-opacity: 1;
   background-color: rgb(99 102 241 / var(--tw-bg-opacity));
-}
-.after\:inboxwp-text-red-800::after {
+}.after\:inboxwp-text-red-800::after {
   content: var(--tw-content);
   --tw-text-opacity: 1;
   color: rgb(153 27 27 / var(--tw-text-opacity));
-}
-.hover\:inboxwp-bg-red-700:hover {
+}.hover\:inboxwp-bg-red-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(185 28 28 / var(--tw-bg-opacity));
-}
-.hover\:inboxwp-bg-indigo-700:hover {
+}.hover\:inboxwp-bg-indigo-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(67 56 202 / var(--tw-bg-opacity));
-}
-.focus\:inboxwp-border-indigo-500:focus {
+}.focus\:inboxwp-border-indigo-500:focus {
   --tw-border-opacity: 1;
   border-color: rgb(99 102 241 / var(--tw-border-opacity));
-}
-.focus\:inboxwp-outline-none:focus {
+}.focus\:inboxwp-outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
-}
-.focus\:inboxwp-ring-2:focus {
+}.focus\:inboxwp-ring-2:focus {
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
-}
-.focus\:inboxwp-ring-indigo-500:focus {
+}.focus\:inboxwp-ring-indigo-500:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(99 102 241 / var(--tw-ring-opacity));
-}
-.focus\:inboxwp-ring-red-500:focus {
+}.focus\:inboxwp-ring-red-500:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(239 68 68 / var(--tw-ring-opacity));
-}
-.focus\:inboxwp-ring-offset-2:focus {
+}.focus\:inboxwp-ring-offset-2:focus {
   --tw-ring-offset-width: 2px;
-}
-@media (min-width: 640px) {
+}@media (min-width: 640px) {
 
   .sm\:inboxwp-px-6 {
     padding-left: 1.5rem;
@@ -1092,5 +968,3 @@ select {
     line-height: 1.25rem;
   }
 }
-
-/*# sourceMappingURL=index.css.map*/
