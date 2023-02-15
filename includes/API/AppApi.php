@@ -1,6 +1,6 @@
 <?php
 
-namespace WeDevs\Inboxwp\Api;
+namespace WeDevs\Inboxwp\API;
 
 use WeDevs\Inboxwp\Traits\Singleton;
 use WP_Error;

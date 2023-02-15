@@ -13,6 +13,9 @@
  * Domain Path:       /languages
  */
 
+use WeDevs\Inboxwp\Admin;
+use WeDevs\Inboxwp\API;
+use WeDevs\Inboxwp\Assets;
 use WeDevs\Inboxwp\Hooks;
 
 // don't call the file directly
@@ -102,10 +105,10 @@ final class InboxWP
     public function init_plugin()
     {
         if (is_admin()) {
-            new \WeDevs\Inboxwp\Admin();
-            new \WeDevs\Inboxwp\Assets();
+            new Admin();
+            new Assets();
         }
-        new \WeDevs\Inboxwp\API();
+        new API();
         if (defined('DOING_AJAX') && DOING_AJAX) {
             new WeDevs\Inboxwp\Ajax();
         }

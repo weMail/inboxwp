@@ -2,7 +2,7 @@
 
 namespace WeDevs\Inboxwp\REST;
 
-use WeDevs\Inboxwp\Api\AppApi;
+use WeDevs\Inboxwp\API\AppApi;
 use WeDevs\Inboxwp\RestController;
 
 /**

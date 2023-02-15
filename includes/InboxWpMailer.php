@@ -4,7 +4,7 @@ namespace WeDevs\Inboxwp;
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception as PHPMailerException;
-use WeDevs\Inboxwp\Api\AppApi;
+use WeDevs\Inboxwp\API\AppApi;
 
 class InboxWpMailer extends PHPMailer
 {

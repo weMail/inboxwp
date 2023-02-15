@@ -4,7 +4,7 @@
 namespace WeDevs\Inboxwp\Services;
 
 
-use WeDevs\Inboxwp\Api\AppApi;
+use WeDevs\Inboxwp\API\AppApi;
 use WeDevs\Inboxwp\Traits\Singleton;
 
 class Home
