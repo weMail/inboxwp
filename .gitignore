@@ -9,3 +9,4 @@ yarn-error.log
 /.php-cs-fixer.cache
 /build/index.css.map
 .DS_Store
+.env

@@ -78,7 +78,7 @@ final class InboxWP
         define('INBOX_WP_PATH', __DIR__);
         define('INBOX_WP_URL', plugins_url('', INBOX_WP_FILE));
         define('INBOX_WP_ASSETS', INBOX_WP_URL . '/assets');
-        define('INBOX_WP_APP_URL', 'http://app.inboxwp.test');
+        define('INBOX_WP_APP_URL', $this->getAppUrl());
     }
 
     /**
@@ -123,6 +123,17 @@ final class InboxWP
     public function includes()
     {
         require_once INBOX_WP_PATH . '/includes/Functions.php';
+    }
+
+    /**
+     * Serve app url
+     *
+     * @return string
+     */
+    protected function getAppUrl()
+    {
+        $appUrl = apply_filters('inboxwp_app_url', 'https://app.inboxwp.com');
+        return untrailingslashit($appUrl);
     }
 }
 
