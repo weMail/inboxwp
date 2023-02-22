@@ -1,103 +1,116 @@
 import React from "react";
+import moment from 'moment/moment.js'
 // @ts-ignore
 import { Chart, CategoryScale, LinearScale, registerables } from "chart.js";
 Chart.register(CategoryScale, LinearScale, ...registerables);
 
-export default function BarChart() {
-  const chartValues = (arrayLength = 30) => {
-    const array = [];
-
-    for (let i = 0; i < arrayLength; i++) {
-      array.push(Math.floor(Math.random() * 100));
+export default function BarChart({stats}) {
+  const days = Array.from({length: 30}, (_, i) => moment().add(- parseInt(i), 'days').format('YYYY-MM-DD'));
+  const chartValues = (stats, name, arrayLength = 30) => {
+    if (!stats || ! Object.keys(stats).length) {
+      return [];
     }
-    return array;
+
+    const datas = [];
+    for (let i of stats.Days) {
+      datas[i.Date] = i[name]
+    }
+
+    const chartData = [];
+    for (let date of days) {
+      if (datas[date]) {
+        chartData.push(datas[date]);
+      } else {
+        chartData.push(0);
+      }
+    }
+    return chartData;
   }
 
+  let config = {
+    type: "bar",
+    data: {
+      labels: days,
+      datasets: [
+        {
+          label: 'Delivered',
+          backgroundColor: "#8284FF",
+          borderColor: "#8284FF",
+          data: chartValues(stats.sent, 'Sent'),
+          fill: false,
+          barThickness: 5,
+        },
+        {
+          label: 'Bounced',
+          backgroundColor: "#FA7670",
+          borderColor: "#FA7676",
+          data: chartValues(stats.bounce, 'HardBounce'),
+          fill: false,
+          barThickness: 5,
+        },
+      ],
+    },
+    options: {
+      plugins: {
+        legend: {
+          labels: {
+            fontColor: "rgba(0,0,0,.4)",
+          },
+          align: "end",
+          position: "top",
+        },
+      },
+      maintainAspectRatio: false,
+      responsive: true,
+      title: {
+        display: false,
+        text: "Log Chart",
+      },
+      tooltips: {
+        mode: "index",
+        intersect: true,
+      },
+      hover: {
+        // mode: "nearest",
+        // intersect: false,
+      },
+      scales: {
+        x: {
+          display: true,
+          scaleLabel: {
+            display: true,
+            labelString: "",
+          },
+          gridLines: {
+            borderDash: [2],
+            borderDashOffset: [2],
+            color: "rgba(33, 37, 41, 0.3)",
+            zeroLineColor: "rgba(33, 37, 41, 0.3)",
+            zeroLineBorderDash: [2],
+            zeroLineBorderDashOffset: [2],
+          },
+        },
+        y: {
+          display: true,
+          scaleLabel: {
+            display: false,
+            labelString: "",
+          },
+          gridLines: {
+            borderDash: [2],
+            drawBorder: false,
+            borderDashOffset: [2],
+            color: "rgba(33, 37, 41, 0.2)",
+            zeroLineColor: "rgba(33, 37, 41, 0.15)",
+            zeroLineBorderDash: [2],
+            zeroLineBorderDashOffset: [2],
+          },
+        },
+      },
+    },
+  };
 
-  const days = Array.from({length: 30}, (_, i) => i + 1);
   React.useEffect(() => {
-    let config = {
-      type: "bar",
-      data: {
-        labels: days,
-        datasets: [
-          {
-            label: 'Delivered',
-            backgroundColor: "#8284FF",
-            borderColor: "#8284FF",
-            data: chartValues(),
-            fill: false,
-            barThickness: 5,
-          },
-          {
-            label: 'Bounced',
-            backgroundColor: "#FA7670",
-            borderColor: "#FA7676",
-            data: chartValues(),
-            fill: false,
-            barThickness: 5,
-          },
-        ],
-      },
-      options: {
-        plugins: {
-          legend: {
-            labels: {
-              fontColor: "rgba(0,0,0,.4)",
-            },
-            align: "end",
-            position: "top",
-          },
-        },
-        maintainAspectRatio: false,
-        responsive: true,
-        title: {
-          display: false,
-          text: "Log Chart",
-        },
-        tooltips: {
-          mode: "index",
-          intersect: true,
-        },
-        hover: {
-          // mode: "nearest",
-          // intersect: false,
-        },
-        scales: {
-          x: {
-            display: true,
-            scaleLabel: {
-              display: true,
-              labelString: "",
-            },
-            gridLines: {
-              borderDash: [2],
-              borderDashOffset: [2],
-              color: "rgba(33, 37, 41, 0.3)",
-              zeroLineColor: "rgba(33, 37, 41, 0.3)",
-              zeroLineBorderDash: [2],
-              zeroLineBorderDashOffset: [2],
-            },
-          },
-          y: {
-            display: true,
-            scaleLabel: {
-              display: false,
-              labelString: "",
-            },
-            gridLines: {
-              borderDash: [2],
-              drawBorder: false,
-              borderDashOffset: [2],
-              color: "rgba(33, 37, 41, 0.2)",
-              zeroLineColor: "rgba(33, 37, 41, 0.15)",
-              zeroLineBorderDash: [2],
-              zeroLineBorderDashOffset: [2],
-            },
-          },
-        },
-      },
-    };
     // @ts-ignore
     let ctx = document.getElementById("bar-chart").getContext("2d");
 
@@ -109,7 +122,7 @@ export default function BarChart() {
     return () => {
       barChart.destroy();
     }
-  }, []);
+  }, [config]);
   return (
     <>
       <div className="inboxwp-h-full inboxwp-relative inboxwp-bg-white inboxwp-w-full inboxwp-mb-6">

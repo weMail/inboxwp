@@ -86,10 +86,10 @@ export default function Dashboard({onDisconnected}) {
             </div>
             <div className="inboxwp-flex inboxwp-justify-between inboxwp-space-x-4 inboxwp-h-[400px]">
                 <div className="inboxwp-w-[66.66%] inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-my-4">
-                    <BarChart/>
+                    <BarChart stats={stats}/>
                 </div>
                 <div className="inboxwp-w-[32.77%] inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-my-4">
-                    <PieChart/>
+                    <PieChart sent={stats.sent.Sent} bounce={stats.bounce.HardBounce}/>
                 </div>
             </div>
             <div
