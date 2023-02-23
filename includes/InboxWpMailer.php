@@ -75,7 +75,7 @@ class InboxWpMailer extends PHPMailer
             throw new PHPMailerException($response->get_error_message());
         }
 
-        if (isset($response['success']) && !wemail_validate_boolean($response['success'])) {
+        if (isset($response['success']) && !inboxwp_validate_boolean($response['success'])) {
             throw new PHPMailerException('Could not send transactional email');
         }
 

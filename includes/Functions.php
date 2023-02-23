@@ -48,3 +48,14 @@ function inboxwp_set_site_hash($hash = '')
         update_option('inbox_wp_site_hash', inboxwp_generate_hash());
     }
 }
+
+/**
+ * Verifies that a value is boolean true or false
+ *
+ * @param $var
+ * @return mixed
+ */
+function inboxwp_validate_boolean( $var )
+{
+    return filter_var( $var, FILTER_VALIDATE_BOOLEAN );
+}
