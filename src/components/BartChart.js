@@ -1,11 +1,12 @@
 import React from "react";
 import moment from 'moment/moment.js'
+import Loader from './Skeletons/BarChart'
 // @ts-ignore
 import { Chart, CategoryScale, LinearScale, registerables } from "chart.js";
 Chart.register(CategoryScale, LinearScale, ...registerables);
 
-export default function BarChart({stats}) {
-  const days = Array.from({length: 30}, (_, i) => moment().add(- parseInt(i), 'days').format('YYYY-MM-DD'));
+export default function BarChart({stats, loading}) {
+  const days = Array.from({length: 30}, (_, i) => moment().add(- i, 'days').format('YYYY-MM-DD'));
   const chartValues = (stats, name, arrayLength = 30) => {
     if (!stats || ! Object.keys(stats).length) {
       return [];
@@ -111,6 +112,10 @@ export default function BarChart({stats}) {
   };
 
   React.useEffect(() => {
+    if (loading) {
+      return ;
+    }
+
     // @ts-ignore
     let ctx = document.getElementById("bar-chart").getContext("2d");
 
@@ -125,16 +130,19 @@ export default function BarChart({stats}) {
   }, [config]);
   return (
     <>
-      <div className="inboxwp-h-full inboxwp-relative inboxwp-bg-white inboxwp-w-full inboxwp-mb-6">
-        <div className="inboxwp-rounded-t inboxwp-mb-0 inboxwp-px-4 inboxwp-py-3 inboxwp-bg-transparent">
-          <h2 className="inboxwp-text-blue-gray-700 inboxwp-text-lg inboxwp-font-semibold">
-            Log for last 30 days
-          </h2>
-        </div>
-        <div className="inboxwp-m-auto inboxwp-absolute inboxwp-h-[85%] inboxwp-w-full">
-          <canvas id="bar-chart"></canvas>
-        </div>
-      </div>
+      {
+        loading ? <Loader /> :
+            <div className="inboxwp-h-full inboxwp-relative inboxwp-bg-white inboxwp-w-full inboxwp-mb-6">
+              <div className="inboxwp-rounded-t inboxwp-mb-0 inboxwp-px-4 inboxwp-py-3 inboxwp-bg-transparent">
+                <h2 className="inboxwp-text-blue-gray-700 inboxwp-text-lg inboxwp-font-semibold">
+                  Log for last 30 days
+                </h2>
+              </div>
+              <div className="inboxwp-m-auto inboxwp-absolute inboxwp-h-[85%] inboxwp-w-full">
+                <canvas id="bar-chart"></canvas>
+              </div>
+            </div>
+      }
     </>
   );
 }

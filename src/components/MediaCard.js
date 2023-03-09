@@ -9,9 +9,9 @@ function classNames(...classes) {
 
 export default function MediaCard({title, description, loading, image = <Send/>, border = false}) {
     return (
-        <div className="inboxwp-w-full">
+        <div className="inboxwp-w-full inboxwp-mt-5">
             {loading ? <Loading/> : <>
-                <dl className="inboxwp-mt-5">
+                <dl>
                     <div
                         after=""
                         className={

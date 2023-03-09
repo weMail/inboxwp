@@ -10,3 +10,4 @@ yarn-error.log
 /build/index.css.map
 .DS_Store
 .env
+build/*

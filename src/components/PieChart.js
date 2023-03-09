@@ -2,8 +2,9 @@
 import {Chart} from "chart.js";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import React from "react";
+import Loader from './Skeletons/PieChart'
 
-export default function PieChart({sent = 0, bounce = 0}) {
+export default function PieChart({sent = 0, bounce = 0, loading}) {
 
   let config = {
     type: "doughnut",
@@ -64,6 +65,9 @@ export default function PieChart({sent = 0, bounce = 0}) {
     },
   };
   React.useEffect(() => {
+    if (loading) {
+      return;
+    }
     // @ts-ignore
     let ctx = document.getElementById("pie-chart").getContext("2d");
     // @ts-ignore
@@ -76,19 +80,22 @@ export default function PieChart({sent = 0, bounce = 0}) {
     }
   }, [config]);
   return (
-    <>
-      <div className="inboxwp-min-w-0 inboxwp-break-words inboxwp-bg-white inboxwp-w-full inboxwp-mb-6">
-        <div className="inboxwp-rounded-t inboxwp-mb-0 inboxwp-px-4 inboxwp-py-3 inboxwp-bg-transparent">
-          <div className="inboxwp-flex inboxwp-flex-wrap inboxwp-items-center">
-              <h2 className="inboxwp-text-blue-gray-700 inboxwp-text-lg inboxwp-text-xl inboxwp-font-semibold">
-                Quick glance
-              </h2>
-          </div>
-        </div>
-        <div className="inboxwp-m-auto inboxwp-h-[300px] inboxwp-w-full inboxwp-pl-[10%]">
-          <canvas id="pie-chart"></canvas>
-        </div>
-      </div>
-    </>
+      <>
+        {
+          loading ? <Loader/> :
+                <div className="inboxwp-min-w-0 inboxwp-break-words inboxwp-bg-white inboxwp-w-full inboxwp-mb-6">
+                  <div className="inboxwp-rounded-t inboxwp-mb-0 inboxwp-px-4 inboxwp-py-3 inboxwp-bg-transparent">
+                    <div className="inboxwp-flex inboxwp-flex-wrap inboxwp-items-center">
+                      <h2 className="inboxwp-text-blue-gray-700 inboxwp-text-lg inboxwp-text-xl inboxwp-font-semibold">
+                        Quick glance
+                      </h2>
+                    </div>
+                  </div>
+                  <div className="inboxwp-m-auto inboxwp-h-[300px] inboxwp-w-full inboxwp-pl-[10%]">
+                    <canvas id="pie-chart"></canvas>
+                  </div>
+                </div>
+        }
+      </>
   );
 }
