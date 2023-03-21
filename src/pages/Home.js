@@ -33,9 +33,7 @@ export default function Home() {
         connectSite();
     }, []);
 
-    if(loading) {
-        return <>Loadding ........</>
-    } else if (! loading && !apiKey) {
+    if (!apiKey) {
         return  <NotConnected />
     }
     return <Dashboard onDisconnected={updateApiKey} />
