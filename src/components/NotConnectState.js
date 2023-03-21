@@ -5,7 +5,7 @@ import rest from '../core/REST';
 export default function NotConnected() {
 
     let title = _n("Let’s connect your website with InboxWP", 'inboxwp');
-    let subTitle = _n("Let MailSend take care of all emails that goes through your WordPress site. Power up your WordPress email game with just a few clicks", 'inboxwp');
+    let subTitle = _n("Let InboxWP take care of all your WordPress transactional emails 🚀", 'inboxwp');
     let buttonText = _n('Connect your website', 'inboxwp');
 
     const connectSite = () => {
