@@ -5,14 +5,12 @@ namespace WeDevs\Inboxwp\Admin;
 /**
  * Responsible for admin menu
  */
-class Menu
-{
+class Menu {
+
     /**
      * Class constructor
      */
-    public function __construct()
-    {
-        add_action('admin_menu', [$this, 'admin_menu']);
+    public function __construct() {         add_action( 'admin_menu', [ $this, 'admin_menu' ] );
     }
 
     /**
@@ -20,11 +18,10 @@ class Menu
      *
      * @return void
      */
-    public function admin_menu()
-    {
-        $hook = add_menu_page(__('InboxWP', 'inboxwp'),  __('InboxWP', 'inboxwp'), 'manage_options', 'inboxwp', [$this, 'plugin_page'], 'dashicons-email');
+    public function admin_menu() {
+        $hook = add_menu_page( __( 'InboxWP', 'inboxwp' ), __( 'InboxWP', 'inboxwp' ), 'manage_options', 'inboxwp', [ $this, 'plugin_page' ], 'dashicons-email' );
 
-        add_action('admin_head-' . $hook, [$this, 'enqueue_assets']);
+        add_action( 'admin_head-' . $hook, [ $this, 'enqueue_assets' ] );
     }
 
     /**
@@ -32,11 +29,9 @@ class Menu
      *
      * @return void
      */
-    public function plugin_page()
-    {
-        // $view = __DIR__ . '/Views/Menu.php';
+    public function plugin_page() {
         $view = INBOX_WP_PATH . '/templates/app.php';
-        if (file_exists($view)) {
+        if ( file_exists( $view ) ) {
             include $view;
         }
     }
@@ -46,17 +41,13 @@ class Menu
      *
      * @return void
      */
-    public function enqueue_assets()
-    {
-        wp_enqueue_style('inboxwp-style');
-        wp_enqueue_style('react-style');
-        wp_enqueue_style('inboxwp-style');
-        wp_enqueue_script('inboxwp-react-script');
-        wp_enqueue_style('inboxwp-tailwind-ui-font');
+    public function enqueue_assets() {         wp_enqueue_style( 'inboxwp-style' );
+        wp_enqueue_style( 'react-style' );
+        wp_enqueue_style( 'inboxwp-style' );
+        wp_enqueue_script( 'inboxwp-react-script' );
+        wp_enqueue_style( 'inboxwp-tailwind-ui-font' );
     }
 
-    public function form_handler()
-    {
-        //
+    public function form_handler() {         //
     }
 }

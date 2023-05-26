@@ -1,14 +1,17 @@
 <?php
 
-function inboxwp_generate_hash($length = 40)
-{
-    if (0 >= $length) $length = 40; // Min key length.
-    if (255 <= $length) $length = 255; // Max key length.
+function inboxwp_generate_hash( $length = 40 ) {
+    if ( 0 >= $length ) {
+		$length = 40; // Min key length.
+    }
+    if ( 255 <= $length ) {
+		$length = 255; // Max key length.
+    }
 
     $characters   = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $random_string = '';
-    for ($i = 0; $i < $length; $i++) {
-        $random_string .= $characters[rand(0, strlen($characters) - 1)];
+    for ( $i = 0; $i < $length; $i++ ) {
+        $random_string .= $characters[ wp_rand( 0, strlen( $characters ) - 1 ) ];
     }
 
     return $random_string;
@@ -19,9 +22,7 @@ function inboxwp_generate_hash($length = 40)
  *
  * @return mixed
  */
-function inboxwp_api_key()
-{
-    return get_option('inbox_wp_app_key');
+function inboxwp_api_key() {     return get_option( 'inbox_wp_app_key' );
 }
 
 /**
@@ -29,9 +30,7 @@ function inboxwp_api_key()
  *
  * @return mixed
  */
-function inboxwp_site_hash()
-{
-    return get_option('inbox_wp_site_hash');
+function inboxwp_site_hash() {     return get_option( 'inbox_wp_site_hash' );
 }
 
 /**
@@ -40,12 +39,11 @@ function inboxwp_site_hash()
  * @param string $hash
  * @return mixed
  */
-function inboxwp_set_site_hash($hash = '')
-{
-    if ($hash) {
-        update_option('inbox_wp_site_hash', $hash);
+function inboxwp_set_site_hash( $hash = '' ) {
+    if ( $hash ) {
+        update_option( 'inbox_wp_site_hash', $hash );
     } else {
-        update_option('inbox_wp_site_hash', inboxwp_generate_hash());
+        update_option( 'inbox_wp_site_hash', inboxwp_generate_hash() );
     }
 }
 
@@ -55,7 +53,5 @@ function inboxwp_set_site_hash($hash = '')
  * @param $var
  * @return mixed
  */
-function inboxwp_validate_boolean( $var )
-{
-    return filter_var( $var, FILTER_VALIDATE_BOOLEAN );
+function inboxwp_validate_boolean( $var ) {     return filter_var( $var, FILTER_VALIDATE_BOOLEAN );
 }

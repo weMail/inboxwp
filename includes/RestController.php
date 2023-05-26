@@ -8,8 +8,8 @@ use WP_REST_Response;
 use WP_REST_Server;
 use WP_User_Query;
 
-abstract class RestController extends WP_REST_Controller
-{
+abstract class RestController extends WP_REST_Controller {
+
 
     /**
      * HTTP response codes
@@ -101,9 +101,7 @@ abstract class RestController extends WP_REST_Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->register_routes();
+    public function __construct() {         $this->register_routes();
     }
 
     /**
@@ -113,8 +111,7 @@ abstract class RestController extends WP_REST_Controller
      *
      * @return bool
      */
-    public function public_api($request)
-    {
+    public function public_api( $request ) {
         return true;
     }
 
@@ -125,9 +122,8 @@ abstract class RestController extends WP_REST_Controller
      *
      * @return bool
      */
-    public function manage_options($request)
-    {
-        return current_user_can('manage_options');
+    public function manage_options( $request ) {
+        return current_user_can( 'manage_options' );
     }
 
     /**
@@ -139,9 +135,8 @@ abstract class RestController extends WP_REST_Controller
      *
      * @return \WP_REST_Response
      */
-    public function respond($data = null, $status = self::HTTP_OK, $headers = [])
-    {
-        return new WP_REST_Response($data, $status, $headers);
+    public function respond( $data = null, $status = self::HTTP_OK, $headers = [] ) {
+        return new WP_REST_Response( $data, $status, $headers );
     }
 
     /**
@@ -154,14 +149,13 @@ abstract class RestController extends WP_REST_Controller
      *
      * @return \WP_Error
      */
-    public function respond_error($message = '', $code = '', $status = self::HTTP_UNPROCESSABLE_ENTITY, $args = [])
-    {
-        $code = !empty($code) ? $code : 'unprocessable_error';
-        $data = ['status' => $status];
+    public function respond_error( $message = '', $code = '', $status = self::HTTP_UNPROCESSABLE_ENTITY, $args = [] ) {
+        $code = ! empty( $code ) ? $code : 'unprocessable_error';
+        $data = [ 'status' => $status ];
 
-        $data['data'] = !empty($args['data']) ? $args['data'] : [];
+        $data['data'] = ! empty( $args['data'] ) ? $args['data'] : [];
 
-        return new WP_Error($code, $message, $data);
+        return new WP_Error( $code, $message, $data );
     }
 
     /**
@@ -173,9 +167,8 @@ abstract class RestController extends WP_REST_Controller
      *
      * @return void
      */
-    protected function get($endpoint, $callback, $permission_callback = 'manage_options')
-    {
-        $this->register_route('get', $endpoint, $callback, $permission_callback);
+    protected function get( $endpoint, $callback, $permission_callback = 'manage_options' ) {
+        $this->register_route( 'get', $endpoint, $callback, $permission_callback );
     }
 
     /**
@@ -189,9 +182,8 @@ abstract class RestController extends WP_REST_Controller
      *
      * @return void
      */
-    protected function post($endpoint, $callback, $permission_callback = 'manage_options')
-    {
-        $this->register_route('post', $endpoint, $callback, $permission_callback);
+    protected function post( $endpoint, $callback, $permission_callback = 'manage_options' ) {
+        $this->register_route( 'post', $endpoint, $callback, $permission_callback );
     }
 
     /**
@@ -203,9 +195,8 @@ abstract class RestController extends WP_REST_Controller
      *
      * @return void
      */
-    protected function delete($endpoint, $callback, $permission_callback = 'manage_options')
-    {
-        $this->register_route('delete', $endpoint, $callback, $permission_callback);
+    protected function delete( $endpoint, $callback, $permission_callback = 'manage_options' ) {
+        $this->register_route( 'delete', $endpoint, $callback, $permission_callback );
     }
 
     /**
@@ -218,9 +209,8 @@ abstract class RestController extends WP_REST_Controller
      *
      * @return void
      */
-    protected function register_route($method, $endpoint, $callback, $permission_callback)
-    {
-        switch ($method) {
+    protected function register_route( $method, $endpoint, $callback, $permission_callback ) {
+        switch ( $method ) {
             case 'post':
                 $methods = WP_REST_Server::CREATABLE;
                 break;
@@ -235,7 +225,7 @@ abstract class RestController extends WP_REST_Controller
                 break;
         }
 
-        $route = $this->route($this->rest_base . $endpoint);
+        $route = $this->route( $this->rest_base . $endpoint );
 
         register_rest_route(
             $this->namespace,
@@ -243,8 +233,8 @@ abstract class RestController extends WP_REST_Controller
             [
                 [
                     'methods'             => $methods,
-                    'callback'            => [$this, $callback],
-                    'permission_callback' => [$this, $permission_callback],
+                    'callback'            => [ $this, $callback ],
+                    'permission_callback' => [ $this, $permission_callback ],
                 ],
             ]
         );
@@ -256,13 +246,12 @@ abstract class RestController extends WP_REST_Controller
      *
      * @return string
      */
-    private function route($route)
-    {
-        $route       = untrailingslashit($route);
+    private function route( $route ) {
+        $route       = untrailingslashit( $route );
         $pattern     = '/\{([a-zA-Z0-9_]+?)\}/';
         $replacement = '(?P<${1}>[\w-]+)'; // (?P<param>[\w-]+) string type param
 
-        return preg_replace($pattern, $replacement, $route);
+        return preg_replace( $pattern, $replacement, $route );
     }
 
 
@@ -272,21 +261,20 @@ abstract class RestController extends WP_REST_Controller
      * @param \WP_REST_Request $request
      * @return \WP_REST_Response
      */
-    public function check_secret_key($request)
-    {
-        $appKey = $request->get_header('app-key');
-        $hash = $request->get_header('inboxwp-secret');
+    public function check_secret_key( $request ) {
+        $app_key = $request->get_header( 'app-key' );
+        $hash = $request->get_header( 'inboxwp-secret' );
 
         // check the app key is present and valid
-        if ($appKey && inboxwp_api_key()) {
-            if (inboxwp_api_key() != $appKey) {
+        if ( $app_key && inboxwp_api_key() ) {
+            if ( inboxwp_api_key() !== $app_key ) {
                 return false;
             }
         }
 
         // Finally checking the secrete key
-        if ($hash) {
-            if (inboxwp_site_hash() == $hash) {
+        if ( $hash ) {
+            if ( inboxwp_site_hash() === $hash ) {
                 return true;
             }
         }
