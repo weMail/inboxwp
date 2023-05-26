@@ -65,7 +65,10 @@ class Assets
         wp_localize_script('inboxwp-react-script', 'inboxwp', [
             'ajaxurl' => admin_url('admin-ajax.php'),
             'hash' => wp_create_nonce('inboxwp-nonce'),
+            'siteHash' => inboxwp_site_hash(),
             'appUrl' => INBOX_WP_APP_URL,
+            'siteUrl' => untrailingslashit( site_url( '/' ) ),
+            'restPrefix' => rest_get_url_prefix(),
         ]);
     }
 }

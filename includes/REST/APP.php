@@ -27,6 +27,7 @@ class APP extends RestController
     {
         $this->post('/connect', 'set_secrete', 'check_secret_key');
         $this->post('/disconnect', 'remove_secrete', 'check_secret_key');
+        $this->get('/ping', 'ping', 'check_secret_key');
     }
 
     /**
@@ -63,6 +64,11 @@ class APP extends RestController
             'admin_email'       => isset($user->data->user_email) ? $user->data->user_email : '',
             'admin_url'         => admin_url(),
         ]);
+    }
+
+    public function ping()
+    {
+        return $this->respond(['success' => true, 'message' => 'pong']);
     }
 
     /**
