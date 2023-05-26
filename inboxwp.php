@@ -124,8 +124,8 @@ final class InboxWP {
      * @return string
      */
     protected function getAppUrl() {
-        $appUrl = apply_filters( 'inboxwp_app_url', 'https://app.inboxwp.com' );
-        return untrailingslashit( $appUrl );
+        $app_url = apply_filters( 'inboxwp_app_url', 'https://app.inboxwp.com' );
+        return untrailingslashit( $app_url );
     }
 }
 

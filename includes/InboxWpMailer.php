@@ -6,8 +6,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception as PHPMailerException;
 use WeDevs\Inboxwp\API\AppApi;
 
-class InboxWpMailer extends PHPMailer
-{
+class InboxWpMailer extends PHPMailer {
+
 
     /**
      * @var $phpmailer \PHPMailer|\PHPMailer\PHPMailer\PHPMailer
@@ -20,10 +20,9 @@ class InboxWpMailer extends PHPMailer
      * @param $address
      * @return array
      */
-    protected function formatEmailAddress($address)
-    {
+    protected function formatEmailAddress( $address ) {
         return array_map(
-            function ($address) {
+            function ( $address ) {
                 return $address[0];
             },
             $address
@@ -35,8 +34,7 @@ class InboxWpMailer extends PHPMailer
      *
      * @param $mailer
      */
-    public function setPHPMailer($mailer)
-    {
+    public function setPHPMailer( $mailer ) {
         $this->phpmailer = $mailer;
     }
 
@@ -45,12 +43,11 @@ class InboxWpMailer extends PHPMailer
      *
      * @return mixed
      */
-    protected function attemptToSend()
-    {
+    protected function attemptToSend() {
         return AppApi::instance()->post(
             '/email/send',
             array(
-                'to' => $this->formatEmailAddress($this->phpmailer->getToAddresses()),
+                'to' => $this->formatEmailAddress( $this->phpmailer->getToAddresses() ),
                 'bcc' => $this->phpmailer->getBccAddresses(),
                 'cc' => $this->phpmailer->getCcAddresses(),
                 'subject' => $this->phpmailer->Subject,
@@ -67,33 +64,28 @@ class InboxWpMailer extends PHPMailer
      *
      * @throws PHPMailerException
      */
-    public function send()
-    {
-        $response = $this->attemptToSend();
+    public function send() {         $response = $this->attemptToSend();
 
-        if (is_wp_error($response)) {
-            throw new PHPMailerException($response->get_error_message());
+        if ( is_wp_error( $response ) ) {
+            throw new PHPMailerException( $response->get_error_message() );
         }
 
-        if (isset($response['success']) && !inboxwp_validate_boolean($response['success'])) {
-            throw new PHPMailerException('Could not send transactional email');
+        if ( isset( $response['success'] ) && ! inboxwp_validate_boolean( $response['success'] ) ) {
+            throw new PHPMailerException( 'Could not send transactional email' );
         }
 
         return true;
     }
 
-    protected function formatAttachment($attachment)
-    {
-        $uploadDir = wp_upload_dir();
-        return  $uploadDir['url'] . '/' . $attachment[1];
+    protected function formatAttachment( $attachment ) {
+        $upload_dir = wp_upload_dir();
+        return $upload_dir['url'] . '/' . $attachment[1];
     }
 
-    public function getAttachments()
-    {
-        $attachments = $this->phpmailer->getAttachments();
+    public function getAttachments() {         $attachments = $this->phpmailer->getAttachments();
 
         // Format the attachments, per service requirement.
-        $attachments = array_map([ $this, 'formatAttachment' ], $attachments);
+        $attachments = array_map( [ $this, 'formatAttachment' ], $attachments );
 
         return $attachments;
     }

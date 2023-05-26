@@ -2,8 +2,8 @@
 
 namespace WeDevs\Inboxwp\Traits;
 
-trait Hooker
-{
+trait Hooker {
+
 
     /**
      * Hooks a function on to a specific action.
@@ -17,9 +17,8 @@ trait Hooker
      *
      * @return void
      */
-    public function add_action($tag, $function, $priority = 10, $accepted_args = 1)
-    {
-        add_action($tag, [$this, $function], $priority, $accepted_args);
+    public function add_action( $tag, $function, $priority = 10, $accepted_args = 1 ) {
+        add_action( $tag, [ $this, $function ], $priority, $accepted_args );
     }
 
     /**
@@ -34,8 +33,7 @@ trait Hooker
      *
      * @return void
      */
-    public function add_filter($tag, $function, $priority = 10, $accepted_args = 1)
-    {
-        add_filter($tag, [$this, $function], $priority, $accepted_args);
+    public function add_filter( $tag, $function, $priority = 10, $accepted_args = 1 ) {
+        add_filter( $tag, [ $this, $function ], $priority, $accepted_args );
     }
 }
