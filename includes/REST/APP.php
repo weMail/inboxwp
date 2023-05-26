@@ -4,6 +4,8 @@ namespace WeDevs\Inboxwp\REST;
 
 use WeDevs\Inboxwp\API\AppApi;
 use WeDevs\Inboxwp\RestController;
+use WP_Error;
+use WP_REST_Response;
 
 /**
  * I have created this to connect with the app but not used yet
@@ -34,7 +36,7 @@ class APP extends RestController
      * Set app api key as secrete key
      *
      * @param $request
-     * @return \WP_Error|\WP_REST_Response
+     * @return WP_Error|WP_REST_Response
      */
     public function set_secrete($request)
     {
@@ -74,7 +76,7 @@ class APP extends RestController
     /**
      * Remove the app secrete
      *
-     * @return \WP_REST_Response
+     * @return WP_REST_Response
      */
     public function remove_secrete()
     {

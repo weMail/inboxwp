@@ -19,7 +19,7 @@ use WeDevs\Inboxwp\Assets;
 use WeDevs\Inboxwp\Hooks;
 
 // don't call the file directly
-if (!defined('ABSPATH')) {
+if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
@@ -28,8 +28,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 /**
  * The main inboxWP plugin class
  */
-final class InboxWP
-{
+final class InboxWP {
     /**
      * @var $inboxWP
      */
@@ -40,17 +39,16 @@ final class InboxWP
      *
      * @var string
      */
-    const vsersion = '0.0.1';
+    const VERSION = '0.0.1';
 
     /**
      * InboxWP constructor.
      */
-    private function __construct()
-    {
+    private function __construct() {
         $this->define_constants();
         $this->includes();
-        register_activation_hook(__FILE__, [$this, 'activate']);
-        add_action('plugins_loaded', [$this, 'init_plugin']);
+        register_activation_hook( __FILE__, [ $this, 'activate' ] );
+        add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
     }
 
     /**
@@ -58,9 +56,8 @@ final class InboxWP
      *
      * @return InboxWP
      */
-    public static function init()
-    {
-        if (!self::$instance) {
+    public static function init() {
+        if ( ! self::$instance ) {
             self::$instance = new self();
         }
         return self::$instance;
@@ -71,14 +68,13 @@ final class InboxWP
      *
      * @return void
      */
-    public function define_constants()
-    {
-        define('INBOX_WP_VERSION', self::vsersion);
-        define('INBOX_WP_FILE', __FILE__);
-        define('INBOX_WP_PATH', __DIR__);
-        define('INBOX_WP_URL', plugins_url('', INBOX_WP_FILE));
-        define('INBOX_WP_ASSETS', INBOX_WP_URL . '/assets');
-        define('INBOX_WP_APP_URL', $this->getAppUrl());
+    public function define_constants() {
+        define( 'INBOX_WP_VERSION', self::VERSION );
+        define( 'INBOX_WP_FILE', __FILE__ );
+        define( 'INBOX_WP_PATH', __DIR__ );
+        define( 'INBOX_WP_URL', plugins_url( '', INBOX_WP_FILE ) );
+        define( 'INBOX_WP_ASSETS', INBOX_WP_URL . '/assets' );
+        define( 'INBOX_WP_APP_URL', $this->getAppUrl() );
     }
 
     /**
@@ -86,15 +82,14 @@ final class InboxWP
      *
      * @return void
      */
-    public function activate()
-    {
-        if (!get_option('inbox_wp_installed')) {
-            update_option('inbox_wp_installed', time());
+    public function activate() {
+        if ( ! get_option( 'inbox_wp_installed' ) ) {
+            update_option( 'inbox_wp_installed', time() );
         }
 
-        update_option('inbox_wp_version', INBOX_WP_VERSION);
+        update_option( 'inbox_wp_version', INBOX_WP_VERSION );
 
-        if (!inboxwp_site_hash()) {
+        if ( ! inboxwp_site_hash() ) {
             inboxwp_set_site_hash();
         }
     }
@@ -102,14 +97,13 @@ final class InboxWP
     /**
      * Initialize the plugin
      */
-    public function init_plugin()
-    {
-        if (is_admin()) {
+    public function init_plugin() {
+        if ( is_admin() ) {
             new Admin();
             new Assets();
         }
         new API();
-        if (defined('DOING_AJAX') && DOING_AJAX) {
+        if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
             new WeDevs\Inboxwp\Ajax();
         }
         new Hooks();
@@ -120,8 +114,7 @@ final class InboxWP
      *
      * @return void
      */
-    public function includes()
-    {
+    public function includes() {
         require_once INBOX_WP_PATH . '/includes/Functions.php';
     }
 
@@ -130,10 +123,9 @@ final class InboxWP
      *
      * @return string
      */
-    protected function getAppUrl()
-    {
-        $appUrl = apply_filters('inboxwp_app_url', 'https://app.inboxwp.com');
-        return untrailingslashit($appUrl);
+    protected function getAppUrl() {
+        $appUrl = apply_filters( 'inboxwp_app_url', 'https://app.inboxwp.com' );
+        return untrailingslashit( $appUrl );
     }
 }
 
@@ -142,8 +134,7 @@ final class InboxWP
  *
  * @return InboxWP
  */
-function inbox_wp()
-{
+function inbox_wp() {
     return InboxWP::init();
 }
 
