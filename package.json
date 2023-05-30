@@ -8,7 +8,8 @@
     "build": "wp-scripts build",
     "start": "wp-scripts start",
     "dev": "webpack serve --mode development --open",
-    "lint:php": "vendor/bin/phpcs --standard=phpcs.xml.dist"
+    "lint:php": "vendor/bin/phpcs --standard=phpcs.xml.dist",
+    "start:hot": "wp-scripts start --hot"
   },
   "author": "inboxwp",
   "license": "ISC",
