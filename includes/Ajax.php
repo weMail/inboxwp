@@ -25,9 +25,10 @@ class Ajax {
      *
      * @return json
      */
-    public function get_app_url() {         if ( check_admin_referer( 'inboxwp-nonce', 'hash' ) ) {
+    public function get_app_url() {
+        if ( check_admin_referer( 'inboxwp-nonce', 'hash' ) ) {
             wp_send_json_success( [ 'url' => SiteConnection::instance()->appUrl() ] );
-	}
+        }
         wp_send_json_error();
     }
 

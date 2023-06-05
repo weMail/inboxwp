@@ -22,7 +22,8 @@ function inboxwp_generate_hash( $length = 40 ) {
  *
  * @return mixed
  */
-function inboxwp_api_key() {     return get_option( 'inbox_wp_app_key' );
+function inboxwp_api_key() {
+    return get_option( 'inbox_wp_app_key' );
 }
 
 /**
@@ -30,7 +31,8 @@ function inboxwp_api_key() {     return get_option( 'inbox_wp_app_key' );
  *
  * @return mixed
  */
-function inboxwp_site_hash() {     return get_option( 'inbox_wp_site_hash' );
+function inboxwp_site_hash() {
+    return get_option( 'inbox_wp_site_hash' );
 }
 
 /**
@@ -53,5 +55,16 @@ function inboxwp_set_site_hash( $hash = '' ) {
  * @param $var
  * @return mixed
  */
-function inboxwp_validate_boolean( $var ) {     return filter_var( $var, FILTER_VALIDATE_BOOLEAN );
+function inboxwp_validate_boolean( $var ) {
+    return filter_var( $var, FILTER_VALIDATE_BOOLEAN );
+}
+
+/**
+ * Parse domain from a url
+ *
+ * @param $url
+ * @return array|false|int|string|null
+ */
+function inboxwp_parse_domain( $url ) {
+    return parse_url( $url, PHP_URL_HOST );
 }

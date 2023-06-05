@@ -49,15 +49,11 @@ class AppApi {
      * @return string
      */
     private function build_url( $url = '', $query = [] ) {
-        $base_url = $this->base_url . inboxwp_site_hash();
+        $base_url = $this->base_url . inboxwp_parse_domain( site_url( '/' ) );
         if ( $url ) {
             $url = $base_url . $url;
         } else {
             $url = $base_url;
-        }
-
-        if ( ! empty( $query ) ) {
-            $url .= '?' . http_build_query( $this->query );
         }
 
         return $url;
