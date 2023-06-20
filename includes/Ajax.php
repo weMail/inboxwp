@@ -70,9 +70,13 @@ class Ajax {
 
     public function get_stats() {
         $stats = Home::instance()->getStats();
-        if ( $stats ) {
-            wp_send_json_success( $stats );
-	    }
-        wp_send_json_error( [ 'message' => __( 'Opps! Something went wrong', 'inboxwp' ) ] );
+        if ( is_wp_error( $stats ) ) {
+            $errorData = $stats->error_data;
+            if ( isset( $errorData['error']['status'] ) && 403 === $errorData['error']['status'] ) {
+                wp_send_json_error( [ 'message' => __( 'Opps! ' . $stats->get_error_message(), 'inboxwp' ) ], 403 );
+            }
+            wp_send_json_error( [ 'message' => __( 'Opps! Something went wrong', 'inboxwp' ) ] );
+        }
+        wp_send_json_success( $stats );
     }
 }
