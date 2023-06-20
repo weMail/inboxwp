@@ -44,7 +44,11 @@ export default function Dashboard({onDisconnected}) {
                 setLoading(false)
             })
             .catch((err) => {
-                console.log(err)
+                if (403 === err.response?.status) {
+                    disconnectSite()
+                } else {
+                    console.log( err?.message || err )
+                }
             })
     }
 

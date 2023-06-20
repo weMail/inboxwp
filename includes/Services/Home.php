@@ -10,13 +10,10 @@ class Home {
 
     use Singleton;
 
-    public function getStats() {         if ( ! inboxwp_api_key() ) {
+    public function getStats() {
+        if ( ! inboxwp_api_key() ) {
             return false;
-	}
-        $stats = AppApi::instance()->get( '/stats', [], [ 'timeout' => 2000 ] );
-	if ( is_wp_error( $stats ) ) {
-		return false;
-	}
-        return $stats;
+	    }
+        return AppApi::instance()->get( '/stats', [], [ 'timeout' => 2000 ] );
     }
 }
