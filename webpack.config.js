@@ -1,8 +1,9 @@
 const defaults = require('@wordpress/scripts/config/webpack.config');
 const path = require('path');
+const isProduction = process.env.NODE_ENV === 'production';
 
 
-module.exports = {
+const config = {
   ...defaults,
   externals: {
     react: 'React',
@@ -21,20 +22,25 @@ module.exports = {
       ...defaults.module.rules,
     ],
   },
-  devServer: {
+};
+
+if (! isProduction) {
+  config.devServer = {
     hot: true, // Enable HMR
-    devMiddleware: {
+        devMiddleware: {
       writeToDisk: true,
     },
     allowedHosts: 'all',
-    host: 'localhost',
-    port: 8886,
-    proxy: {
+        host: 'localhost',
+        port: 8886,
+        proxy: {
       '/build': {
         pathRewrite: {
           '^/build': '',
         },
       },
     },
-  },
-}; 
+  }
+}
+
+module.exports = config;
