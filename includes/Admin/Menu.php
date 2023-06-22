@@ -10,7 +10,8 @@ class Menu {
     /**
      * Class constructor
      */
-    public function __construct() {         add_action( 'admin_menu', [ $this, 'admin_menu' ] );
+    public function __construct() {
+        add_action( 'admin_menu', [ $this, 'admin_menu' ] );
     }
 
     /**
@@ -41,13 +42,15 @@ class Menu {
      *
      * @return void
      */
-    public function enqueue_assets() {         wp_enqueue_style( 'inboxwp-style' );
-        wp_enqueue_style( 'react-style' );
+    public function enqueue_assets() {
+        wp_enqueue_style( 'inboxwp-style' );
+        wp_enqueue_style( 'inboxwp-react-style' );
         wp_enqueue_style( 'inboxwp-style' );
         wp_enqueue_script( 'inboxwp-react-script' );
         wp_enqueue_style( 'inboxwp-tailwind-ui-font' );
     }
 
-    public function form_handler() {         //
+    public function form_handler() {
+        //
     }
 }
