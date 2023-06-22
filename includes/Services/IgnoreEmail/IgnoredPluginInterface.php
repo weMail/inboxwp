@@ -2,8 +2,8 @@
 
 namespace WeDevs\Inboxwp\Services\IgnoreEmail;
 
-interface IgnoredPluginInterface
-{
+interface IgnoredPluginInterface {
+
     /**
      * Check if email is ignored
      *

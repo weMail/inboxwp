@@ -32,7 +32,7 @@ class Mail {
         /**
          * Check if email is ignored
          */
-        if (SendingPermission::instance()->ignoredPlugin()) {
+        if ( SendingPermission::instance()->ignoredPlugin() ) {
             return;
         }
 

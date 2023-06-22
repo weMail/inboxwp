@@ -27,7 +27,7 @@ class Notice {
         }
 
         // Notice will not show if user dismissed it
-        if (isset($_COOKIE['inboxwp-email-ignore-notice']) && $_COOKIE['inboxwp-email-ignore-notice']) {
+        if ( isset( $_COOKIE['inboxwp-email-ignore-notice'] ) && $_COOKIE['inboxwp-email-ignore-notice'] ) {
             return;
         }
 
@@ -39,7 +39,7 @@ class Notice {
         }
 
         $notice = sprintf(
-            __( 'Hey seems you are using %s plugin to send bulk emails. You must disable %s plugin to continue using InboxWP for transactional email purposes.', 'inboxwp' ),
+            __( 'Hey seems you are using %1$s plugin to send bulk emails. You must disable %2$s plugin to continue using InboxWP for transactional email purposes.', 'inboxwp' ),
             '<strong>' . $ignorePlugin . '</strong>',
             '<strong>' . $ignorePlugin . '</strong>'
         );

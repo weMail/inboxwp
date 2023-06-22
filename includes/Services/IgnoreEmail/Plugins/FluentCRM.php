@@ -5,8 +5,8 @@ namespace WeDevs\Inboxwp\Services\IgnoreEmail\Plugins;
 use WeDevs\Inboxwp\Services\IgnoreEmail\IgnoredPluginInterface;
 use WeDevs\Inboxwp\Traits\Singleton;
 
-class FluentCRM implements IgnoredPluginInterface
-{
+class FluentCRM implements IgnoredPluginInterface {
+
     use Singleton;
 
     /**
@@ -14,11 +14,9 @@ class FluentCRM implements IgnoredPluginInterface
      *
      * @return boolean
      */
-    public function check()
-    {
-        if ( defined( 'FLUENTCRM' ) || class_exists( 'FluentCrm\Framework\Foundation\App' ) ) {
+    public function check() {         if ( defined( 'FLUENTCRM' ) || class_exists( 'FluentCrm\Framework\Foundation\App' ) ) {
             return true;
-        }
+	}
         return false;
     }
 }

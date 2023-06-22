@@ -8,8 +8,8 @@ use WeDevs\Inboxwp\Services\IgnoreEmail\Plugins\MailPoet;
 use WeDevs\Inboxwp\Services\IgnoreEmail\Plugins\NewsLetter;
 use WeDevs\Inboxwp\Traits\Singleton;
 
-class SendingPermission
-{
+class SendingPermission {
+
     use Singleton;
 
     /**
@@ -29,15 +29,13 @@ class SendingPermission
      *
      * @return boolean
      */
-    public function ignoredPlugin()
-    {
-        foreach ($this->ignoredPlugins as $key => $class) {
-            if (class_exists($class)) {
-                if ($class::instance()->check()) {
+    public function ignoredPlugin() {         foreach ( $this->ignoredPlugins as $key => $class ) {
+            if ( class_exists( $class ) ) {
+                if ( $class::instance()->check() ) {
                     return $key;
                 }
             }
-        }
+	}
         return false;
     }
 }
