@@ -5,6 +5,7 @@ namespace WeDevs\Inboxwp;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception as PHPMailerException;
 use WeDevs\Inboxwp\API\AppApi;
+use WeDevs\Inboxwp\Services\IgnoreEmail\SendingPermission;
 
 class InboxWpMailer extends PHPMailer {
 
@@ -64,7 +65,12 @@ class InboxWpMailer extends PHPMailer {
      *
      * @throws PHPMailerException
      */
-    public function send() {         $response = $this->attemptToSend();
+    public function send() {
+        if ( $this->needToIgnore() ) {
+            return $this->phpmailer->send();
+        }
+
+        $response = $this->attemptToSend();
 
         if ( is_wp_error( $response ) ) {
             throw new PHPMailerException( $response->get_error_message() );
@@ -82,11 +88,16 @@ class InboxWpMailer extends PHPMailer {
         return $upload_dir['url'] . '/' . $attachment[1];
     }
 
-    public function getAttachments() {         $attachments = $this->phpmailer->getAttachments();
+    public function getAttachments() {
+        $attachments = $this->phpmailer->getAttachments();
 
         // Format the attachments, per service requirement.
         $attachments = array_map( [ $this, 'formatAttachment' ], $attachments );
 
         return $attachments;
+    }
+
+    protected function needToIgnore() {
+        return SendingPermission::instance()->ignoredPlugin();
     }
 }

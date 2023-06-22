@@ -3,6 +3,7 @@
 namespace WeDevs\Inboxwp\Hooks;
 
 use WeDevs\Inboxwp\InboxWpMailer;
+use WeDevs\Inboxwp\Services\IgnoreEmail\SendingPermission;
 use WeDevs\Inboxwp\Traits\Hooker;
 
 class Mail {
@@ -13,7 +14,8 @@ class Mail {
     /**
      * Hooks constructor.
      */
-    public function __construct() {         $this->add_action( 'phpmailer_init', 'handle_emails' );
+    public function __construct() {
+        $this->add_action( 'phpmailer_init', 'handle_emails' );
     }
 
     /**
@@ -24,6 +26,13 @@ class Mail {
      */
     public function handle_emails( &$phpmailer ) {
         if ( ! inboxwp_api_key() ) {
+            return;
+        }
+
+        /**
+         * Check if email is ignored
+         */
+        if ( SendingPermission::instance()->ignoredPlugin() ) {
             return;
         }
 
