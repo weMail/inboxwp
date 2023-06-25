@@ -70,7 +70,7 @@ class Notice {
      * @return void
      */
     protected function enqueue_assets() {
-        wp_enqueue_style('inboxwp-style');
+        wp_enqueue_style( 'inboxwp-style' );
         wp_enqueue_script( 'inboxwp-admin-script' );
     }
 }
