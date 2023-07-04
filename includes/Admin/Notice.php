@@ -27,7 +27,7 @@ class Notice {
         }
 
         // Notice will not show if user dismissed it
-        if ( isset( $_COOKIE['inboxwp-email-ignore-notice'] ) && $_COOKIE['inboxwp-email-ignore-notice'] ) {
+        if ( isset( $_COOKIE['inboxwp_email_ignore_notice'] ) && $_COOKIE['inboxwp_email_ignore_notice'] ) {
             return;
         }
 
@@ -40,8 +40,8 @@ class Notice {
 
         $notice = sprintf(
             __( 'Hey seems you are using %1$s plugin to send bulk emails. You must disable %2$s plugin to continue using InboxWP for transactional email purposes.', 'inboxwp' ),
-            '<strong>' . $ignorePlugin . '</strong>',
-            '<strong>' . $ignorePlugin . '</strong>'
+            '<strong class="inboxwp-ignore-notice-plugin-name">' . $ignorePlugin . '</strong>',
+            '<strong class="inboxwp-ignore-notice-plugin-name">' . $ignorePlugin . '</strong>'
         );
 
         ?>
@@ -49,6 +49,18 @@ class Notice {
             <p><?php echo $notice; ?></p>
             <p>You can manage both transactional emails & bulk campaign emails with <a target="_blank" href="https://getwemail.io/">weMail</a></p>
         </div>
+
+        <div id="inboxwp-email-ignore-modal" class="modal-wrapper is-dismissible">
+            <div class="modal">
+                <h2 class="inboxwp-ignore-notice-modal-header">InboxWP is not delivering your emails. Are you sure about it?</h2>
+                <div class="inboxwp-ignore-notice-btn-group">
+                    <button type="button" id="remind-me-14days-later" class="inboxwp-ignore-notice-btn">Remind me this in 14 days</button>
+                    <button type="button" id="never-remind-me" class="inboxwp-ignore-notice-btn">Never remind me. I understand the risk</button>
+                </div>
+            </div>
+        </div>
+
+
         <?php
     }
 
@@ -58,6 +70,7 @@ class Notice {
      * @return void
      */
     protected function enqueue_assets() {
+        wp_enqueue_style( 'inboxwp-style' );
         wp_enqueue_script( 'inboxwp-admin-script' );
     }
 }
