@@ -60,7 +60,7 @@ export default function Dashboard({onDisconnected}) {
     }, [])
 
     return (
-        <div className="inboxwp-container inboxwp-pr-[20px] inboxwp-py-2 inboxwp-mr-3">
+        <div className="inboxwp-mr-[15px] inboxwp-py-2">
             <div className="inboxwp-w-full inboxwp-flex inboxwp-justify-between">
                 <div className="inboxwp-w-32">
                     <h2 className="inboxwp-text-lg">Dashboard</h2>
