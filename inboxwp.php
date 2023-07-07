@@ -49,6 +49,7 @@ final class InboxWP {
         $this->includes();
         register_activation_hook( __FILE__, [ $this, 'activate' ] );
         add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
+        add_action( 'admin_init', [ $this, 'inboxwp_redirect' ] );
     }
 
     /**
@@ -92,6 +93,7 @@ final class InboxWP {
         if ( ! inboxwp_site_hash() ) {
             inboxwp_set_site_hash();
         }
+        update_option( 'inbox_wp_activated', true );
     }
 
     /**
@@ -126,6 +128,18 @@ final class InboxWP {
     protected function getAppUrl() {
         $app_url = apply_filters( 'inboxwp_app_url', 'https://app.inboxwp.com' );
         return untrailingslashit( $app_url );
+    }
+
+    /**
+     * Redirect to inboxwp admin page
+     *
+     * @return void
+     */
+    public function inboxwp_redirect() {
+        if ( get_option( 'inbox_wp_activated' ) ) {
+            delete_option( 'inbox_wp_activated' );
+            wp_safe_redirect( inboxwp_get_admin_url() );
+        }
     }
 }
 
