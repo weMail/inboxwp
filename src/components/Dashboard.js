@@ -1,6 +1,6 @@
 import rest from "../core/REST";
 import MediaCard from "./MediaCard";
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Send from "../icons/Send"
 import FailedMail from "../icons/FailedMail"
 import SpamComplaint from "../icons/SpamComplaint"
@@ -88,9 +88,26 @@ export default function Dashboard({onDisconnected}) {
                 <MediaCard className="inboxwp-w-1/3" title="Hard Bounce" loading={loading} description={stats.bounce?.HardBounce || 0} image={<FailedMail/>}/>
                 <MediaCard className="inboxwp-w-1/3" title="Spam Complaint" loading={loading} description={stats.spam?.SpamComplaint || 0} image={<SpamComplaint/>} border={false} />
             </div>
-            <div className="inboxwp-flex inboxwp-justify-between inboxwp-space-x-4 inboxwp-h-[400px]">
-                <div className="inboxwp-w-[66.66%] inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-my-4">
-                    <BarChart stats={stats} loading={loading}/>
+            <div className="inboxwp-flex inboxwp-justify-between inboxwp-space-x-4 inboxwp-min-h-[400px]">
+                {/*<div className="inboxwp-w-[66.66%] inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-my-4">*/}
+                <div className="inboxwp-w-[66.66%] inboxwp-my-4">
+                    <div className="inboxwp-min-h-[80%] inboxwp-rounded-t-lg inboxwp-relative inboxwp-bg-white">
+                        <BarChart stats={stats} loading={loading}/>
+                    </div>
+                    <div className="inboxwp-flex inboxwp-h-[20%] inboxwp-bg-[#ebebebdf] inboxwp-rounded-b-lg inboxwp-p-5 inboxwp-justify-between">
+                        <div>
+                            <h2 className="inboxwp-text-[#111827] inboxwp-font-[500]">View detailed log</h2>
+                            <p className="inboxwp-text-gray-500 inboxwp-text-[14px]">Explore email log in-depth of last 30 days</p>
+                        </div>
+                        <button type="button"
+                                href="/logs"
+                                className="inboxwp-inline-flex inboxwp-items-center inboxwp-rounded-md inboxwp-border inboxwp-border-transparent inboxwp-bg-gray-700 inboxwp-px-3 inboxwp-py-2 inboxwp-text-sm inboxwp-font-medium inboxwp-leading-4 inboxwp-text-white inboxwp-shadow-sm hover:inboxwp-bg-gray-600 focus:inboxwp-outline-none focus:inboxwp-ring-2 focus:inboxwp-ring-gray-500 focus:inboxwp-ring-offset-2">
+                            View all log
+                            <svg className="inboxwp-ml-2" width="15" height="20" viewBox="0 0 15 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10.7574 5.75738C10.3668 5.36686 9.73366 5.36686 9.34314 5.75738C8.95261 6.14791 8.95261 6.78107 9.34314 7.1716L11.1716 9.00002L2.27207 9.00002C1.71979 9.00002 1.27207 9.44774 1.27207 10C1.27207 10.5523 1.71979 11 2.27207 11L11.1716 11L9.34314 12.8284C8.95261 13.219 8.95261 13.8521 9.34314 14.2427C9.73366 14.6332 10.3668 14.6332 10.7574 14.2427L14.2929 10.7071C14.6834 10.3166 14.6834 9.68344 14.2929 9.29292L10.7574 5.75738Z" fill="white"/>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
                 <div className="inboxwp-w-[32.77%] inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-my-4">
                     <PieChart sent={stats.sent?.Sent} bounce={stats.bounce?.HardBounce} loading={loading}/>
