@@ -82,18 +82,18 @@ export default function Dashboard({onDisconnected}) {
                 <MediaCard className="inboxwp-w-1/3"
                            title="Delivered Emails"
                            loading={loading}
-                           description={stats.sent.Sent || 0}
+                           description={stats.sent?.Sent || 0}
                            image={<Send/>}
                 />
-                <MediaCard className="inboxwp-w-1/3" title="Hard Bounce" loading={loading} description={stats.bounce.HardBounce || 0} image={<FailedMail/>}/>
-                <MediaCard className="inboxwp-w-1/3" title="Spam Complaint" loading={loading} description={stats.spam.SpamComplaint || 0} image={<SpamComplaint/>} border={false} />
+                <MediaCard className="inboxwp-w-1/3" title="Hard Bounce" loading={loading} description={stats.bounce?.HardBounce || 0} image={<FailedMail/>}/>
+                <MediaCard className="inboxwp-w-1/3" title="Spam Complaint" loading={loading} description={stats.spam?.SpamComplaint || 0} image={<SpamComplaint/>} border={false} />
             </div>
             <div className="inboxwp-flex inboxwp-justify-between inboxwp-space-x-4 inboxwp-h-[400px]">
                 <div className="inboxwp-w-[66.66%] inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-my-4">
                     <BarChart stats={stats} loading={loading}/>
                 </div>
                 <div className="inboxwp-w-[32.77%] inboxwp-p-3 inboxwp-bg-white inboxwp-rounded-lg inboxwp-my-4">
-                    <PieChart sent={stats.sent.Sent} bounce={stats.bounce.HardBounce} loading={loading}/>
+                    <PieChart sent={stats.sent?.Sent} bounce={stats.bounce?.HardBounce} loading={loading}/>
                 </div>
             </div>
             <div
@@ -104,12 +104,15 @@ export default function Dashboard({onDisconnected}) {
                         className="inboxwp-text-blue-500" href={inboxwp.appUrl + '/dashboard'}>dashboard of InboxWP
                         app</a></p>
                 </div>
-                <button
-                    className="inboxwp-inline-flex inboxwp-items-center inboxwp-rounded-md inboxwp-border inboxwp-border-transparent inboxwp-bg-red-600 inboxwp-px-4 inboxwp-text-sm inboxwp-font-medium inboxwp-text-white inboxwp-shadow-sm hover:inboxwp-bg-red-700 focus:inboxwp-outline-none focus:inboxwp-ring-2 focus:inboxwp-ring-red-500 focus:inboxwp-ring-offset-2"
-                    onClick={disconnectSite}
-                    disabled={loading}
-                >Disconnect
-                </button>
+                <div className="inboxwp-p-2">
+                    <button
+                        className="inboxwp-inline-flex inboxwp-items-center inboxwp-rounded-md inboxwp-border inboxwp-border-transparent inboxwp-bg-red-100 inboxwp-px-4 inboxwp-py-2 inboxwp-text-sm inboxwp-font-medium inboxwp-text-red-700 inboxwp-shadow-sm hover:inboxwp-bg-red-300 focus:inboxwp-outline-none focus:inboxwp-ring-2 focus:inboxwp-ring-red-300 focus:inboxwp-ring-offset-2"
+                        onClick={disconnectSite}
+                        disabled={loading}
+                    >
+                        Disconnect
+                    </button>
+                </div>
             </div>
         </div>
     );
