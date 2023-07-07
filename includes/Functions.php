@@ -68,3 +68,12 @@ function inboxwp_validate_boolean( $var ) {
 function inboxwp_parse_domain( $url ) {
     return parse_url( $url, PHP_URL_HOST );
 }
+
+/**
+ * Get the inboxwp admin page url
+ *
+ * @return mixed
+ */
+function inboxwp_get_admin_url() {
+    return admin_url( 'admin.php?page=inboxwp' );
+}
