@@ -123,7 +123,7 @@ export default function Dashboard({onDisconnected}) {
                 </div>
                 <div className="inboxwp-p-2">
                     <button
-                        className="inboxwp-inline-flex inboxwp-items-center inboxwp-rounded-md inboxwp-border inboxwp-border-transparent inboxwp-bg-red-100 inboxwp-px-4 inboxwp-py-2 inboxwp-text-sm inboxwp-font-medium inboxwp-text-red-700 inboxwp-shadow-sm hover:inboxwp-bg-red-300 focus:inboxwp-outline-none focus:inboxwp-ring-2 focus:inboxwp-ring-red-300 focus:inboxwp-ring-offset-2"
+                        className="hover:inboxwp-cursor-pointer inboxwp-inline-flex inboxwp-items-center inboxwp-rounded-md inboxwp-border inboxwp-border-transparent inboxwp-bg-red-100 inboxwp-px-4 inboxwp-py-2 inboxwp-text-sm inboxwp-font-medium inboxwp-text-red-700 inboxwp-shadow-sm hover:inboxwp-bg-red-300 focus:inboxwp-outline-none focus:inboxwp-ring-2 focus:inboxwp-ring-red-300 focus:inboxwp-ring-offset-2"
                         onClick={disconnectSite}
                         disabled={loading}
                     >
