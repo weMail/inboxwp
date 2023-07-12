@@ -3,7 +3,9 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   prefix: 'inboxwp-',
-  content: ["./src/**/*.{html,js,php}"],
+  content: [
+      "./src/**/*.{html,js,php}"
+  ],
   theme: {
     extend: {
       fontFamily: {

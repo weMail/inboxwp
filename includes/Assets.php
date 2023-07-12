@@ -20,7 +20,7 @@ class Assets {
 			'inboxwp-react-script' => [
 				'src' => INBOX_WP_URL . '/build/index.js',
 				'version' => filemtime( INBOX_WP_PATH . '/build/index.js' ),
-				'deps' => [ 'wp-element' ],
+				'deps' => [ 'wp-element', 'lodash' ],
 			],
 		];
     }

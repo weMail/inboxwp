@@ -56,6 +56,10 @@ class AppApi {
             $url = $base_url;
         }
 
+        if ( ! empty( $query ) ) {
+            $url = add_query_arg( $query, $url );
+        }
+
         return $url;
     }
 
