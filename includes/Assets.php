@@ -65,6 +65,7 @@ class Assets {
 				'appUrl' => INBOX_WP_APP_URL,
 				'siteUrl' => untrailingslashit( site_url( '/' ) ),
 				'restPrefix' => rest_get_url_prefix(),
+                'apiKey' => inboxwp_api_key(),
 			]
         );
     }

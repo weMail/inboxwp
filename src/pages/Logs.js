@@ -33,12 +33,20 @@ export default function Logs({onDisconnected}) {
         })
             .then((res) => {
                 if(res.data.success !== true) {
-                    console.log(res.data)
+                    alert(res.data.data.message)
+                    return;
                 }
                 setStats(res.data.data?.logs);
             })
             .finally(() => {
                 setLoading(false)
+            })
+            .catch((err) => {
+                if (403 === err.response?.status) {
+                    alert(err.response.data.data.message || 'Something went wrong!')
+                } else {
+                    console.log( err?.message || err )
+                }
             })
 
     }

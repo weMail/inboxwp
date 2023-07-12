@@ -33,6 +33,10 @@ class EmailLog extends RestController {
     public function get_email_logs( $request ) {
         $logs = AppApi::instance()->get( '/email/logs', $request->get_params() );
 
+        if ( is_wp_error( $logs ) ) {
+            wp_send_json_error( [ 'message' => $logs->get_error_message() ], $logs->get_error_data()['status'] );
+        }
+
         return $this->respond(
             [
                 'success' => true,
