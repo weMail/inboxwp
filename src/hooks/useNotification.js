@@ -20,36 +20,30 @@ const useNotification = () => {
         })
     }
 
-    const success = (title) => {
+    const notifySuccess = (title) => {
         return Toast().fire({
             icon: 'success',
             title: title,
         })
     }
-    const warning = (title) => {
+    const notifyWarning = (title) => {
         return Toast().fire({
             icon: 'warning',
             title: title,
         })
     }
 
-    const error = (title) => {
+    const notifyError = (title) => {
         return Toast().fire({
             icon: 'error',
             title: title,
         })
     }
 
-    const notify = () => {
-        return {
-            success,
-            warning,
-            error
-        }
-    }
-
     return {
-        notify
+        notifySuccess,
+        notifyWarning,
+        notifyError,
     }
 }
 

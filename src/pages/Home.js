@@ -11,7 +11,7 @@ import useNotification from "../hooks/useNotification";
 
 export default function Home() {
     const [loading, setLoading] = useState(true);
-    const {notify} = useNotification();
+    const {notifyError} = useNotification();
     const [stats, setStats] = useState({
         sent: {},
         bounce: {},
@@ -48,7 +48,7 @@ export default function Home() {
             })
             .catch((err) => {
                 if (403 === err.response?.status) {
-                    notify().error(err.response.data.data.message || 'Something went wrong!')
+                    notifyError(err.response.data.data.message || 'Something went wrong!')
                 } else {
                     console.log( err?.message || err )
                 }

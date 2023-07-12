@@ -8,7 +8,7 @@ import useNotification from "../hooks/useNotification";
 
 export default function Logs({onDisconnected}) {
     const [loading, setLoading] = useState(true);
-    const {notify} = useNotification();
+    const {notifyError, notifyWarning} = useNotification();
     const [stats, setStats] = useState({
         sent: {},
         bounce: {},
@@ -28,7 +28,7 @@ export default function Logs({onDisconnected}) {
         })
             .then((res) => {
                 if(res.data.success !== true) {
-                    notify().warning(res.data.data.message || 'Something went wrong!')
+                    notifyWarning(res.data.data.message || 'Something went wrong!')
                     return;
                 }
                 setStats(res.data.data?.logs);
@@ -38,7 +38,7 @@ export default function Logs({onDisconnected}) {
             })
             .catch((err) => {
                 if (403 === err.response?.status) {
-                    notify().error(err.response.data.data.message || 'Something went wrong!')
+                    notifyError(err.response.data.data.message || 'Something went wrong!')
                 } else {
                     console.log( err?.message || err )
                 }
