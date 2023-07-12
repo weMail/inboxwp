@@ -1,19 +1,14 @@
-import rest from "../core/REST";
-import MediaCard from "../components/MediaCard";
 import React, {useEffect, useState} from '@wordpress/element';
-import Send from "../icons/Send"
-import FailedMail from "../icons/FailedMail"
-import SpamComplaint from "../icons/SpamComplaint"
 import BarChart from "../components/BarChart";
-import PieChart from "../components/PieChart";
-import {Link} from "react-router-dom";
 import Stats from "../components/Logs/Stats";
 import BottomTopSection from "../components/Logs/BottomTopSection";
 import LogCard from "../components/Logs/LogCard";
 import Axios from "axios";
+import useNotification from "../hooks/useNotification";
 
 export default function Logs({onDisconnected}) {
     const [loading, setLoading] = useState(true);
+    const {notify} = useNotification();
     const [stats, setStats] = useState({
         sent: {},
         bounce: {},
@@ -33,7 +28,7 @@ export default function Logs({onDisconnected}) {
         })
             .then((res) => {
                 if(res.data.success !== true) {
-                    alert(res.data.data.message)
+                    notify().warning(res.data.data.message || 'Something went wrong!')
                     return;
                 }
                 setStats(res.data.data?.logs);
@@ -43,7 +38,7 @@ export default function Logs({onDisconnected}) {
             })
             .catch((err) => {
                 if (403 === err.response?.status) {
-                    alert(err.response.data.data.message || 'Something went wrong!')
+                    notify().error(err.response.data.data.message || 'Something went wrong!')
                 } else {
                     console.log( err?.message || err )
                 }
