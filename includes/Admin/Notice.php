@@ -10,7 +10,9 @@ class Notice {
     * Notice constructor.
     */
     public function __construct() {
-        add_action( 'admin_notices', [ $this, 'email_ignore_notice' ] );
+        if (! in_array($_SERVER['QUERY_STRING'], ['page=inboxwp#/', 'page=inboxwp'])) {
+            add_action( 'admin_notices', [ $this, 'email_ignore_notice' ] );
+        }
     }
 
     /**
@@ -31,7 +33,7 @@ class Notice {
             return;
         }
 
-        $ignorePlugin = SendingPermission::instance()->ignoredPlugin();
+        $ignorePlugin = inboxwp_ignored_plugin();
 
         // Notice will not show if no ignored plugin found
         if ( ! $ignorePlugin ) {
