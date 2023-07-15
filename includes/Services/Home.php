@@ -14,7 +14,7 @@ class Home {
 
     public function getStats() {
         if ( ! inboxwp_api_key() ) {
-            return new WP_Error(403, 'The site is not connected !');
+            return new WP_Error( 403, 'The site is not connected !' );
 	    }
         return AppApi::instance()->get( '/stats', [], [ 'timeout' => 2000 ] );
     }

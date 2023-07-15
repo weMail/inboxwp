@@ -1,16 +1,18 @@
-import rest from "../core/REST";
-import MediaCard from "../components/MediaCard"
+import rest from "../../core/REST";
+import MediaCard from "../../components/MediaCard"
 import React, {useEffect, useState} from '@wordpress/element';
-import Send from "../icons/Send"
-import FailedMail from "../icons/FailedMail"
-import SpamComplaint from "../icons/SpamComplaint"
-import BarChart from "../components/BarChart";
-import PieChart from "../components/PieChart";
+import Send from "../../icons/Send"
+import FailedMail from "../../icons/FailedMail"
+import SpamComplaint from "../../icons/SpamComplaint"
+import BarChart from "../../components/BarChart";
+import PieChart from "../../components/PieChart";
 import {Link} from "react-router-dom";
-import useNotification from "../hooks/useNotification";
-import DefaultLayout from "../layouts/DefaultLayout";
+import useNotification from "../../hooks/useNotification";
+import DefaultLayout from "../../layouts/DefaultLayout";
+import SignatureNotice from "../../components/Dashboard/SignatureNotice";
+import NoticeSection from "../../components/Dashboard/NoticeSection";
 
-export default function Home() {
+export default function Index() {
     const [loading, setLoading] = useState(true);
     const {notifyError} = useNotification();
     const [stats, setStats] = useState({
@@ -66,23 +68,22 @@ export default function Home() {
     return (
          <DefaultLayout>
              <div className="">
-                 <div className="inboxwp-w-full inboxwp-flex inboxwp-justify-between">
-                     <div className="inboxwp-w-32">
-                         <h2 className="inboxwp-text-lg">Dashboard</h2>
+                 <NoticeSection topText='Dashboard'>
+                     <div className="inboxwp-flex inboxwp-justify-end inboxwp-mt-3">
+                         <div className="inboxwp-w-32">
+                             <select
+                                 id="location"
+                                 name="location"
+                                 className="inboxwp-mt-1 inboxwp-block inboxwp-w-full inboxwp-rounded-md inboxwp-border-gray-300 inboxwp-pl-3 inboxwp-pr-10 inboxwp-text-base focus:inboxwp-border-indigo-500 focus:inboxwp-outline-none focus:inboxwp-ring-indigo-500 sm:inboxwp-text-sm inboxwp-text-red-800"
+                                 defaultValue="Canada"
+                             >
+                                 <option>Monthly</option>
+                                 <option>Weekly</option>
+                                 <option>Daily</option>
+                             </select>
+                         </div>
                      </div>
-                     <div className="inboxwp-w-32">
-                         <select
-                             id="location"
-                             name="location"
-                             className="inboxwp-mt-1 inboxwp-block inboxwp-w-full inboxwp-rounded-md inboxwp-border-gray-300 inboxwp-pl-3 inboxwp-pr-10 inboxwp-text-base focus:inboxwp-border-indigo-500 focus:inboxwp-outline-none focus:inboxwp-ring-indigo-500 sm:inboxwp-text-sm inboxwp-text-red-800"
-                             defaultValue="Canada"
-                         >
-                             <option>Monthly</option>
-                             <option>Weekly</option>
-                             <option>Daily</option>
-                         </select>
-                     </div>
-                 </div>
+                 </NoticeSection>
                  <div className="inboxwp-w-full inboxwp-flex inboxwp-space-x-4">
                      <MediaCard className="inboxwp-w-1/3"
                                 title="Delivered Emails"

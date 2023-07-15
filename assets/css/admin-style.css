@@ -60,3 +60,7 @@
 #inboxwp-email-ignore-notice {
     margin-left: 0;
 }
+
+.inboxwp-sending-signature-notice-border {
+    border-left: 4px solid #FBBF24;
+}

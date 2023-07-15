@@ -54,7 +54,7 @@ class EmailLog extends RestController {
          */
         $message = AppApi::instance()->get( "/email/message/$id" )['message'];
 
-        if ( is_wp_error( $message ) || isset($message['ErrorCode']) ) {
+        if ( is_wp_error( $message ) || isset( $message['ErrorCode'] ) ) {
             return $this->respond_error( 'Sorry! The message is not found', 422 );
         }
         return $this->respond(

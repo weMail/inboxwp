@@ -1,7 +1,7 @@
-import Tooltip from "./Tooltip";
+import Tooltip from "../Tooltip";
 import React, {useEffect, useState} from "@wordpress/element";
 
-export default function TopSection() {
+export default function TopFixedSection() {
     const [iconColor, setIconColor] = useState()
     const [tooltipsText, setTooltipsText] = useState('')
     const [leftText, setLeftText] = useState('')
@@ -63,7 +63,7 @@ export default function TopSection() {
             <div className={'inboxwp-w-[169px] inboxwp-flex inboxwp-justify-end'}>
                 <div className={'inboxwp-w-[156px] inboxwp-text-end'}>
                     <a href={inboxwp.appUrl + '/dashboard'} type="button"
-                       className="inboxwp-flex inboxwp-justify-end inboxwp-rounded-md inboxwp-bg-white inboxwp-px-3 inboxwp-py-2 inboxwp-text-sm inboxwp-font-medium inboxwp-text-[#6366F1] inboxwp-shadow-sm inboxwp-ring-1 inboxwp-ring-gray-300"
+                       className="inboxwp-flex hover:inboxwp-text-[#6366F1] inboxwp-justify-end inboxwp-rounded-md inboxwp-bg-white inboxwp-px-3 inboxwp-py-2 inboxwp-text-sm inboxwp-font-medium inboxwp-text-[#6366F1] inboxwp-shadow-sm inboxwp-ring-1 inboxwp-ring-gray-300"
                     >
                         SaaS Dashboard
                         <div className={'inboxwp-ml-2.5 inboxwp-mt-1'}>

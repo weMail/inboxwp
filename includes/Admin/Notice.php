@@ -10,7 +10,7 @@ class Notice {
     * Notice constructor.
     */
     public function __construct() {
-        if (! in_array($_SERVER['QUERY_STRING'], ['page=inboxwp#/', 'page=inboxwp'])) {
+        if ( ! in_array( $_SERVER['QUERY_STRING'], [ 'page=inboxwp#/', 'page=inboxwp' ] ) ) {
             add_action( 'admin_notices', [ $this, 'email_ignore_notice' ] );
         }
     }
