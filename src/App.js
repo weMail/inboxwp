@@ -11,7 +11,7 @@ import PrivateOutlet from "./routes/PrivateOutlet";
 import SendingSignature from "./pages/SendingSignature/Index";
 import SignatureCreate from "./pages/SendingSignature/Create";
 const App = () => {
-    const [apiKey, setApiKey] = useState('');
+    const [isConnected, setIsConnected] = useState('');
     const [restAvailable, setRestAvailable] = useState(true);
 
     const isRestAvailable = () => {
@@ -33,20 +33,21 @@ const App = () => {
 
     useEffect(() => {
         isRestAvailable();
-        setApiKey(inboxwp.apiKey)
-    }, [inboxwp.apiKey]);
-
+        setIsConnected(inboxwp.is_connected)
+    }, [inboxwp.is_connected]);
 
     return (
         <Routes>
-            <Route element={<PrivateOutlet restAvailable={restAvailable} apiKey={apiKey} />} >
+            <Route element={<PrivateOutlet restAvailable={restAvailable} isConnected={isConnected} />} >
                 <Route path="/" element={<Home />}/>
                 <Route path="/logs" element={<Logs />}/>
                 <Route path="/sending-signatures" element={<SendingSignature />}/>
                 <Route path="/sending-signatures/create" element={<SignatureCreate />}/>
             </Route>
-            <Route path="/not-connected" element={apiKey ? <Navigate to={'/'}/> : <NotConnected />}/>
-            <Route path="/rest-warning" element={restAvailable ? <Navigate to={'/'}/> : <RestWarning />}/>
+            <Route path="/not-connected" element={
+                restAvailable ? isConnected ? <Navigate to={'/'}/> : <NotConnected /> : <Navigate to={'/rest-warning'}/>
+            }/>
+            <Route path="/rest-warning" element={restAvailable ? <Navigate to={'/'}/> : <RestWarning isConnected={isConnected} />}/>
             <Route path="*" element={<NotFound/>}/>
         </Routes>
     );

@@ -2,11 +2,11 @@ import {Navigate, Outlet} from "react-router-dom";
 import React from "@wordpress/element";
 import {useState} from "react";
 
-export default function PrivateOutlet({restAvailable, apiKey}) {
+export default function PrivateOutlet({restAvailable, isConnected}) {
     if (restAvailable === false) {
         return <Navigate to="/rest-warning"/>;
     }
-    if (!apiKey) {
+    if (!isConnected) {
         return <Navigate to="/not-connected"/>;
     }
 

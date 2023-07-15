@@ -1,5 +1,5 @@
 import { _n } from '@wordpress/i18n';
-import rest from '../core/REST';
+import Ajax from '../core/Ajax';
 
 
 export default function NotConnected() {
@@ -9,7 +9,7 @@ export default function NotConnected() {
     let buttonText = _n('Connect your website', 'inboxwp');
 
     const connectSite = () => {
-        rest.get(`${inboxwp.ajaxurl}?action=inboxwp_app_connection_url&hash=${inboxwp.hash}`)
+        Ajax.get(`${inboxwp.ajaxurl}?action=inboxwp_app_connection_url&hash=${inboxwp.hash}`)
             .then((res) => {
                 window.location.href = res.data.data.url;
             })

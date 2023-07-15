@@ -1,4 +1,3 @@
-import rest from "../../core/REST";
 import MediaCard from "../../components/MediaCard"
 import React, {useEffect, useState} from '@wordpress/element';
 import Send from "../../icons/Send"
@@ -9,8 +8,8 @@ import PieChart from "../../components/PieChart";
 import {Link} from "react-router-dom";
 import useNotification from "../../hooks/useNotification";
 import DefaultLayout from "../../layouts/DefaultLayout";
-import SignatureNotice from "../../components/Dashboard/SignatureNotice";
 import NoticeSection from "../../components/Dashboard/NoticeSection";
+import Ajax from "../../core/Ajax";
 
 export default function Index() {
     const [loading, setLoading] = useState(true);
@@ -22,7 +21,7 @@ export default function Index() {
     });
     const disconnectSite = () => {
         setLoading(true);
-        rest.get(`${inboxwp.ajaxurl}?action=inboxwp_app_disconnect&hash=${inboxwp.hash}`)
+        Ajax.get(`${inboxwp.ajaxurl}?action=inboxwp_app_disconnect&hash=${inboxwp.hash}`)
             .then((res) => {
                 if (res.data.success) {
                     window.location.reload();
@@ -39,7 +38,7 @@ export default function Index() {
     }
     const getStats = () => {
         setLoading(true)
-        rest.get(`${inboxwp.ajaxurl}?action=inboxwp_app_get_stats&hash=${inboxwp.hash}`)
+        Ajax.get(`${inboxwp.ajaxurl}?action=inboxwp_get_stats&hash=${inboxwp.hash}`)
             .then((res) => {
                 if (res.data.success == false) {
                     return;
@@ -51,7 +50,8 @@ export default function Index() {
             })
             .catch((err) => {
                 if (403 === err.response?.status) {
-                    notifyError(err.response.data.data.message || 'Something went wrong!')
+                    console.log(err.response.data)
+                    notifyError('Opps! bad request')
                 } else {
                     console.log( err?.message || err )
                 }
