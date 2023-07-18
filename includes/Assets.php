@@ -20,7 +20,7 @@ class Assets {
 			'inboxwp-react-script' => [
 				'src' => INBOX_WP_URL . '/build/index.js',
 				'version' => filemtime( INBOX_WP_PATH . '/build/index.js' ),
-				'deps' => [ 'wp-element', 'lodash' ],
+				'deps' => [ 'wp-element', 'lodash', 'jquery' ],
 			],
 		];
     }
@@ -65,7 +65,7 @@ class Assets {
 				'appUrl' => INBOX_WP_APP_URL,
 				'siteUrl' => untrailingslashit( site_url( '/' ) ),
 				'restPrefix' => rest_get_url_prefix(),
-                'is_connected' => (bool)inboxwp_api_key(),
+                'is_connected' => (bool) inboxwp_api_key(),
                 'ignoredPlugin' => inboxwp_ignored_plugin(),
                 'signatureAdded' => inboxwp_signature_added(),
 			]

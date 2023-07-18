@@ -3,52 +3,47 @@ import BarChart from "../components/BarChart";
 import Stats from "../components/Logs/Stats";
 import BottomTopSection from "../components/Logs/BottomTopSection";
 import LogCard from "../components/Logs/LogCard";
-import Axios from "axios";
 import useNotification from "../hooks/useNotification";
 import DefaultLayout from "../layouts/DefaultLayout";
+import {Get, Post} from "../core/Ajax";
 
-export default function Logs({onDisconnected}) {
+export default function Logs() {
     const [loading, setLoading] = useState(true);
     const {notifyError, notifyWarning} = useNotification();
     const [stats, setStats] = useState({
         sent: {},
         bounce: {},
         spam: {},
+    });
+    const [logs, setLogs] = useState({
         logs: {},
     });
-    const getStats = () => {
+    const getStats = async () => {
         setLoading(true)
-
-        Axios.get(`${inboxwp.siteUrl}/${inboxwp.restPrefix}/inboxwp/v1/email/logs`, {
-            headers: {
-                'inboxwp-secret': inboxwp.siteHash
-            },
-            params: {
-
-            }
+        const response = Get(`${inboxwp.ajaxurl}?action=inboxwp_get_stats&hash=${inboxwp.hash}`);
+        response.then((res) => {
+            setStats(res.data)
+        }).catch((err) => {
+            notifyError(err.data.message || 'Something went wrong')
+        }).finally(() => {
+            setLoading(false)
         })
-            .then((res) => {
-                if(res.data.success !== true) {
-                    notifyWarning(res.data.data.message || 'Something went wrong!')
-                    return;
-                }
-                setStats(res.data.data?.logs);
-            })
-            .finally(() => {
-                setLoading(false)
-            })
-            .catch((err) => {
-                if (403 === err.response?.status) {
-                    notifyError(err.response.data.data.message || 'Something went wrong!')
-                } else {
-                    console.log( err?.message || err )
-                }
-            })
 
+    }
+
+    const getLogs = (data) => {
+        const response = Post(inboxwp.ajaxurl, {action: 'inboxwp_email_logs', hash: inboxwp.hash, ...data});
+        response.then((res) => {
+            setLogs(res.data.logs)
+        })
+            .catch((err) => {
+                notifyError(err.data.message || 'Something went wrong')
+            })
     }
 
     useEffect(() => {
         getStats()
+        getLogs({})
         return () => {
             setStats({})
         }
@@ -84,8 +79,8 @@ export default function Logs({onDisconnected}) {
                         </div>
                     </div>
                 </div>
-                <BottomTopSection/>
-                {stats.logs?.Messages ? <LogCard messages={stats.logs.Messages}/> : ''}
+                <BottomTopSection fetchData={getLogs}/>
+                {logs?.Messages ? <LogCard messages={logs.Messages}/> : ''}
             </div>
         </DefaultLayout>
     );

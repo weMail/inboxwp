@@ -4,8 +4,8 @@ namespace WeDevs\Inboxwp\AjaxHandlers\App;
 
 use WeDevs\Inboxwp\AjaxHandlers\AjaxHandlerAbstract;
 use WeDevs\Inboxwp\Services\SiteConnection;
-class AjaxHandler extends AjaxHandlerAbstract
-{
+class AjaxHandler extends AjaxHandlerAbstract {
+
     /**
      * Ajax class constructor
      */

@@ -102,15 +102,15 @@ final class InboxWP {
      * Initialize the plugin
      */
     public function init_plugin() {
-        if ( is_admin() ) {
-            new Admin();
-            new Assets();
-        }
+        new Assets();
         new API();
+        new Hooks();
         if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
             new WeDevs\Inboxwp\Ajax();
         }
-        new Hooks();
+        if ( is_admin() ) {
+            new Admin();
+        }
     }
 
     /**

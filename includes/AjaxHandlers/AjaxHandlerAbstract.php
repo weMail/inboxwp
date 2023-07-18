@@ -4,8 +4,8 @@ namespace WeDevs\Inboxwp\AjaxHandlers;
 
 use WeDevs\Inboxwp\Traits\NonceChecker;
 
-class AjaxHandlerAbstract
-{
+class AjaxHandlerAbstract {
+
     use NonceChecker;
 
 }

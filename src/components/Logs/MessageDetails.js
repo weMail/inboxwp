@@ -4,6 +4,8 @@ import MessageSkeleton from "./MessageSkeleton";
 import moment from 'moment/moment'
 import axios from "axios";
 import useNotification from "../../hooks/useNotification";
+import API from "../../core/API";
+import {Post} from "../../core/Ajax";
 
 const MessageDetails = ({onClose, isOpen, messageId}) => {
     const [loading, setLoading] = useState(false);
@@ -15,24 +17,21 @@ const MessageDetails = ({onClose, isOpen, messageId}) => {
         if (isOpen) {
             setError('')
             setLoading(true);
-            axios.get(`${inboxwp.siteUrl}/${inboxwp.restPrefix}/inboxwp/v1/email/message/${messageId}`, {
-                headers: {
-                    'inboxwp-secret': inboxwp.siteHash
-                }
-            })
-                .then((res) => {
-                    if(res.data.success !== true) {
-                        notifyError("Something went wrong!")
-                        console.log(res.data)
-                    }
-                    setMessage(res.data.data.message)
+            const response = Post(inboxwp.ajaxurl, {
+                action: 'inboxwp_email_details',
+                id: messageId,
+                hash: inboxwp.hash
+            });
+
+            response.then((res) => {
+                    setMessage(res.data)
                 })
                 .finally(() => {
                     setLoading(false)
                 })
                 .catch((err) => {
-                    notifyError(err.response.data.message)
-                    setError(err.response.data.message)
+                    notifyError(err.data?.message || 'Something went wrong')
+                    setError(err.data?.message || 'Something went wrong')
                 })
         }
     }, [isOpen])

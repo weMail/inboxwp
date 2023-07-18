@@ -3,7 +3,7 @@ import Filter from "./Filter"
 import {debounce} from "lodash";
 import Axios from "axios";
 
-const LogTopSection = () => {
+const LogTopSection = ({fetchData}) => {
     const [searchKey, setSearchKey] = useState();
     const handleSearchKey = debounce((e) => {
         const key = e.target.value;
@@ -14,23 +14,6 @@ const LogTopSection = () => {
     }, 800);
 
     const [loading, setLoading] = useState(false)
-    const fetchData = (data) => {
-        setLoading(true);
-        Axios.get(`${inboxwp.siteUrl}/${inboxwp.restPrefix}/inboxwp/v1/email/logs`, {
-            headers: {
-                'inboxwp-secret': inboxwp.siteHash
-            },
-            params: data
-        })
-            .then((res) => {
-                if(res.data.success !== true) {
-                    console.log(res.data)
-                }
-            })
-            .finally(() => {
-                setLoading(false)
-            })
-    }
 
     return (
         <div className="inboxwp-mt-4">

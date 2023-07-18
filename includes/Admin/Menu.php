@@ -27,7 +27,7 @@ class Menu {
         }
         $capability = 'read';
 
-        $hook = add_menu_page( __( 'InboxWP', 'inboxwp' ), __( 'InboxWP', 'inboxwp' ), 'manage_options', 'inboxwp', [ $this, 'plugin_page' ], 'dashicons-email' );
+        $hook = add_menu_page( __( 'InboxWP', 'inboxwp' ), __( 'InboxWP', 'inboxwp' ), 'manage_options', 'inboxwp', [ $this, 'plugin_page' ], 'dashicons-email', '10' );
         $submenu['inboxwp'] = apply_filters( 'inboxwp_admin_submenu', [], $capability );
 
         add_action( 'admin_head-' . $hook, [ $this, 'enqueue_assets' ] );

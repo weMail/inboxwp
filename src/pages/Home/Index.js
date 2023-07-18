@@ -9,7 +9,7 @@ import {Link} from "react-router-dom";
 import useNotification from "../../hooks/useNotification";
 import DefaultLayout from "../../layouts/DefaultLayout";
 import NoticeSection from "../../components/Dashboard/NoticeSection";
-import Ajax from "../../core/Ajax";
+import {Get, Post} from "../../core/Ajax";
 
 export default function Index() {
     const [loading, setLoading] = useState(true);
@@ -21,12 +21,12 @@ export default function Index() {
     });
     const disconnectSite = () => {
         setLoading(true);
-        Ajax.get(`${inboxwp.ajaxurl}?action=inboxwp_app_disconnect&hash=${inboxwp.hash}`)
-            .then((res) => {
-                if (res.data.success) {
+        const response = Post(`${inboxwp.ajaxurl}`, {action: 'inboxwp_app_disconnect', hash: inboxwp.hash});
+        response.then((res) => {
+                if (res.success) {
                     window.location.reload();
                 } else {
-                    alert(res.data.data.message)
+                    notifyError(res.data.message || 'Something went wrong!')
                 }
             })
             .catch((err) => {
@@ -38,23 +38,16 @@ export default function Index() {
     }
     const getStats = () => {
         setLoading(true)
-        Ajax.get(`${inboxwp.ajaxurl}?action=inboxwp_get_stats&hash=${inboxwp.hash}`)
+        const response = Get(`${inboxwp.ajaxurl}?action=inboxwp_get_stats&hash=${inboxwp.hash}`);
+        response
             .then((res) => {
-                if (res.data.success == false) {
-                    return;
-                }
-                setStats(res.data.data);
+                setStats(res.data);
             })
             .finally(() => {
                 setLoading(false)
             })
             .catch((err) => {
-                if (403 === err.response?.status) {
-                    console.log(err.response.data)
-                    notifyError('Opps! bad request')
-                } else {
-                    console.log( err?.message || err )
-                }
+                notifyError(err.data.message || 'Something went wrong')
             })
     }
 

@@ -1,7 +1,7 @@
 import { _n } from '@wordpress/i18n';
 
 
-export default function RestWarning({isConnected}) {
+export default function RestWarning() {
 
     let title = _n("Let’s connect your website with InboxWP", 'inboxwp');
     let subTitle = _n("Let InboxWP take care of all your WordPress transactional emails 🚀", 'inboxwp');
@@ -9,7 +9,7 @@ export default function RestWarning({isConnected}) {
     return (
         <div className="wrap inboxwp-flex" style={{ minHeight: '80vh' }}>
             <div className="inboxwp-text-center inboxwp-m-auto inboxwp-w-2/3">
-                {!isConnected && <>
+                {! inboxwp.is_connected && <>
                     <svg className="inboxwp-mx-auto inboxwp-h-12 inboxwp-w-12 inboxwp-text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                         <path vectorEffect="non-scaling-stroke" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
                     </svg>

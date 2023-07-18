@@ -10,12 +10,12 @@ import NotConnected from "./components/NotConnectState";
 import PrivateOutlet from "./routes/PrivateOutlet";
 import SendingSignature from "./pages/SendingSignature/Index";
 import SignatureCreate from "./pages/SendingSignature/Create";
+import API from "./core/API";
 const App = () => {
-    const [isConnected, setIsConnected] = useState('');
     const [restAvailable, setRestAvailable] = useState(true);
 
     const isRestAvailable = () => {
-        Axios.get(`${inboxwp.siteUrl}/${inboxwp.restPrefix}/inboxwp/v1/site/ping`, {
+        API.get(`${inboxwp.siteUrl}/${inboxwp.restPrefix}/inboxwp/v1/site/ping`, {
             headers: {
                 'inboxwp-secret': inboxwp.siteHash
             }
@@ -33,21 +33,20 @@ const App = () => {
 
     useEffect(() => {
         isRestAvailable();
-        setIsConnected(inboxwp.is_connected)
     }, [inboxwp.is_connected]);
 
     return (
         <Routes>
-            <Route element={<PrivateOutlet restAvailable={restAvailable} isConnected={isConnected} />} >
+            <Route element={<PrivateOutlet restAvailable={restAvailable} />} >
                 <Route path="/" element={<Home />}/>
                 <Route path="/logs" element={<Logs />}/>
                 <Route path="/sending-signatures" element={<SendingSignature />}/>
                 <Route path="/sending-signatures/create" element={<SignatureCreate />}/>
             </Route>
             <Route path="/not-connected" element={
-                restAvailable ? isConnected ? <Navigate to={'/'}/> : <NotConnected /> : <Navigate to={'/rest-warning'}/>
+                restAvailable ? inboxwp.is_connected ? <Navigate to={'/'}/> : <NotConnected /> : <Navigate to={'/rest-warning'}/>
             }/>
-            <Route path="/rest-warning" element={restAvailable ? <Navigate to={'/'}/> : <RestWarning isConnected={isConnected} />}/>
+            <Route path="/rest-warning" element={restAvailable ? <Navigate to={'/'}/> : <RestWarning/>}/>
             <Route path="*" element={<NotFound/>}/>
         </Routes>
     );

@@ -101,7 +101,8 @@ abstract class RestController extends WP_REST_Controller {
      *
      * @return void
      */
-    public function __construct() {         $this->register_routes();
+    public function __construct() {
+        $this->register_routes();
     }
 
     /**

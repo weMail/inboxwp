@@ -1,20 +1,23 @@
 import { _n } from '@wordpress/i18n';
-import Ajax from '../core/Ajax';
+import {Get} from '../core/Ajax';
+import useNotification from "../hooks/useNotification";
 
 
 export default function NotConnected() {
+    const { notifyError } = useNotification();
 
     let title = _n("Let’s connect your website with InboxWP", 'inboxwp');
     let subTitle = _n("Let InboxWP take care of all your WordPress transactional emails 🚀", 'inboxwp');
     let buttonText = _n('Connect your website', 'inboxwp');
 
     const connectSite = () => {
-        Ajax.get(`${inboxwp.ajaxurl}?action=inboxwp_app_connection_url&hash=${inboxwp.hash}`)
+        const response = Get(`${inboxwp.ajaxurl}?action=inboxwp_app_connection_url&hash=${inboxwp.hash}`);
+        response
             .then((res) => {
-                window.location.href = res.data.data.url;
+                window.location.href = res.data.url;
             })
             .catch((err) => {
-                console.log(err.response.data.message)
+                notifyError(err.data?.message || 'Something went wrong')
             })
     }
 
