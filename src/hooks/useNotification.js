@@ -1,7 +1,6 @@
 import React from '@wordpress/element';
 import 'notyf/notyf.min.css';
 import { Notyf } from 'notyf';
-// import Swal from "sweetalert2";
 
 const useNotification = () => {
     const notyf = new Notyf({
