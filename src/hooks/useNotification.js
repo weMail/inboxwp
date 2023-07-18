@@ -1,43 +1,27 @@
 import React from '@wordpress/element';
-import Swal from "sweetalert2";
+import 'notyf/notyf.min.css';
+import { Notyf } from 'notyf';
+// import Swal from "sweetalert2";
 
 const useNotification = () => {
-    const Toast = (title, icon = 'success') => {
-        return Swal.mixin({
-            showCancelButton: false,
-            toast: true,
-            position: 'top-end',
-            timer: 3500,
-            timerProgressBar: true,
-            showConfirmButton: false,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            },
-            customClass: {
-                container: 'inboxwp-mt-7',
-            }
-        })
-    }
+    const notyf = new Notyf({
+        duration: 3500,
+        position: {
+            x: 'right',
+            y: 'bottom',
+        },
+    });
 
     const notifySuccess = (title) => {
-        return Toast().fire({
-            icon: 'success',
-            title: title,
-        })
+        notyf.success(title);
     }
+
     const notifyWarning = (title) => {
-        return Toast().fire({
-            icon: 'warning',
-            title: title,
-        })
+        notyf.warning(title);
     }
 
     const notifyError = (title) => {
-        return Toast().fire({
-            icon: 'error',
-            title: title,
-        })
+        notyf.error(title);
     }
 
     return {
