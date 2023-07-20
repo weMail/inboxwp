@@ -4,7 +4,7 @@ import { Notyf } from 'notyf';
 
 const useNotification = () => {
     const notyf = new Notyf({
-        duration: 3500,
+        duration: 4500,
         position: {
             x: 'right',
             y: 'bottom',

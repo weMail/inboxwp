@@ -11,6 +11,7 @@ import PrivateOutlet from "./routes/PrivateOutlet";
 import SendingSignature from "./pages/SendingSignature/Index";
 import SignatureCreate from "./pages/SendingSignature/Create";
 import API from "./core/API";
+import DNSSettings from "./pages/SendingSignature/DNSSetting";
 const App = () => {
     const [restAvailable, setRestAvailable] = useState(true);
 
@@ -42,6 +43,7 @@ const App = () => {
                 <Route path="/logs" element={<Logs />}/>
                 <Route path="/sending-signatures" element={<SendingSignature />}/>
                 <Route path="/sending-signatures/create" element={<SignatureCreate />}/>
+                <Route path="/dns-settings" element={<DNSSettings/>}/>
             </Route>
             <Route path="/not-connected" element={
                 restAvailable ? inboxwp.is_connected ? <Navigate to={'/'}/> : <NotConnected /> : <Navigate to={'/rest-warning'}/>

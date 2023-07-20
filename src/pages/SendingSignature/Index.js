@@ -1,21 +1,21 @@
 import DefaultLayout from "../../layouts/DefaultLayout";
 import Domain from "./Components/Domain";
 import Signature from "./Components/Signature";
-import React, {useState} from "@wordpress/element";
+import React, {useEffect, useState} from "@wordpress/element";
 import {Link} from "react-router-dom";
+import useFetchSignature from "../../hooks/useFetchSignature";
+import LoadingIcon from "./Components/LoadingIcon";
 
 export default function Index() {
-    const [loading, setLoading] = useState(false);
-    const [domain, setDomain] = useState(null);
-    const [signature, setSignature] = useState(null);
+    const {domain, signature, loading, setSignature} = useFetchSignature();
 
 
     return (
         <DefaultLayout>
             <div className="inboxwp-w-full">
-                <div className={'inboxwp-w-[216px] inboxwp-text-end inboxwp-mb-3'}>
+                {! (domain && signature) && !loading ? <div className={'inboxwp-w-[216px] inboxwp-text-end inboxwp-mb-3'}>
                     <a href={'admin.php?page=inboxwp#/sending-signatures/create'} type="button"
-                       className="inboxwp-flex hover:inboxwp-text-[#6366F1] inboxwp-justify-end inboxwp-rounded-md inboxwp-bg-white inboxwp-px-3 inboxwp-py-2 inboxwp-text-sm inboxwp-font-medium inboxwp-text-[#6366F1] inboxwp-shadow-sm inboxwp-ring-1 inboxwp-ring-gray-300"
+                        className="inboxwp-flex hover:inboxwp-text-[#6366F1] inboxwp-justify-end inboxwp-rounded-md inboxwp-bg-white inboxwp-px-3 inboxwp-py-2 inboxwp-text-sm inboxwp-font-medium inboxwp-text-[#6366F1] inboxwp-shadow-sm inboxwp-ring-1 inboxwp-ring-gray-300"
                     >
                         Add Domain or Signature
                         <div className={'inboxwp-ml-2.5 inboxwp-mt-1'}>
@@ -24,19 +24,25 @@ export default function Index() {
                             </svg>
                         </div>
                     </a>
-                </div>
+                    </div> : ''}
                 <div className="inboxwp-overflow-hidden inboxwp-p-5 inboxwp-bg-white inboxwp-shadow inboxwp-border sm:inboxwp-rounded inboxwp-mb-8">
-                    {domain ? <Domain domain={domain} site={site}/> : ''}
+                    {domain ? <Domain domain={domain}/> : ''}
 
-                    <hr className="inboxwp-border-gray-900 border-[1px] inboxwp-my-5" />
+                    {loading ?
+                        <div className={'inboxwp-m-auto inboxwp-w-10'}>
+                            <LoadingIcon/>
+                        </div>
+                        :
+                        <hr className="inboxwp-border-gray-900 border-[1px] inboxwp-my-5" />
+                    }
 
-                    {signature ? <Signature signature={signature} DKIMVerified={domain?.DKIMVerified} site={site}/> : ''}
+                    {signature ? <Signature signature={signature} setSignature={setSignature} DKIMVerified={domain?.DKIMVerified}/> : ''}
 
                     {domain?.Name && !signature ? (
                         <div>
                             <Link type="button"
                                   className="inboxwp-text-blue-700 hover:inboxwp-text-white inboxwp-border inboxwp-border-blue-700 hover:inboxwp-bg-blue-800 focus:inboxwp-ring-4 focus:inboxwp-outline-none focus:inboxwp-ring-blue-300 inboxwp-font-medium inboxwp-rounded-md inboxwp-text-sm inboxwp-px-5 inboxwp-py-1.5 inboxwp-text-center inboxwp-mr-2 inboxwp-mb-2 dark:inboxwp-border-blue-500 dark:inboxwp-text-blue-500 dark:hover:inboxwp-text-white dark:hover:inboxwp-bg-blue-500 dark:focus:inboxwp-ring-blue-800"
-                                  href={route('signatures.create', {site: site, create_form: true})}
+                                    to={`/sending-signatures/create?create_form=1`}
                             >
                                 Add Signature
                             </Link>

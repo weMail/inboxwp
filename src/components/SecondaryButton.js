@@ -8,8 +8,8 @@ export default function SecondaryButton({
     <button
       {...props}
       className={classNames(
-        'inline-flex items-center px-4 py-3 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition',
-        props.className,
+          'inboxwp-inline-flex inboxwp-items-center inboxwp-px-4 inboxwp-py-3 inboxwp-bg-white inboxwp-border inboxwp-border-gray-300 inboxwp-rounded-md inboxwp-font-semibold inboxwp-text-xs inboxwp-text-gray-700 inboxwp-uppercase inboxwp-shadow-sm hover:inboxwp-text-gray-500 focus:inboxwp-outline-none focus:inboxwp-border-blue-300 focus:inboxwp-ring focus:inboxwp-ring-blue-200 active:inboxwp-text-gray-800 active:inboxwp-bg-gray-50 disabled:inboxwp-opacity-25 inboxwp-transition',
+          props.className,
       )}
     >
       {children}

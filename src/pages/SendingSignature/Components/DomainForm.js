@@ -14,7 +14,6 @@ export default function DomainForm ({verifyDomain, cancelDomainAdding, loading})
     }
 
     const onError = (err) => {
-        console.log(err);
         notifyError(err.message);
     }
 
@@ -45,20 +44,25 @@ export default function DomainForm ({verifyDomain, cancelDomainAdding, loading})
             </DialogModal.Content>
 
             <DialogModal.Footer>
-                <button type="button"
-                        className="inboxwp-rounded-md inboxwp-bg-white inboxwp-px-2.5 inboxwp-py-2 inboxwp-text-sm inboxwp-font-semibold inboxwp-text-gray-900 inboxwp-shadow-sm inboxwp-ring-1 inboxwp-ring-inset inboxwp-ring-gray-300 hover:inboxwp-bg-gray-50"
-                        onClick={cancelDomainAdding}
-                >
-                    Cancel
-                </button>
+                <p className={'inboxwp-ml-0 inboxwp-text-left inboxwp-text-gray-400 inboxwp-text-[15px]'}>
+                    Add the domain you would like to send emails from. You must have access to this domain’s DNS records in order to verify it.
+                </p>
+                <div className={'inboxwp-mt-5'}>
+                    <button type="button"
+                            className="inboxwp-rounded-md inboxwp-bg-white inboxwp-px-2.5 inboxwp-py-2 inboxwp-text-sm inboxwp-font-semibold inboxwp-text-gray-900 inboxwp-shadow-sm inboxwp-ring-1 inboxwp-ring-inset inboxwp-ring-gray-300 hover:inboxwp-bg-gray-50"
+                            onClick={cancelDomainAdding}
+                    >
+                        Cancel
+                    </button>
 
-                <button
-                    type="submit"
-                    className="hover:inboxwp-cursor-pointer inboxwp-ml-3 inboxwp-inline-flex inboxwp-items-center inboxwp-px-3 inboxwp-py-2 inboxwp-text-sm inboxwp-font-medium inboxwp-text-center inboxwp-text-white inboxwp-bg-blue-700 inboxwp-rounded-md hover:inboxwp-bg-blue-800 focus:inboxwp-ring-4 focus:inboxwp-outline-none focus:inboxwp-ring-blue-300 dark:inboxwp-bg-blue-600 dark:hover:inboxwp-bg-blue-700 dark:focus:inboxwp-ring-blue-800"
-                    disabled={loading}
-                >
-                    Verify Domain
-                </button>
+                    <button
+                        type="submit"
+                        className="hover:inboxwp-cursor-pointer inboxwp-ml-3 inboxwp-inline-flex inboxwp-items-center inboxwp-px-3 inboxwp-py-2 inboxwp-text-sm inboxwp-font-medium inboxwp-text-center inboxwp-text-white inboxwp-bg-blue-700 inboxwp-rounded-md hover:inboxwp-bg-blue-800 focus:inboxwp-ring-4 focus:inboxwp-outline-none focus:inboxwp-ring-blue-300 dark:inboxwp-bg-blue-600 dark:hover:inboxwp-bg-blue-700 dark:focus:inboxwp-ring-blue-800"
+                        disabled={loading}
+                    >
+                        Verify Domain
+                    </button>
+                </div>
             </DialogModal.Footer>
         </form>
     );

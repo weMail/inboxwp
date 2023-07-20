@@ -9,8 +9,8 @@ export default function DangerButton({
     <button
       {...props}
       className={classNames(
-        'inline-flex items-center justify-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition',
-        props.className,
+          'inboxwp-inline-flex inboxwp-items-center inboxwp-justify-center inboxwp-px-4 inboxwp-py-2 inboxwp-bg-red-600 inboxwp-border inboxwp-border-transparent inboxwp-rounded-md inboxwp-font-semibold inboxwp-text-xs inboxwp-text-white inboxwp-uppercase inboxwp-tracking-widest hover:inboxwp-bg-red-500 focus:inboxwp-outline-none focus:inboxwp-border-red-700 focus:inboxwp-ring focus:inboxwp-ring-red-200 active:inboxwp-bg-red-600 disabled:inboxwp-opacity-25 inboxwp-transition',
+          props.className,
       )}
     >
       {children}
