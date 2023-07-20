@@ -73,6 +73,8 @@ final class InboxWP {
         define( 'INBOX_WP_VERSION', self::VERSION );
         define( 'INBOX_WP_FILE', __FILE__ );
         define( 'INBOX_WP_PATH', __DIR__ );
+        define( 'INBOX_WP_INCLUDES', INBOX_WP_PATH . '/includes' );
+        define( 'INBOX_WP_CORE', INBOX_WP_INCLUDES . '/Core' );
         define( 'INBOX_WP_URL', plugins_url( '', INBOX_WP_FILE ) );
         define( 'INBOX_WP_ASSETS', INBOX_WP_URL . '/assets' );
         define( 'INBOX_WP_APP_URL', $this->getAppUrl() );
@@ -100,15 +102,15 @@ final class InboxWP {
      * Initialize the plugin
      */
     public function init_plugin() {
-        if ( is_admin() ) {
-            new Admin();
-            new Assets();
-        }
+        new Assets();
         new API();
+        new Hooks();
         if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
             new WeDevs\Inboxwp\Ajax();
         }
-        new Hooks();
+        if ( is_admin() ) {
+            new Admin();
+        }
     }
 
     /**
@@ -118,6 +120,7 @@ final class InboxWP {
      */
     public function includes() {
         require_once INBOX_WP_PATH . '/includes/Functions.php';
+        $this->include_cors();
     }
 
     /**
@@ -139,6 +142,22 @@ final class InboxWP {
         if ( get_option( 'inbox_wp_activated' ) ) {
             delete_option( 'inbox_wp_activated' );
             wp_safe_redirect( inboxwp_get_admin_url() );
+        }
+    }
+
+    /**
+     * init the core classes
+     *
+     * @return void
+     */
+    private function include_cors() {
+        $class_dirs = glob( INBOX_WP_CORE . '/*', GLOB_ONLYDIR );
+        foreach ( $class_dirs as $dir ) {
+            $className = str_replace( INBOX_WP_CORE . '/', '', $dir );
+            $class = "\\WeDevs\\Inboxwp\Core\\$className\\Menu";
+            if ( class_exists( $class ) ) {
+                new $class();
+            }
         }
     }
 }

@@ -25,7 +25,8 @@ class APP extends RestController {
      *
      * @return void
      */
-    public function register_routes() {         $this->post( '/connect', 'set_secrete', 'check_secret_key' );
+    public function register_routes() {
+        $this->post( '/connect', 'set_secrete', 'check_secret_key' );
         $this->post( '/disconnect', 'remove_secrete', 'check_secret_key' );
         $this->get( '/ping', 'ping', 'check_secret_key' );
     }
@@ -54,7 +55,8 @@ class APP extends RestController {
     /**
      * Update site info in the remote
      */
-    protected function updateInfo() {         $user = wp_get_current_user();
+    protected function updateInfo() {
+        $user = wp_get_current_user();
 
         AppApi::instance()->put(
             '/site/info', [
@@ -85,7 +87,8 @@ class APP extends RestController {
      *
      * @return WP_REST_Response
      */
-    public function remove_secrete() {         update_option( 'inbox_wp_app_key', '' );
+    public function remove_secrete() {
+        update_option( 'inbox_wp_app_key', '' );
         return $this->respond(
             [
 				'success' => true,
