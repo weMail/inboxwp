@@ -5,7 +5,7 @@ import Loader from './Skeletons/BarChart'
 import { Chart, CategoryScale, LinearScale, registerables } from "chart.js";
 Chart.register(CategoryScale, LinearScale, ...registerables);
 
-export default function BarChart({stats, loading}) {
+export default function BarChart({stats, loading, title}) {
   const days = Array.from({length: 30}, (_, i) => moment().add(- i, 'days').format('YYYY-MM-DD'));
   const chartValues = (stats, name, arrayLength = 30) => {
     if (!stats || ! Object.keys(stats).length) {
@@ -132,14 +132,16 @@ export default function BarChart({stats, loading}) {
     <>
       {
         loading ? <Loader /> :
-            <div className="inboxwp-h-full inboxwp-relative inboxwp-bg-white inboxwp-w-full inboxwp-mb-6">
-              <div className="inboxwp-rounded-t inboxwp-mb-0 inboxwp-px-4 inboxwp-py-3 inboxwp-bg-transparent">
-                <h2 className="inboxwp-text-blue-gray-700 inboxwp-text-lg inboxwp-font-semibold">
-                  Log for last 30 days
-                </h2>
-              </div>
-              <div className="inboxwp-m-auto inboxwp-absolute inboxwp-h-[85%] inboxwp-w-full">
-                <canvas id="bar-chart"></canvas>
+            <div className="inboxwp-absolute inboxwp-h-full inboxwp-w-full">
+              <div className="inboxwp-min-h-full inboxwp-w-full">
+                <div className="inboxwp-rounded-t inboxwp-mb-0 inboxwp-px-4 inboxwp-py-3 inboxwp-bg-transparent">
+                  <h2 className="inboxwp-text-blue-gray-700 inboxwp-text-lg inboxwp-font-semibold">
+                    {title || 'Log for last 30 days'}
+                  </h2>
+                </div>
+                <div className="inboxwp-m-auto inboxwp-absolute inboxwp-h-[95%] inboxwp-top-5 inboxwp-p-3 inboxwp-left-0 inboxwp-w-full">
+                  <canvas id="bar-chart"></canvas>
+                </div>
               </div>
             </div>
       }

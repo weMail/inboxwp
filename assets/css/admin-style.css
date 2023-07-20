@@ -56,3 +56,11 @@
     color: #54595E;
     margin-top: 0;
 }
+
+#inboxwp-email-ignore-notice {
+    margin-left: 0;
+}
+
+.inboxwp-sending-signature-notice-border {
+    border-left: 4px solid #FBBF24;
+}

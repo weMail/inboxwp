@@ -4,79 +4,24 @@ namespace WeDevs\Inboxwp;
 
 use WeDevs\Inboxwp\Services\Home;
 use WeDevs\Inboxwp\Services\SiteConnection;
+use WeDevs\Inboxwp\Traits\NonceChecker;
 
 /**
  * Ajax handling class
  */
 class Ajax {
-
     /**
      * Ajax class constructor
      */
     public function __construct() {
-        add_action( 'wp_ajax_inboxwp_app_connection_url', [ $this, 'get_app_url' ] );
-        add_action( 'wp_ajax_inboxwp_app_subscription_checking', [ $this, 'check_subscription' ] );
-        add_action( 'wp_ajax_inboxwp_app_disconnect', [ $this, 'disconnect_app' ] );
-        add_action( 'wp_ajax_inboxwp_app_get_stats', [ $this, 'get_stats' ] );
-    }
-
-    /**
-     * Generate the app connection url
-     *
-     * @return json
-     */
-    public function get_app_url() {
-        if ( check_admin_referer( 'inboxwp-nonce', 'hash' ) ) {
-            wp_send_json_success( [ 'url' => SiteConnection::instance()->appUrl() ] );
-        }
-        wp_send_json_error();
-    }
-
-    /**
-     * Check site subscription and get secret key
-     *
-     * @return void
-     */
-    public function check_subscription() {
-        if ( check_admin_referer( 'inboxwp-nonce', 'hash' ) ) {
-            $api_key = inboxwp_api_key();
-            if ( $api_key ) {
-                wp_send_json_success(
-                    [
-                        'success' => true,
-                        'key' => $api_key,
-                    ]
-                );
+        $path = INBOX_WP_INCLUDES . '/AjaxHandlers';
+        $class_dirs = glob( $path . '/*', GLOB_ONLYDIR );
+        foreach ( $class_dirs as $dir ) {
+            $className = str_replace( $path . '/', '', $dir );
+            $class = "\\WeDevs\\Inboxwp\AjaxHandlers\\$className\\AjaxHandler";
+            if ( class_exists( $class ) ) {
+                new $class();
             }
-            wp_send_json_error();
         }
-
-        wp_send_json_error();
-    }
-
-    /**
-     * Disconnect from the app
-     */
-    public function disconnect_app() {
-        if ( check_admin_referer( 'inboxwp-nonce', 'hash' ) ) {
-            if ( SiteConnection::instance()->disconnect() ) {
-                wp_send_json_success( [ 'message' => __( 'Successfully disconnected', 'inboxwp' ) ] );
-            }
-            wp_send_json_error( [ 'message' => __( 'Opps! something went wrong.', 'inboxwp' ) ] );
-	    }
-
-        wp_send_json_error( [ 'message' => __( 'Opps! bad request.', 'inboxwp' ) ], 403 );
-    }
-
-    public function get_stats() {
-        $stats = Home::instance()->getStats();
-        if ( is_wp_error( $stats ) ) {
-            $errorData = $stats->error_data;
-            if ( isset( $errorData['error']['status'] ) && 403 === $errorData['error']['status'] ) {
-                wp_send_json_error( [ 'message' => __( 'Opps! ' . $stats->get_error_message(), 'inboxwp' ) ], 403 );
-            }
-            wp_send_json_error( [ 'message' => __( 'Opps! Something went wrong', 'inboxwp' ) ] );
-        }
-        wp_send_json_success( $stats );
     }
 }

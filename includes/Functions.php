@@ -1,5 +1,7 @@
 <?php
 
+use WeDevs\Inboxwp\Services\IgnoreEmail\SendingPermission;
+
 function inboxwp_generate_hash( $length = 40 ) {
     if ( 0 >= $length ) {
 		$length = 40; // Min key length.
@@ -67,4 +69,30 @@ function inboxwp_validate_boolean( $var ) {
  */
 function inboxwp_parse_domain( $url ) {
     return parse_url( $url, PHP_URL_HOST );
+}
+
+/**
+ * Get the inboxwp admin page url
+ *
+ * @return mixed
+ */
+function inboxwp_get_admin_url() {
+    return admin_url( 'admin.php?page=inboxwp' );
+}
+
+/**
+ * Get the inboxwp admin page url
+ * @return mixed
+ */
+function inboxwp_ignored_plugin() {
+    return SendingPermission::instance()->ignoredPlugin();
+}
+
+/**
+ * Check if signature is added
+ *
+ * @return mixed
+ */
+function inboxwp_signature_added() {
+    return get_option( 'inboxwp_signature_added' );
 }
