@@ -8,5 +8,6 @@ yarn-error.log
 /.vscode
 /.php-cs-fixer.cache
 .DS_Store
+assets/.DS_Store
 .env
 /build/*
