@@ -1,15 +1,20 @@
-import React, {useEffect, useState} from "@wordpress/element"
+import React, {useEffect, useState, useRef} from "@wordpress/element"
 import DefaultLayout from "../../layouts/DefaultLayout";
 import {Link, useNavigate} from "react-router-dom";
 import {Get, Post} from "../../core/Ajax";
 import useNotification from "../../hooks/useNotification";
 import LoadingIcon from "./Components/LoadingIcon";
+import Tooltip from "../../components/Tooltip";
 
 export default function DNSSettings () {
     const [domain, setDomain] = useState(null);
     const [loading, setLoading] = useState(false);
-    const {notifyError} = useNotification();
+    const {notifyError} = useNotification(5000);
+    const {notifyWarning} = useNotification(7000);
+    const {notifySuccess} = useNotification(3000);
     const navigate = useNavigate();
+    const returnPathRef = useRef(null);
+    const dkimRef = useRef(null);
 
     useEffect(() => {
         fetchSignature();
@@ -34,7 +39,11 @@ export default function DNSSettings () {
         const response = Post(inboxwp.ajaxurl, {action: 'inboxwp_verify_dkim', hash: inboxwp.hash, domain_id: domain.ID});
         response.then((res) => {
             setDomain(res.data.domain)
-            navigate('/sending-signatures')
+            if (! res.data.domain.DKIMVerified) {
+                notifyWarning('InboxWP could not verify DNS records. Please make sure you have added the necessary DKIM and Return-Path DNS records to ensure effective email delivery')
+            } else {
+                navigate('/sending-signatures')
+            }
         })
             .catch((err) => {
                 notifyError(err?.data?.message || 'Something went wrong')
@@ -49,15 +58,57 @@ export default function DNSSettings () {
         setLoading(true)
         const response = Post(inboxwp.ajaxurl, {action: 'inboxwp_verify_return_path', hash: inboxwp.hash, domain_id: domain.ID});
         response.then((res) => {
-            navigate('/sending-signatures')
+            setDomain(res.data.domain)
+            if (! res.data.domain.ReturnPathDomainVerified) {
+                notifyWarning('InboxWP could not verify DNS records. Please make sure you have added the necessary DKIM and Return-Path DNS records to ensure effective email delivery')
+            } else {
+                navigate('/sending-signatures')
+            }
         })
             .catch((err) => {
+                console.log(err)
                 notifyError(err?.data?.message || 'Something went wrong')
             })
             .finally(() => {
                 setLoading(false)
             })
     }
+
+    const copyCnameValue = (text) => {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    notifySuccess('Text copied to clipboard!');
+                })
+                .catch((error) => {
+                    console.error('Failed to copy text: ', error);
+                });
+        } else {
+            fallbackCopyTextToClipboard(text);
+        }
+    }
+
+    const fallbackCopyTextToClipboard = (text) => {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+
+        // Make sure it's out of the viewport to avoid rendering it.
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-9999px';
+
+        document.body.appendChild(textArea);
+        textArea.select();
+
+        try {
+            document.execCommand('copy');
+            notifySuccess('Text copied to clipboard!');
+        } catch (error) {
+            console.error('Fallback: Unable to copy text: ', error);
+        }
+
+        document.body.removeChild(textArea);
+    };
+
 
     return (
         <DefaultLayout>
@@ -104,7 +155,9 @@ export default function DNSSettings () {
                         </div>
                         <div className="inboxwp-break-words">{domain?.DKIMPendingHost}</div>
                         <div>TXT</div>
-                        <div className="inboxwp-break-words">{domain?.DKIMPendingTextValue}</div>
+                        <Tooltip text={'Click to copy'} showAtTop={true}>
+                            <div ref={dkimRef} onClick={()=>{copyCnameValue(domain?.DKIMPendingTextValue)}} className="inboxwp-break-words">{domain?.DKIMPendingTextValue}</div>
+                        </Tooltip>
                         {domain?.DKIMVerified ? '' :
                         <>
                             {loading ? <div className={'inboxwp-text-center inboxwp-w-7 inboxwp-h-7 inboxwp-ml-24'}>
@@ -148,7 +201,11 @@ export default function DNSSettings () {
                             <p>pm-bounces</p>
                         </div>
                         <div>CNAME</div>
-                        <div className="inboxwp-break-words">{domain?.ReturnPathDomainCNAMEValue}</div>
+
+                        <Tooltip text="Click to copy">
+                            <div ref={returnPathRef} onClick={()=>{copyCnameValue(domain?.ReturnPathDomainCNAMEValue)}} className="inboxwp-break-words">{domain?.ReturnPathDomainCNAMEValue}</div>
+                        </Tooltip>
+
                         {domain?.ReturnPathDomainVerified ? '' :
                             <>
                             {loading ? <div className={'inboxwp-text-center inboxwp-w-7 inboxwp-h-7 inboxwp-ml-24'}>

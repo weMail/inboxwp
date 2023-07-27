@@ -14,7 +14,7 @@ export default function Create({site}) {
     const [createSignature, setCreateSignature] = useState(!!urlParams.get('create_form'));
     const [addDomain, setAddDomain] = useState(false);
     const navigate = useNavigate();
-    const {domain, signature, loading} = useFetchSignature();
+    const {domain, signature, loading, domainHasFetched} = useFetchSignature();
 
     const verifyDomain = (data) => {
         const response = Post(inboxwp.ajaxurl, {domain: data.domain, action: 'inboxwp_add_domain', hash: inboxwp.hash});
@@ -88,15 +88,19 @@ export default function Create({site}) {
                                 ''
                             }
 
-                            <div className="inboxwp-flex inboxwp-justify-center inboxwp-mt-12">
-                                <Link
-                                    as={'button'}
-                                    className="inboxwp-items-center inboxwp-text-blue-700 hover:inboxwp-text-white inboxwp-border inboxwp-border-blue-700 hover:inboxwp-bg-blue-800 focus:inboxwp-ring-4 focus:inboxwp-outline-none focus:inboxwp-ring-blue-300 inboxwp-font-medium inboxwp-rounded-lg inboxwp-text-sm inboxwp-px-10 inboxwp-py-2.5 inboxwp-text-center inboxwp-mr-2 inboxwp-mb-2 dark:inboxwp-border-blue-500 dark:inboxwp-text-blue-500 dark:hover:inboxwp-text-white dark:hover:inboxwp-bg-blue-500 dark:focus:inboxwp-ring-blue-800"
-                                    to={'/sending-signatures'}
-                                >
-                                    Cancel
-                                </Link>
-                            </div>
+                            {(domainHasFetched && domain) ?
+                                <div className="inboxwp-flex inboxwp-justify-center inboxwp-mt-12">
+                                    <Link
+                                        as={'button'}
+                                        className="inboxwp-items-center inboxwp-text-blue-700 hover:inboxwp-text-white inboxwp-border inboxwp-border-blue-700 hover:inboxwp-bg-blue-800 focus:inboxwp-ring-4 focus:inboxwp-outline-none focus:inboxwp-ring-blue-300 inboxwp-font-medium inboxwp-rounded-lg inboxwp-text-sm inboxwp-px-10 inboxwp-py-2.5 inboxwp-text-center inboxwp-mr-2 inboxwp-mb-2 dark:inboxwp-border-blue-500 dark:inboxwp-text-blue-500 dark:hover:inboxwp-text-white dark:hover:inboxwp-bg-blue-500 dark:focus:inboxwp-ring-blue-800"
+                                        to={'/sending-signatures'}
+                                    >
+                                        Cancel
+                                    </Link>
+                                </div>
+                                :
+                                ''
+                            }
                         </div>
                     </div>
                 )

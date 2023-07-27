@@ -67,7 +67,6 @@ class Assets {
 				'restPrefix' => rest_get_url_prefix(),
                 'is_connected' => (bool) inboxwp_api_key(),
                 'ignoredPlugin' => inboxwp_ignored_plugin(),
-                'signatureAdded' => inboxwp_signature_added(),
 			]
         );
     }

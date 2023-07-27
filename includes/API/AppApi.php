@@ -118,7 +118,7 @@ class AppApi {
      * @return array|mixed|WP_Error
      */
     public function put( $url = '', $data = [], $args = [] ) {
-        $args['method'] = 'put';
+        $args['method'] = 'PUT';
 
         return $this->post( $url, $data, $args );
     }
@@ -130,7 +130,7 @@ class AppApi {
      * @return array|mixed|WP_Error
      */
     public function patch( $url = '', $data = [], $args = [] ) {
-        $args['method'] = 'patch';
+        $args['method'] = 'PATCH';
 
         return $this->post( $url, $data, $args );
     }
@@ -146,7 +146,7 @@ class AppApi {
     public function delete( $url, $data = [], $args = [] ) {
         $args = $this->args( $args );
 
-        $args['method'] = 'delete';
+        $args['method'] = 'DELETE';
 
         $args['body'] = ! empty( $data ) ? $data : null;
 

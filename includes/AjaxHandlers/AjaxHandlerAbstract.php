@@ -24,7 +24,7 @@ class AjaxHandlerAbstract {
         $response = AppApi::instance()->{$method}($url, $data);
 
         if (is_wp_error($response)) {
-            wp_send_json_error(['message' => $response->get_error_message()], $response->get_error_data()['status']);
+            wp_send_json_error(['message' => __($response->get_error_message(), 'inboxwp')], $response->get_error_data()['status']);
         }
         wp_send_json_success($response);
     }
