@@ -1,8 +1,9 @@
 import React, { useState } from '@wordpress/element';
 
-const Tooltip = ({ text, children, showAtTop = false }) => {
+const Tooltip = ({ text, className, children, showAtTop = false }) => {
     const [showTooltip, setShowTooltip] = useState(false);
-    const [top] = useState('inboxwp-bottom-7 inboxwp-left-0');
+    const [top] = useState('inboxwp-tooltip-position-top');
+    const [bottom] = useState('inboxwp-bottom-[-7px] inboxwp-left-0');
 
     const handleMouseEnter = () => {
         setShowTooltip(true);
@@ -22,7 +23,7 @@ const Tooltip = ({ text, children, showAtTop = false }) => {
                 {children}
             </div>
             {showTooltip && (
-                <div className={`inboxwp-absolute ${showAtTop ? top : ''} inboxwp-w-[400px] inboxwp-z-10 inboxwp-px-2 inboxwp-py-1 inboxwp-mt-2 inboxwp-text-white inboxwp-bg-gray-800 inboxwp-rounded`}>
+                <div className={`inboxwp-absolute ${showAtTop ? top : bottom} ${className} inboxwp-z-10 inboxwp-px-2 inboxwp-py-1 inboxwp-mt-2 inboxwp-text-white inboxwp-bg-gray-800 inboxwp-rounded`}>
                     {text}
                 </div>
             )}

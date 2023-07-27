@@ -96,3 +96,7 @@ function inboxwp_ignored_plugin() {
 function inboxwp_signature_added() {
     return get_option( 'inboxwp_signature_added' );
 }
+
+function inboxwp_set_signature_added($value) {
+    update_option( 'inboxwp_signature_added', $value );
+}

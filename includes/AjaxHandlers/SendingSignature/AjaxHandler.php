@@ -21,6 +21,8 @@ class AjaxHandler extends AjaxHandlerAbstract {
         add_action( 'wp_ajax_inboxwp_add_signature', [ $this, 'inboxwp_add_signature' ] );
         add_action( 'wp_ajax_inboxwp_resend_confirmation', [ $this, 'inboxwp_resend_confirmation' ] );
         add_action( 'wp_ajax_inboxwp_update_signature', [ $this, 'inboxwp_update_signature' ] );
+        add_action( 'wp_ajax_inboxwp_set_signature_added', [ $this, 'inboxwp_set_signature_added' ] );
+        add_action( 'wp_ajax_inboxwp_check_signature_presence', [ $this, 'inboxwp_check_signature_presence' ] );
     }
 
     /**
@@ -40,7 +42,7 @@ class AjaxHandler extends AjaxHandlerAbstract {
         }
 
         $domain = $response['domain'];
-        wp_send_json_success( ['message' => "Domain {$domain['name']} was added successfully"] );
+        wp_send_json_success( ['message' => __("Domain {$domain['name']} was added successfully", 'inboxwp')] );
     }
 
     /**
@@ -117,6 +119,11 @@ class AjaxHandler extends AjaxHandlerAbstract {
         $this->callApi('get', "/sending-signatures/resent/{$_POST['signature_id']}");
     }
 
+    /**
+     * Update signature
+     *
+     * @return void
+     */
     public function inboxwp_update_signature()
     {
         $replay_to_email = sanitize_text_field( $_POST['reply_to_email'] );
@@ -124,5 +131,23 @@ class AjaxHandler extends AjaxHandlerAbstract {
             'reply_to_email' => $replay_to_email ?: '',
             'name' => sanitize_text_field( $_POST['name'] ),
         ]);
+    }
+
+    /**
+     * Update signature
+     *
+     * @return void
+     */
+    public function inboxwp_set_signature_added()
+    {
+        $value = sanitize_text_field( $_POST['confirmation'] );
+        inboxwp_set_signature_added($value);
+        wp_send_json_success( ['message' => __("Signature presence updated successfully", 'inboxwp')]);
+    }
+
+    public function inboxwp_check_signature_presence()
+    {
+        $signature = inboxwp_signature_added() == 'true' ? true : false;
+        wp_send_json_success( ['signature' => $signature]);
     }
 }

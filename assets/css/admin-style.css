@@ -64,3 +64,7 @@
 .inboxwp-sending-signature-notice-border {
     border-left: 4px solid #FBBF24;
 }
+.inboxwp-tooltip-position-top {
+    top: -35px;
+    left: 0;
+}

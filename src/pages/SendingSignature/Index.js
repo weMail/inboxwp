@@ -5,10 +5,33 @@ import React, {useEffect, useState} from "@wordpress/element";
 import {Link} from "react-router-dom";
 import useFetchSignature from "../../hooks/useFetchSignature";
 import LoadingIcon from "./Components/LoadingIcon";
+import {Post} from "../../core/Ajax";
+import {useNavigate} from "react-router-dom";
 
 export default function Index() {
-    const {domain, signature, loading, setSignature} = useFetchSignature();
+    const navigate = useNavigate();
+    const signatureAdded = (confirmed) => {
+        Post(inboxwp.ajaxurl, {
+            action: 'inboxwp_set_signature_added',
+            hash: inboxwp.hash,
+            confirmation: !!confirmed
+        });
+    }
 
+    const domainAdded = () => {
+        navigate(`/sending-signatures/create?domain_not_found=${true}`)
+    }
+
+    const {domain, signature, loading, setSignature, domainHasFetched, signatureHasFetched} = useFetchSignature();
+
+    useEffect(() => {
+        if (signatureHasFetched) {
+            signatureAdded(signature?.Confirmed)
+        }
+        if (domainHasFetched && !domain) {
+            domainAdded(true)
+        }
+    }, [domain, signature, domainHasFetched, signatureHasFetched])
 
     return (
         <DefaultLayout>
