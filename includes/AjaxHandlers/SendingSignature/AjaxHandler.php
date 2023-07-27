@@ -30,19 +30,19 @@ class AjaxHandler extends AjaxHandlerAbstract {
      *
      * @return void
      */
-    public function add_domain()
-    {
-        $this->checkNonce();
+    public function add_domain() {         $this->checkNonce();
 
-        $response = AppApi::instance()->post( '/sending-domains', [
-            'domain' => sanitize_text_field( $_POST['domain'] ),
-        ] );
+        $response = AppApi::instance()->post(
+            '/sending-domains', [
+				'domain' => sanitize_text_field( $_POST['domain'] ),
+			]
+        );
         if ( is_wp_error( $response ) ) {
             wp_send_json_error( [ 'message' => $response->get_error_message() ], $response->get_error_data()['status'] );
         }
 
         $domain = $response['domain'];
-        wp_send_json_success( ['message' => __("Domain {$domain['name']} was added successfully", 'inboxwp')] );
+        wp_send_json_success( [ 'message' => __( "Domain {$domain['name']} was added successfully", 'inboxwp' ) ] );
     }
 
     /**
@@ -50,9 +50,8 @@ class AjaxHandler extends AjaxHandlerAbstract {
      *
      * @return void
      */
-    public function get_signature()
-    {
-        $this->callApi('get', '/sending-signatures');
+    public function get_signature() {
+        $this->callApi( 'get', '/sending-signatures' );
     }
 
     /**
@@ -60,9 +59,8 @@ class AjaxHandler extends AjaxHandlerAbstract {
      *
      * @return void
      */
-    public function get_domain()
-    {
-        $this->callApi('get', '/sending-domains');
+    public function get_domain() {
+        $this->callApi( 'get', '/sending-domains' );
     }
 
     /**
@@ -70,14 +68,12 @@ class AjaxHandler extends AjaxHandlerAbstract {
      *
      * @return void
      */
-    public function inboxwp_verify_dkim()
-    {
-        $this->callApi('get', "/sending-domains/verify-dkim/{$_POST['domain_id']}");
+    public function inboxwp_verify_dkim() {
+        $this->callApi( 'get', "/sending-domains/verify-dkim/{$_POST['domain_id']}" );
     }
 
-    public function inboxwp_verify_return_path()
-    {
-        $this->callApi('get', "/sending-domains/verify-return-path/{$_POST['domain_id']}");
+    public function inboxwp_verify_return_path() {
+        $this->callApi( 'get', "/sending-domains/verify-return-path/{$_POST['domain_id']}" );
     }
 
     /**
@@ -85,14 +81,12 @@ class AjaxHandler extends AjaxHandlerAbstract {
      *
      * @return void
      */
-    public function inboxwp_delete_signature()
-    {
-        $this->callApi('delete', "/sending-signatures/{$_POST['signature_id']}");
+    public function inboxwp_delete_signature() {
+        $this->callApi( 'delete', "/sending-signatures/{$_POST['signature_id']}" );
     }
 
-    public function inboxwp_delete_domain()
-    {
-        $this->callApi('delete', "/sending-domains/{$_POST['domain_id']}");
+    public function inboxwp_delete_domain() {
+        $this->callApi( 'delete', "/sending-domains/{$_POST['domain_id']}" );
     }
 
     /**
@@ -100,13 +94,14 @@ class AjaxHandler extends AjaxHandlerAbstract {
      *
      * @return void
      */
-    public function inboxwp_add_signature()
-    {
-        $this->callApi('post', '/sending-signatures', [
-            'email' => sanitize_text_field( $_POST['email'] ),
-            'replay_to_email' => sanitize_text_field( $_POST['replay_to_email'] ),
-            'from_name' => sanitize_text_field( $_POST['from_name'] ),
-        ]);
+    public function inboxwp_add_signature() {
+        $this->callApi(
+            'post', '/sending-signatures', [
+				'email' => sanitize_text_field( $_POST['email'] ),
+				'replay_to_email' => sanitize_text_field( $_POST['replay_to_email'] ),
+				'from_name' => sanitize_text_field( $_POST['from_name'] ),
+            ]
+		);
     }
 
     /**
@@ -114,9 +109,8 @@ class AjaxHandler extends AjaxHandlerAbstract {
      *
      * @return void
      */
-    public function inboxwp_resend_confirmation()
-    {
-        $this->callApi('get', "/sending-signatures/resent/{$_POST['signature_id']}");
+    public function inboxwp_resend_confirmation() {
+        $this->callApi( 'get', "/sending-signatures/resent/{$_POST['signature_id']}" );
     }
 
     /**
@@ -124,13 +118,14 @@ class AjaxHandler extends AjaxHandlerAbstract {
      *
      * @return void
      */
-    public function inboxwp_update_signature()
-    {
+    public function inboxwp_update_signature() {
         $replay_to_email = sanitize_text_field( $_POST['reply_to_email'] );
-        $this->callApi('put', "/sending-signatures/{$_POST['signature_id']}", [
-            'reply_to_email' => $replay_to_email ?: '',
-            'name' => sanitize_text_field( $_POST['name'] ),
-        ]);
+        $this->callApi(
+            'put', "/sending-signatures/{$_POST['signature_id']}", [
+				'reply_to_email' => $replay_to_email ?: '',
+				'name' => sanitize_text_field( $_POST['name'] ),
+			]
+        );
     }
 
     /**
@@ -138,16 +133,14 @@ class AjaxHandler extends AjaxHandlerAbstract {
      *
      * @return void
      */
-    public function inboxwp_set_signature_added()
-    {
+    public function inboxwp_set_signature_added() {
         $value = sanitize_text_field( $_POST['confirmation'] );
-        inboxwp_set_signature_added($value);
-        wp_send_json_success( ['message' => __("Signature presence updated successfully", 'inboxwp')]);
+        inboxwp_set_signature_added( $value );
+        wp_send_json_success( [ 'message' => __( 'Signature presence updated successfully', 'inboxwp' ) ] );
     }
 
-    public function inboxwp_check_signature_presence()
-    {
+    public function inboxwp_check_signature_presence() {
         $signature = inboxwp_signature_added() == 'true' ? true : false;
-        wp_send_json_success( ['signature' => $signature]);
+        wp_send_json_success( [ 'signature' => $signature ] );
     }
 }
