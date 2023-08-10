@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Plugin Name:       inboxWP - The easiest solution to send transactional emails in WordPress
- * Plugin URI:        https://example.com/plugins/the-basics/
+ * Plugin Name:       InboxWP - Easy transactional emails
+ * Plugin URI:        https://inboxwp.com
  * Description:       Send transactional emails with this plugin in the easiest way.
- * Version:           0.0.1
+ * Version:           1.0
  * Author:            weDevs
- * Author URI:        https://wedevs.com/
- * License:           GPL-3.0
+ * Author URI:        https://inboxwp.com/
+ * License:           GPLv2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       inboxwp
  * Domain Path:       /languages
