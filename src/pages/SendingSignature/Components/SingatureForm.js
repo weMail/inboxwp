@@ -58,20 +58,6 @@ export default function SignatureForm({setCreateSignature}) {
             </div>
 
             <form onSubmit={addSignature}>
-                <div className="">
-                    <InputLabel htmlFor="email">"From" Email</InputLabel>
-                    <input
-                        id="email"
-                        type="email"
-                        className="inboxwp-mt-1 inboxwp-block inboxwp-w-full"
-                        value={formData.email}
-                        onChange={e => setFormValue(e, 'email')}
-                        placeholder={'Enter from email address'}
-                        onFocus={() => setErrors({...errors, email: ''})}
-                    />
-                    <InputError className="inboxwp-mt-2" message={errors.email} />
-                </div>
-
                 <div className="inboxwp-mt-4">
                     <InputLabel htmlFor="fromName">"From" Name (Optional)</InputLabel>
                     <input
@@ -84,6 +70,20 @@ export default function SignatureForm({setCreateSignature}) {
                         onFocus={() => setErrors({...errors, from_name: ''})}
                     />
                     <InputError className="inboxwp-mt-2" message={errors.from_name} />
+                </div>
+
+                <div className="">
+                    <InputLabel htmlFor="email">"From" Email</InputLabel>
+                    <input
+                        id="email"
+                        type="email"
+                        className="inboxwp-mt-1 inboxwp-block inboxwp-w-full"
+                        value={formData.email}
+                        onChange={e => setFormValue(e, 'email')}
+                        placeholder={'Enter from email address'}
+                        onFocus={() => setErrors({...errors, email: ''})}
+                    />
+                    <InputError className="inboxwp-mt-2" message={errors.email} />
                 </div>
 
                 <div className="inboxwp-mt-4">
