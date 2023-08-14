@@ -93,7 +93,7 @@ export default function SignatureForm({setCreateSignature}) {
                         type="email"
                         className="inboxwp-mt-1 inboxwp-block inboxwp-w-full"
                         value={formData.replay_to_email}
-                        onChange={e => setFormValue(e, 'replay_to_email_email')}
+                        onChange={e => setFormValue(e, 'replay_to_email')}
                         placeholder={'Enter reply to email address'}
                     />
                     <InputError className="inboxwp-mt-2" message={errors.replay_to_email} />
