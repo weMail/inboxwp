@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name:       InboxWP - Easy transactional emails
+ * Plugin Name:       InboxWP
  * Plugin URI:        https://inboxwp.com
  * Description:       Send transactional emails with this plugin in the easiest way.
  * Version:           1.0
