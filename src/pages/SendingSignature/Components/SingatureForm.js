@@ -42,7 +42,6 @@ export default function SignatureForm({setCreateSignature}) {
             navigate('/sending-signatures');
         })
             .catch((err) => {
-
                 notifyError(err?.data?.message || 'Something went wrong')
             })
             .finally(() => {
