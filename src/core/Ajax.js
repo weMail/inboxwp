@@ -1,10 +1,14 @@
 import http from './HTTP';
 
+import useSiteConnection from '../hooks/useSiteConnection';
+
 const Ajax = http('http://appsero.test/wp-json/inboxwp/v1');
 
 export default Ajax;
 
 const $ = window.jQuery;
+
+const {disconnectSite} = useSiteConnection();
 
 const Post = (url, data) => {
 
@@ -17,11 +21,7 @@ const Post = (url, data) => {
                 resolve(response);
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                if (jqXHR.status === 403) {
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 1000);
-                }
+                disconnectSite();
 
                 reject(jqXHR.responseJSON);
             },
@@ -39,11 +39,7 @@ const Get = (url) => {
                 resolve(response);
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                if (jqXHR.status === 403) {
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 1000);
-                }
+                disconnectSite();
 
                 reject(jqXHR.responseJSON);
             }

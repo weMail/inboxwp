@@ -10,32 +10,18 @@ import useNotification from "../../hooks/useNotification";
 import DefaultLayout from "../../layouts/DefaultLayout";
 import NoticeSection from "../../components/Dashboard/NoticeSection";
 import {Get, Post} from "../../core/Ajax";
+import useSiteConnection from "../../hooks/useSiteConnection";
 
 export default function Index() {
     const [loading, setLoading] = useState(true);
     const {notifyError} = useNotification();
+    const {disconnectSite} = useSiteConnection(setLoading);
     const [stats, setStats] = useState({
         sent: {},
         bounce: {},
         spam: {},
     });
-    const disconnectSite = () => {
-        setLoading(true);
-        const response = Post(`${inboxwp.ajaxurl}`, {action: 'inboxwp_app_disconnect', hash: inboxwp.hash});
-        response.then((res) => {
-                if (res.success) {
-                    window.location.reload();
-                } else {
-                    notifyError(res.data.message || 'Something went wrong!')
-                }
-            })
-            .catch((err) => {
-                console.log(err.response.data.message)
-            })
-            .finally(() => {
-                setLoading(false)
-            })
-    }
+
     const getStats = () => {
         setLoading(true)
         const response = Get(`${inboxwp.ajaxurl}?action=inboxwp_get_stats&hash=${inboxwp.hash}`);
