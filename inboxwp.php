@@ -172,3 +172,27 @@ function inbox_wp() {
 }
 
 inbox_wp();
+
+
+/**
+ * Initialize the plugin tracker
+ *
+ * @return void
+ */
+function appsero_init_tracker_inboxwp() {
+
+    if ( ! class_exists( 'Appsero\Client' ) ) {
+        require_once __DIR__ . '/appsero/src/Client.php';
+    }
+
+    $client = new Appsero\Client( 'd76c3855-3b47-48f8-a7e0-4e7e38d63de1', 'InboxWP', __FILE__ );
+
+    // Active insights
+    $client->insights()->init();
+
+    // Active automatic updater
+    $client->updater();
+
+}
+
+appsero_init_tracker_inboxwp();

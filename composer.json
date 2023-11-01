@@ -11,7 +11,8 @@
         "files": []
     },
     "require": {
-        "php": ">=5.6"
+        "php": ">=5.6",
+        "appsero/client": "dev-develop"
     },
     "require-dev": {
         "wp-coding-standards/wpcs": "dev-master",
