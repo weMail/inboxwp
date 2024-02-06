@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1aea2b8cdc185c46b9be91edfb88e766",
+    "content-hash": "bac78e41dd0aae5af962413dffb160ac",
     "packages": [
         {
             "name": "appsero/client",
-            "version": "dev-develop",
+            "version": "v2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Appsero/client.git",
-                "reference": "3b68f17ac29d56d14a78cc4817c4b80f692e4e3a"
+                "reference": "b61c3ab21df4d44f805ee9476f9d880f8370a36b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Appsero/client/zipball/3b68f17ac29d56d14a78cc4817c4b80f692e4e3a",
-                "reference": "3b68f17ac29d56d14a78cc4817c4b80f692e4e3a",
+                "url": "https://api.github.com/repos/Appsero/client/zipball/b61c3ab21df4d44f805ee9476f9d880f8370a36b",
+                "reference": "b61c3ab21df4d44f805ee9476f9d880f8370a36b",
                 "shasum": ""
             },
             "require": {
@@ -31,7 +31,6 @@
                 "tareq1988/wp-php-cs-fixer": "dev-master",
                 "wp-coding-standards/wpcs": "dev-develop"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -57,9 +56,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Appsero/client/issues",
-                "source": "https://github.com/Appsero/client/tree/develop"
+                "source": "https://github.com/Appsero/client/tree/v2.0.2"
             },
-            "time": "2023-10-11T09:13:55+00:00"
+            "time": "2024-01-30T08:15:01+00:00"
         }
     ],
     "packages-dev": [
