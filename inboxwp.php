@@ -19,7 +19,7 @@ use WeDevs\Inboxwp\Assets;
 use WeDevs\Inboxwp\Hooks;
 
 // don't call the file directly
-if (! defined('ABSPATH')) {
+if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
@@ -28,8 +28,8 @@ require_once __DIR__ . '/vendor/autoload.php';
 /**
  * The main inboxWP plugin class
  */
-final class InboxWP
-{
+final class InboxWP {
+
     /**
      * @var $inboxWP
      */
@@ -45,13 +45,12 @@ final class InboxWP
     /**
      * InboxWP constructor.
      */
-    private function __construct()
-    {
+    private function __construct() {
         $this->define_constants();
         $this->includes();
-        register_activation_hook(__FILE__, [ $this, 'activate' ]);
-        add_action('plugins_loaded', [ $this, 'init_plugin' ]);
-        add_action('admin_init', [ $this, 'inboxwp_redirect' ]);
+        register_activation_hook( __FILE__, [ $this, 'activate' ] );
+        add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
+        add_action( 'admin_init', [ $this, 'inboxwp_redirect' ] );
     }
 
     /**
@@ -59,11 +58,9 @@ final class InboxWP
      *
      * @return InboxWP
      */
-    public static function init()
-    {
-        if (! self::$instance) {
+    public static function init() {         if ( ! self::$instance ) {
             self::$instance = new self();
-        }
+	}
         return self::$instance;
     }
 
@@ -72,16 +69,15 @@ final class InboxWP
      *
      * @return void
      */
-    public function define_constants()
-    {
-        define('INBOX_WP_VERSION', self::VERSION);
-        define('INBOX_WP_FILE', __FILE__);
-        define('INBOX_WP_PATH', __DIR__);
-        define('INBOX_WP_INCLUDES', INBOX_WP_PATH . '/includes');
-        define('INBOX_WP_CORE', INBOX_WP_INCLUDES . '/Core');
-        define('INBOX_WP_URL', plugins_url('', INBOX_WP_FILE));
-        define('INBOX_WP_ASSETS', INBOX_WP_URL . '/assets');
-        define('INBOX_WP_APP_URL', $this->getAppUrl());
+    public function define_constants() {
+        define( 'INBOX_WP_VERSION', self::VERSION );
+        define( 'INBOX_WP_FILE', __FILE__ );
+        define( 'INBOX_WP_PATH', __DIR__ );
+        define( 'INBOX_WP_INCLUDES', INBOX_WP_PATH . '/includes' );
+        define( 'INBOX_WP_CORE', INBOX_WP_INCLUDES . '/Core' );
+        define( 'INBOX_WP_URL', plugins_url( '', INBOX_WP_FILE ) );
+        define( 'INBOX_WP_ASSETS', INBOX_WP_URL . '/assets' );
+        define( 'INBOX_WP_APP_URL', $this->getAppUrl() );
     }
 
     /**
@@ -89,32 +85,30 @@ final class InboxWP
      *
      * @return void
      */
-    public function activate()
-    {
-        if (! get_option('inbox_wp_installed')) {
-            update_option('inbox_wp_installed', time());
+    public function activate() {
+        if ( ! get_option( 'inbox_wp_installed' ) ) {
+            update_option( 'inbox_wp_installed', time() );
         }
 
-        update_option('inbox_wp_version', INBOX_WP_VERSION);
+            update_option( 'inbox_wp_version', INBOX_WP_VERSION );
 
-        if (! inboxwp_site_hash()) {
+        if ( ! inboxwp_site_hash() ) {
             inboxwp_set_site_hash();
         }
-        update_option('inbox_wp_activated', true);
+        update_option( 'inbox_wp_activated', true );
     }
 
     /**
      * Initialize the plugin
      */
-    public function init_plugin()
-    {
+    public function init_plugin() {
         new Assets();
         new API();
         new Hooks();
-        if (defined('DOING_AJAX') && DOING_AJAX) {
+        if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
             new WeDevs\Inboxwp\Ajax();
         }
-        if (is_admin()) {
+        if ( is_admin() ) {
             new Admin();
         }
     }
@@ -124,8 +118,7 @@ final class InboxWP
      *
      * @return void
      */
-    public function includes()
-    {
+    public function includes() {
         require_once INBOX_WP_PATH . '/includes/Functions.php';
         $this->include_cors();
     }
@@ -135,10 +128,9 @@ final class InboxWP
      *
      * @return string
      */
-    protected function getAppUrl()
-    {
-        $app_url = apply_filters('inboxwp_app_url', 'https://app.inboxwp.com');
-        return untrailingslashit($app_url);
+    protected function getAppUrl() {
+        $app_url = apply_filters( 'inboxwp_app_url', 'https://app.inboxwp.com' );
+        return untrailingslashit( $app_url );
     }
 
     /**
@@ -146,11 +138,10 @@ final class InboxWP
      *
      * @return void
      */
-    public function inboxwp_redirect()
-    {
-        if (get_option('inbox_wp_activated')) {
-            delete_option('inbox_wp_activated');
-            wp_safe_redirect(inboxwp_get_admin_url());
+    public function inboxwp_redirect() {
+        if ( get_option( 'inbox_wp_activated' ) ) {
+            delete_option( 'inbox_wp_activated' );
+            wp_safe_redirect( inboxwp_get_admin_url() );
         }
     }
 
@@ -159,13 +150,12 @@ final class InboxWP
      *
      * @return void
      */
-    private function include_cors()
-    {
-        $class_dirs = glob(INBOX_WP_CORE . '/*', GLOB_ONLYDIR);
-        foreach ($class_dirs as $dir) {
-            $className = str_replace(INBOX_WP_CORE . '/', '', $dir);
+    private function include_cors() {
+        $class_dirs = glob( INBOX_WP_CORE . '/*', GLOB_ONLYDIR );
+        foreach ( $class_dirs as $dir ) {
+            $className = str_replace( INBOX_WP_CORE . '/', '', $dir );
             $class = "\\WeDevs\\Inboxwp\Core\\$className\\Menu";
-            if (class_exists($class)) {
+            if ( class_exists( $class ) ) {
                 new $class();
             }
         }
@@ -177,8 +167,7 @@ final class InboxWP
  *
  * @return InboxWP
  */
-function inbox_wp()
-{
+function inbox_wp() {
     return InboxWP::init();
 }
 
@@ -190,10 +179,8 @@ inbox_wp();
  *
  * @return void
  */
-function appsero_init_tracker_inboxwp()
-{
-
-    $client = new Appsero\Client('d76c3855-3b47-48f8-a7e0-4e7e38d63de1', 'InboxWP', __FILE__);
+function appsero_init_tracker_inboxwp() {
+    $client = new Appsero\Client( 'd76c3855-3b47-48f8-a7e0-4e7e38d63de1', 'InboxWP', __FILE__ );
 
     // Active insights
     $client->insights()->init();
