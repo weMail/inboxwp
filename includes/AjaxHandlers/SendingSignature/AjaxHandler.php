@@ -30,7 +30,8 @@ class AjaxHandler extends AjaxHandlerAbstract {
      *
      * @return void
      */
-    public function add_domain() {         $this->checkNonce();
+    public function add_domain() {
+        $this->checkNonce();
 
         $response = AppApi::instance()->post(
             '/sending-domains', [

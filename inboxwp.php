@@ -4,7 +4,7 @@
  * Plugin Name:       InboxWP
  * Plugin URI:        https://inboxwp.com
  * Description:       Send transactional emails with this plugin in the easiest way.
- * Version:           1.0
+ * Version:           1.0.0
  * Author:            weDevs
  * Author URI:        https://inboxwp.com/
  * License:           GPLv2 or later

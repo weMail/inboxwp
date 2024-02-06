@@ -3,8 +3,8 @@ Contributors: tareq1988, nizamuddinbabu, wedevs, wemail
 Donate link: https://inboxwp.com/
 Tags: WordPress Email, WordPress transactional email, transactional emails, registration emails, password reset emails, WooCommerce emails, free email 
 Requires at least: 4.0
-Tested up to: 6.3
-Stable tag: 1.0
+Tested up to: 6.4
+Stable tag: 1.0.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
