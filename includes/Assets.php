@@ -5,6 +5,7 @@ namespace WeDevs\Inboxwp;
 
 class Assets {
 
+
     public function __construct() {
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_assets' ] );
         add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_assets' ] );
@@ -12,34 +13,34 @@ class Assets {
 
     public function get_scripts() {
         return [
-			'inboxwp-admin-script' => [
-				'src' => INBOX_WP_ASSETS . '/js/admin-script.js',
-				'version' => filemtime( INBOX_WP_PATH . '/assets/js/admin-script.js' ),
-				'deps' => [ 'jquery' ],
-			],
-			'inboxwp-react-script' => [
-				'src' => INBOX_WP_URL . '/build/index.js',
-				'version' => filemtime( INBOX_WP_PATH . '/build/index.js' ),
-				'deps' => [ 'wp-element', 'lodash', 'jquery' ],
-			],
-		];
+            'inboxwp-admin-script' => [
+                'src' => INBOX_WP_ASSETS . '/js/admin-script.js',
+                'version' => filemtime( INBOX_WP_PATH . '/assets/js/admin-script.js' ),
+                'deps' => [ 'jquery' ],
+            ],
+            'inboxwp-react-script' => [
+                'src' => INBOX_WP_URL . '/build/index.js',
+                'version' => filemtime( INBOX_WP_PATH . '/build/index.js' ),
+                'deps' => [ 'wp-element', 'lodash', 'jquery' ],
+            ],
+        ];
     }
 
     public function get_styles() {
         return [
-			'inboxwp-style' => [
-				'src' => INBOX_WP_ASSETS . '/css/admin-style.css',
-				'version' => filemtime( INBOX_WP_PATH . '/assets/css/admin-style.css' ),
-			],
-			'inboxwp-tailwind-ui-font' => [
-				'src' => 'https://rsms.me/inter/inter.css',
-				'version' => INBOX_WP_VERSION,
-			],
-			'inboxwp-react-style' => [
-				'src' => INBOX_WP_URL . '/build/index.css',
-				'version' => filemtime( INBOX_WP_PATH . '/build/index.css' ),
-			],
-		];
+            'inboxwp-style' => [
+                'src' => INBOX_WP_ASSETS . '/css/admin-style.css',
+                'version' => filemtime( INBOX_WP_PATH . '/assets/css/admin-style.css' ),
+            ],
+            'inboxwp-tailwind-ui-font' => [
+                'src' => 'https://rsms.me/inter/inter.css',
+                'version' => INBOX_WP_VERSION,
+            ],
+            'inboxwp-react-style' => [
+                'src' => INBOX_WP_URL . '/build/index.css',
+                'version' => filemtime( INBOX_WP_PATH . '/build/index.css' ),
+            ],
+        ];
     }
 
     public function enqueue_assets() {
@@ -58,16 +59,18 @@ class Assets {
         }
 
         wp_localize_script(
-            'inboxwp-react-script', 'inboxwp', [
-				'ajaxurl' => admin_url( 'admin-ajax.php' ),
-				'hash' => wp_create_nonce( 'inboxwp-nonce' ),
-				'siteHash' => inboxwp_site_hash(),
-				'appUrl' => INBOX_WP_APP_URL,
-				'siteUrl' => untrailingslashit( site_url( '/' ) ),
-				'restPrefix' => rest_get_url_prefix(),
+            'inboxwp-react-script',
+            'inboxwp',
+            [
+                'ajaxurl' => admin_url( 'admin-ajax.php' ),
+                'hash' => wp_create_nonce( 'inboxwp-nonce' ),
+                'siteHash' => inboxwp_site_hash(),
+                'appUrl' => INBOX_WP_APP_URL,
+                'siteUrl' => untrailingslashit( site_url( '/' ) ),
+                'restPrefix' => rest_get_url_prefix(),
                 'is_connected' => (bool) inboxwp_api_key(),
                 'ignoredPlugin' => inboxwp_ignored_plugin(),
-			]
+            ]
         );
     }
 }

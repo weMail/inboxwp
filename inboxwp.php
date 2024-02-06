@@ -29,6 +29,7 @@ require_once __DIR__ . '/vendor/autoload.php';
  * The main inboxWP plugin class
  */
 final class InboxWP {
+
     /**
      * @var $inboxWP
      */
@@ -57,10 +58,9 @@ final class InboxWP {
      *
      * @return InboxWP
      */
-    public static function init() {
-        if ( ! self::$instance ) {
+    public static function init() {         if ( ! self::$instance ) {
             self::$instance = new self();
-        }
+	}
         return self::$instance;
     }
 
@@ -90,7 +90,7 @@ final class InboxWP {
             update_option( 'inbox_wp_installed', time() );
         }
 
-        update_option( 'inbox_wp_version', INBOX_WP_VERSION );
+            update_option( 'inbox_wp_version', INBOX_WP_VERSION );
 
         if ( ! inboxwp_site_hash() ) {
             inboxwp_set_site_hash();
@@ -180,19 +180,10 @@ inbox_wp();
  * @return void
  */
 function appsero_init_tracker_inboxwp() {
-
-    if ( ! class_exists( 'Appsero\Client' ) ) {
-        require_once __DIR__ . '/appsero/src/Client.php';
-    }
-
     $client = new Appsero\Client( 'd76c3855-3b47-48f8-a7e0-4e7e38d63de1', 'InboxWP', __FILE__ );
 
     // Active insights
     $client->insights()->init();
-
-    // Active automatic updater
-    $client->updater();
-
 }
 
 appsero_init_tracker_inboxwp();

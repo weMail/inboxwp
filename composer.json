@@ -12,7 +12,7 @@
     },
     "require": {
         "php": ">=5.6",
-        "appsero/client": "dev-develop"
+        "appsero/client": "v2.0.2"
     },
     "require-dev": {
         "wp-coding-standards/wpcs": "dev-master",
